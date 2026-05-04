@@ -57,15 +57,15 @@
     },
     "facility": {
       "type": "object",
-      "required": ["facility_id", "store_code", "reference_code", "display_name", "mock_location", "state", "facility_type"],
+      "required": ["facility_id", "region_code", "reference_code", "display_name", "mock_location", "state", "facility_type"],
       "properties": {
         "facility_id": { "type": "string" },
-        "store_code": { "type": "string" },
+        "region_code": { "type": "string" },
         "reference_code": { "type": "string" },
         "display_name": { "type": "string" },
         "mock_location": { "type": "string" },
         "state": { "type": "string" },
-        "facility_type": { "type": "string", "enum": ["Store", "Distribution", "Office", "Other"] },
+        "facility_type": { "type": "string", "enum": ["Region", "Store", "Distribution", "Office", "Other"] },
         "protection_status": { "type": "string" },
         "role_visibility": {
           "type": "array",

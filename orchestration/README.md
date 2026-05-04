@@ -5,14 +5,14 @@ Data mode: Synthetic/demo data only
 
 ## Purpose
 
-This folder contains the first local-only orchestration layer for the Store WS-X38 demo. It converts FPI-004 top risk drivers into draft remediation/work actions that are safe to preview and validate locally.
+This folder contains the first local-only orchestration layer for the Region 75 demo. It converts FPI-004 top risk drivers into draft remediation/work actions that are safe to preview and validate locally.
 
 ## Files
 
 - `remediation_orchestrator.py` — creates local draft actions from FPI-004 scoring output.
-- `expected_wsx38_actions.json` — expected Store WS-X38 draft actions.
+- `expected_region75_actions.json` — expected Region 75 draft actions.
 - `validate_orchestration.py` — expected-vs-actual validation and guardrail checks.
-- `orchestration-output-wsx38.json` — generated actual draft-action output.
+- `orchestration-output-region75.json` — generated actual draft-action output.
 
 ## Run
 
@@ -27,8 +27,8 @@ python orchestration/remediation_orchestrator.py
 To refresh output:
 
 ```bash
-python scoring/risk_scoring.py > scoring/scoring-output-wsx38.json
-python orchestration/remediation_orchestrator.py > orchestration/orchestration-output-wsx38.json
+python scoring/risk_scoring.py > scoring/scoring-output-region75.json
+python orchestration/remediation_orchestrator.py > orchestration/orchestration-output-region75.json
 ```
 
 ## Current draft actions
@@ -48,7 +48,7 @@ Each action remains:
 ## Guardrails
 
 - Local draft only.
-- Synthetic Store WS-X38 data only.
+- Synthetic Region 75 data only.
 - No production work-order creation.
 - No live adapter calls.
 - No credentials, production URLs, real facility vulnerabilities, employee PII, law-enforcement contacts, or sensitive facility posture.

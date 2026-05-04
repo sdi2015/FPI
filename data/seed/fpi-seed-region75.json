@@ -5,21 +5,21 @@
   "generated_for": "FPI-002 canonical data/schema and seed data",
   "facilities": [
     {
-      "facility_id": "store-wsx38",
-      "store_code": "WS-X38",
-      "reference_code": "WS-X38",
-      "display_name": "Store WS-X38",
-      "mock_location": "Richland, VA",
-      "state": "VA",
-      "facility_type": "Store",
+      "facility_id": "region-75",
+      "region_code": "REG-75",
+      "reference_code": "REG-75",
+      "display_name": "Region 75",
+      "mock_location": "Walmart Region 75",
+      "state": "Regional",
+      "facility_type": "Region",
       "protection_status": "Needs Attention",
-      "role_visibility": ["Executive", "Market", "Field Operations", "Store Leadership", "Security Technology", "Fire/Life Safety"]
+      "role_visibility": ["Executive", "Market", "Field Operations", "Regional Leadership", "Security Technology", "Fire/Life Safety"]
     }
   ],
   "risk_assessments": [
     {
-      "risk_id": "risk-store-wsx38-current",
-      "facility_id": "store-wsx38",
+      "risk_id": "risk-region75-current",
+      "facility_id": "region-75",
       "score": 72,
       "tier": "Elevated",
       "confidence": "Medium",
@@ -54,26 +54,26 @@
   ],
   "technology_issues": [
     {
-      "issue_id": "tech-fire-wsx38-001",
-      "facility_id": "store-wsx38",
+      "issue_id": "tech-fire-region75-001",
+      "facility_id": "region-75",
       "domain": "Fire Alarm",
       "status": "Warning",
       "summary": "Synthetic fire alarm evidence is aging and needs verification before risk can be reduced.",
       "source_id": "src-fire-synthetic",
-      "creates_remediation_id": "rem-wsx38-fire-evidence"
+      "creates_remediation_id": "rem-region75-fire-evidence"
     },
     {
-      "issue_id": "tech-vms-wsx38-001",
-      "facility_id": "store-wsx38",
+      "issue_id": "tech-vms-region75-001",
+      "facility_id": "region-75",
       "domain": "Camera/VMS",
       "status": "Degraded",
       "summary": "Synthetic camera/VMS health issue included to validate technology-health prioritization.",
       "source_id": "src-vms-synthetic",
-      "creates_remediation_id": "rem-wsx38-vms-health"
+      "creates_remediation_id": "rem-region75-vms-health"
     },
     {
-      "issue_id": "tech-access-wsx38-001",
-      "facility_id": "store-wsx38",
+      "issue_id": "tech-access-region75-001",
+      "facility_id": "region-75",
       "domain": "Access Control",
       "status": "Normal",
       "summary": "Synthetic access-control status is normal to prove mixed health states.",
@@ -83,9 +83,9 @@
   ],
   "incidents": [
     {
-      "incident_id": "inc-wsx38-demo-001",
-      "facility_id": "store-wsx38",
-      "incident_type": "Synthetic after-hours door event",
+      "incident_id": "inc-region75-demo-001",
+      "facility_id": "region-75",
+      "incident_type": "Synthetic regional after-hours protection event",
       "severity": "Medium",
       "occurred_at": "2026-04-29T02:15:00Z",
       "synthetic_summary": "Demo-only incident used to validate incident-to-risk linkage without exposing real event data."
@@ -93,37 +93,37 @@
   ],
   "remediations": [
     {
-      "remediation_id": "rem-wsx38-fire-evidence",
-      "facility_id": "store-wsx38",
+      "remediation_id": "rem-region75-fire-evidence",
+      "facility_id": "region-75",
       "title": "Attach synthetic fire alarm test evidence",
       "status": "Open",
       "owner_role": "Fire/Life Safety",
       "verification_required": true,
-      "related_issue_ids": ["tech-fire-wsx38-001"]
+      "related_issue_ids": ["tech-fire-region75-001"]
     },
     {
-      "remediation_id": "rem-wsx38-vms-health",
-      "facility_id": "store-wsx38",
+      "remediation_id": "rem-region75-vms-health",
+      "facility_id": "region-75",
       "title": "Review synthetic VMS health degradation",
       "status": "In Progress",
       "owner_role": "Security Technology",
       "verification_required": true,
-      "related_issue_ids": ["tech-vms-wsx38-001"]
+      "related_issue_ids": ["tech-vms-region75-001"]
     }
   ],
   "evidence": [
     {
-      "evidence_id": "ev-wsx38-fire-missing",
-      "facility_id": "store-wsx38",
-      "remediation_id": "rem-wsx38-fire-evidence",
+      "evidence_id": "ev-region75-fire-missing",
+      "facility_id": "region-75",
+      "remediation_id": "rem-region75-fire-evidence",
       "evidence_type": "Fire alarm test record",
       "status": "Missing",
       "synthetic_note": "Placeholder evidence gap for demo. Do not replace with real facility records."
     },
     {
-      "evidence_id": "ev-wsx38-vms-attached",
-      "facility_id": "store-wsx38",
-      "remediation_id": "rem-wsx38-vms-health",
+      "evidence_id": "ev-region75-vms-attached",
+      "facility_id": "region-75",
+      "remediation_id": "rem-region75-vms-health",
       "evidence_type": "Synthetic technology health screenshot",
       "status": "Attached",
       "synthetic_note": "Demo-only evidence object for validation and workflow testing."

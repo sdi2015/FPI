@@ -12,7 +12,7 @@ REQUIRED_FILES = [
     ROOT / "assets" / "styles.css",
     ROOT / "assets" / "app.js",
     ROOT / "data" / "fpi-demo-data.json",
-    ROOT / "data" / "seed" / "fpi-seed-wsx38.json",
+    ROOT / "data" / "seed" / "fpi-seed-region75.json",
 ]
 
 
@@ -31,15 +31,15 @@ def main() -> int:
         return 2
 
     facilities = data.get("facilities") or []
-    if not facilities or facilities[0].get("facility_id") != "store-wsx38":
-        print("FPI baseline validation failed: synthetic Store WS-X38 record not found")
+    if not facilities or facilities[0].get("facility_id") != "region-75":
+        print("FPI baseline validation failed: synthetic Region 75 record not found")
         return 2
 
     index_text = (ROOT / "index.html").read_text(encoding="utf-8")
     required_markers = [
         "Walmart Internal / Need-to-Know",
         "Synthetic Demo Data",
-        "Store WS-X38",
+        "Region 75",
         "assets/app.js",
         "assets/styles.css",
     ]
@@ -51,8 +51,8 @@ def main() -> int:
         return 2
 
     app_text = (ROOT / "assets" / "app.js").read_text(encoding="utf-8")
-    if "data/seed/fpi-seed-wsx38.json" not in app_text:
-        print("FPI baseline validation failed: dashboard is not bound to canonical Store WS-X38 seed")
+    if "data/seed/fpi-seed-region75.json" not in app_text:
+        print("FPI baseline validation failed: dashboard is not bound to canonical Region 75 seed")
         return 2
 
     print("FPI baseline validation passed.")

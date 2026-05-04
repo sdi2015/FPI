@@ -53,14 +53,14 @@ http://127.0.0.1:8765/
 The current local shell is:
 
 ```text
-fpi-015
+fpi-region75
 ```
 
 The page source should include:
 
 ```text
-assets/styles.css?v=fpi-015
-assets/app.js?v=fpi-015
+assets/styles.css?v=fpi-region75
+assets/app.js?v=fpi-region75
 ```
 
 If the UI looks old or broken, hard refresh:
@@ -96,9 +96,9 @@ Expected: all checks pass.
 - `assets/styles.css` — app styling.
 - `assets/app.js` — local JSON data binding and work queue logic.
 - `assets/service-verticals.json` — service vertical configuration.
-- `data/seed/fpi-seed-wsx38.json` — canonical Store WS-X38 synthetic seed data.
-- `scoring/scoring-output-wsx38.json` — explainable scoring output.
-- `orchestration/orchestration-output-wsx38.json` — local draft action output.
+- `data/seed/fpi-seed-region75.json` — canonical Region 75 synthetic seed data.
+- `scoring/scoring-output-region75.json` — explainable scoring output.
+- `orchestration/orchestration-output-region75.json` — local draft action output.
 - `run_localhost.bat` — one-click Windows launcher.
 - `run_localhost.ps1` — PowerShell launcher.
 - `health_check.bat` — one-click validation.
@@ -108,9 +108,9 @@ Expected: all checks pass.
 The app reads only local files from this folder:
 
 ```text
-data/seed/fpi-seed-wsx38.json
-scoring/scoring-output-wsx38.json
-orchestration/orchestration-output-wsx38.json
+data/seed/fpi-seed-region75.json
+scoring/scoring-output-region75.json
+orchestration/orchestration-output-region75.json
 assets/service-verticals.json
 ```
 
@@ -154,7 +154,7 @@ Hard refresh:
 Ctrl + F5
 ```
 
-Confirm source includes `fpi-015`.
+Confirm source includes `fpi-region75`.
 
 ### OneDrive is still syncing
 

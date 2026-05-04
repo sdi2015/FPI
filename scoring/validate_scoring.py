@@ -8,7 +8,7 @@ from pathlib import Path
 from risk_scoring import DEFAULT_SEED_PATH, load_seed, score_facility
 
 ROOT = Path(__file__).resolve().parent
-EXPECTED_PATH = ROOT / "expected_wsx38_score.json"
+EXPECTED_PATH = ROOT / "expected_region75_score.json"
 
 
 def fail(message: str) -> int:

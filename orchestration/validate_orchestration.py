@@ -8,7 +8,7 @@ from pathlib import Path
 from remediation_orchestrator import ADAPTER_MODE, SCORING_OUTPUT_PATH, SEED_PATH, build_actions, load_json
 
 ROOT = Path(__file__).resolve().parent
-EXPECTED_PATH = ROOT / "expected_wsx38_actions.json"
+EXPECTED_PATH = ROOT / "expected_region75_actions.json"
 FORBIDDEN_MARKERS = [
     "password",
     "token",

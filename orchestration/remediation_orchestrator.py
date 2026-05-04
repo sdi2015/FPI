@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Local remediation orchestration drafts for the FPI Store WS-X38 demo.
+"""Local remediation orchestration drafts for the FPI Region 75 demo.
 
 This module converts explainable risk drivers into draft remediation/work items.
 It is intentionally local-only: no live integrations, no credentials, and no
@@ -13,8 +13,8 @@ from pathlib import Path
 from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
-SEED_PATH = ROOT / "data" / "seed" / "fpi-seed-wsx38.json"
-SCORING_OUTPUT_PATH = ROOT / "scoring" / "scoring-output-wsx38.json"
+SEED_PATH = ROOT / "data" / "seed" / "fpi-seed-region75.json"
+SCORING_OUTPUT_PATH = ROOT / "scoring" / "scoring-output-region75.json"
 
 ADAPTER_MODE = "Local Draft Only"
 GUARDRAIL_NOTE = "Synthetic draft only. Do not send to live work management, vendor, alarm, VMS, or compliance systems."
@@ -118,7 +118,7 @@ def build_actions(seed: dict[str, Any], scoring: dict[str, Any]) -> dict[str, An
         factor_id = driver["factor_id"]
         actions.append(
             DraftAction(
-                action_id=f"draft-wsx38-{index:03d}",
+                action_id=f"draft-region75-{index:03d}",
                 facility_id=facility_id,
                 title=action_title(driver),
                 source_factor_id=factor_id,

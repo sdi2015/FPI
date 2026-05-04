@@ -5,12 +5,12 @@ Data mode: Synthetic/demo data only
 
 ## Purpose
 
-This folder contains the first no-dependency explainable scoring function for the Store WS-X38 synthetic demo. It reads the FPI-002 canonical seed and produces an inspectable score, tier, top drivers, and visible factor list.
+This folder contains the first no-dependency explainable scoring function for the Region 75 synthetic demo. It reads the FPI-002 canonical seed and produces an inspectable score, tier, top drivers, and visible factor list.
 
 ## Files
 
 - `risk_scoring.py` — scoring function and CLI JSON output.
-- `expected_wsx38_score.json` — expected Store WS-X38 score/tier and top drivers.
+- `expected_region75_score.json` — expected Region 75 score/tier and top drivers.
 - `validate_scoring.py` — expected-vs-actual validation with visible factor checks.
 
 ## Run
@@ -26,7 +26,7 @@ Expected validation summary:
 
 ```text
 FPI scoring validation passed.
-- facility: Store WS-X38
+- facility: Region 75
 - expected score/tier: 93 / Critical
 - actual score/tier: 93 / Critical
 ```
@@ -55,7 +55,7 @@ Scores are clamped from 0 to 100 and mapped to risk tiers:
 ## Guardrails
 
 - Local JSON only.
-- Synthetic Store WS-X38 data only.
+- Synthetic Region 75 data only.
 - No production endpoints, credentials, live source calls, employee PII, real facility posture, or law-enforcement contacts.
 
 ## Current note

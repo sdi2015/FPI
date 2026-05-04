@@ -12,10 +12,10 @@ FPI-002 establishes the first canonical local JSON shape for the event build. Th
 The MVP mock facility is:
 
 ```text
-Store WS-X38
-Store code: WS-X38
-Mock location: Richland, VA
-Canonical facility_id: store-wsx38
+Region 75
+Region code: REG-75
+Mock location: Walmart Region 75
+Canonical facility_id: region-75
 ```
 
 This is treated as synthetic/demo context for the prototype. Do not add real facility vulnerabilities, real employee details, law-enforcement contacts, production source records, or sensitive facility posture.
@@ -24,7 +24,7 @@ This is treated as synthetic/demo context for the prototype. Do not add real fac
 
 ```text
 data/schema/fpi-canonical.schema.json
-data/seed/fpi-seed-wsx38.json
+data/seed/fpi-seed-region75.json
 scripts/validate_seed.py
 ```
 
@@ -32,7 +32,7 @@ scripts/validate_seed.py
 
 | Collection | Purpose | Primary key |
 |---|---|---|
-| `facilities` | Store/facility identity and role visibility. | `facility_id` |
+| `facilities` | Region/facility identity and role visibility. | `facility_id` |
 | `risk_assessments` | Current explainable risk posture. | `risk_id` |
 | `technology_issues` | Normalized fire, VMS/camera, access, network/security device signals. | `issue_id` |
 | `incidents` | Synthetic event history that can influence risk. | `incident_id` |
@@ -90,7 +90,7 @@ The validator checks:
 
 - Required top-level collections exist.
 - Data mode is `synthetic_demo_only`.
-- Facility identity matches Store WS-X38 / Richland, VA.
+- Facility identity matches Region 75 / Walmart Region 75.
 - Technology issue statuses use the approved vocabulary.
 - Risk drivers reference known sources and include recommended actions.
 - Technology issues, remediations, and evidence records link to known IDs.
@@ -98,7 +98,7 @@ The validator checks:
 
 ## Coordination notes
 
-- FPI-003 UI should bind to `data/seed/fpi-seed-wsx38.json` or an adapter that preserves this shape.
+- FPI-003 UI should bind to `data/seed/fpi-seed-region75.json` or an adapter that preserves this shape.
 - FPI-004 scoring should replace the current static score only through a reviewed scoring task; the seed keeps expected baseline factors for comparison.
 - FPI-005 orchestration should generate or update `remediations` and `evidence` through the canonical IDs.
 - Chris R / technology health work should preserve the `technology_issues` status vocabulary.

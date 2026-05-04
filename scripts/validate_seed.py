@@ -6,7 +6,7 @@ import json
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-SEED_PATH = ROOT / "data" / "seed" / "fpi-seed-wsx38.json"
+SEED_PATH = ROOT / "data" / "seed" / "fpi-seed-region75.json"
 SCHEMA_PATH = ROOT / "data" / "schema" / "fpi-canonical.schema.json"
 
 ALLOWED_SYSTEM_STATUSES = {"Normal", "Warning", "Degraded", "Critical", "Unknown", "Not Applicable"}
@@ -55,11 +55,11 @@ def main() -> int:
 
     facility = facilities[0]
     expected_facility = {
-        "facility_id": "store-wsx38",
-        "store_code": "WS-X38",
-        "reference_code": "WS-X38",
-        "display_name": "Store WS-X38",
-        "mock_location": "Richland, VA",
+        "facility_id": "region-75",
+        "region_code": "REG-75",
+        "reference_code": "REG-75",
+        "display_name": "Region 75",
+        "mock_location": "Walmart Region 75",
     }
     for key, expected in expected_facility.items():
         if facility.get(key) != expected:

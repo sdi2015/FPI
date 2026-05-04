@@ -1,6 +1,6 @@
 {
-  "facility_id": "store-wsx38",
-  "display_name": "Store WS-X38",
+  "facility_id": "region-75",
+  "display_name": "Region 75",
   "expected_score": 93,
   "expected_tier": "Critical",
   "expected_top_driver_labels": [

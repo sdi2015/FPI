@@ -7,11 +7,11 @@
   <meta http-equiv="Pragma" content="no-cache" />
   <meta http-equiv="Expires" content="0" />
   <title>FPI Program Console</title>
-  <link rel="stylesheet" href="assets/styles.css?v=fpi-015" />
+  <link rel="stylesheet" href="assets/styles.css?v=fpi-region75" />
 </head>
 <body>
   <a class="skip-link" href="#main-content">Skip to dashboard content</a>
-  <div class="banner">Walmart Internal / Need-to-Know – Draft · Synthetic Store WS-X38 Demo · FPI Program Console</div>
+  <div class="banner">Walmart Internal / Need-to-Know – Draft · Region 75 Demo · FPI Program Console</div>
 
   <div class="app-shell">
     <aside class="sidebar" aria-label="FPI navigation">
@@ -51,7 +51,7 @@
       <section id="overview" class="hero">
         <div class="panel">
           <p class="kicker">FPI Program Console</p>
-          <h2 id="facility-title" class="hero-title">Loading Store WS-X38...</h2>
+          <h2 id="facility-title" class="hero-title">Loading Region 75...</h2>
           <p id="facility-subtitle" class="muted">Loading current program posture from local FPI data.</p>
           <p class="value-prop">FPI turns the local data in this folder into a usable operating shell: see posture, review the work queue, assign the right owner lane, and verify closure evidence.</p>
           <div class="hero-actions" aria-label="Primary dashboard actions">
@@ -67,7 +67,7 @@
             <div><strong>Verify</strong><span>Evidence closure</span></div>
           </div>
           <div class="pill-row" aria-label="Dashboard context">
-            <span class="pill">Store <span id="facility-code">--</span></span>
+            <span class="pill">Region <span id="facility-code">--</span></span>
             <span id="facility-type" class="pill">--</span>
             <span class="pill">Local JSON</span>
             <span class="pill">Usable Local Shell</span>
@@ -220,7 +220,7 @@
           <p class="kicker">Program Maturity Roadmap</p>
           <h2>Path from demo to operating program</h2>
           <ol class="maturity-list">
-            <li><strong>Phase 1:</strong> Local proof of value with synthetic Store WS-X38 data.</li>
+            <li><strong>Phase 1:</strong> Local proof of value with synthetic Region 75 data.</li>
             <li><strong>Phase 2:</strong> Confirm service vertical ownership and scoring calibration.</li>
             <li><strong>Phase 3:</strong> Connect approved adapters behind governance and audit controls.</li>
             <li><strong>Phase 4:</strong> Scale portfolio reporting, exception management, and closure proof.</li>
@@ -244,10 +244,10 @@
           </article>
           <article>
             <h3>Market / Regional Operations</h3>
-            <p>Show which stores or assets need attention, which owners are involved, and what closure requires.</p>
+            <p>Show which facilities or assets need attention, which owners are involved, and what closure requires.</p>
           </article>
           <article>
-            <h3>Field / Store Leadership</h3>
+            <h3>Field / Regional Leadership</h3>
             <p>Translate drivers into safe next steps, evidence expectations, and verification-ready closure.</p>
           </article>
           <article>
@@ -292,7 +292,7 @@
         <div class="section-heading-row">
           <div>
             <h2>FPI Service Verticals</h2>
-            <p class="muted">Planned FPI coverage lanes across protection, operations, technology, verification, and governance. Current Store WS-X38 signals are highlighted where local demo data exists.</p>
+            <p class="muted">Planned FPI coverage lanes across protection, operations, technology, verification, and governance. Current Region 75 signals are highlighted where local demo data exists.</p>
           </div>
           <span class="pill"><span id="service-vertical-count">--</span>&nbsp;coverage lanes</span>
         </div>
@@ -345,13 +345,13 @@
 
         <article class="panel">
           <h2>Integration Notes</h2>
-          <p>This shell reads from <code>data/seed/fpi-seed-wsx38.json</code>, <code>scoring/scoring-output-wsx38.json</code>, and <code>orchestration/orchestration-output-wsx38.json</code>.</p>
+          <p>This shell reads from <code>data/seed/fpi-seed-region75.json</code>, <code>scoring/scoring-output-region75.json</code>, and <code>orchestration/orchestration-output-region75.json</code>.</p>
           <p class="muted">FPI-015 turns the localhost dashboard into a usable local operating shell driven by the data files in this folder while preserving synthetic/local guardrails and avoiding production endpoints, credentials, real facility posture, or live source calls.</p>
         </article>
       </section>
     </main>
   </div>
 
-  <script src="assets/app.js?v=fpi-015"></script>
+  <script src="assets/app.js?v=fpi-region75"></script>
 </body>
 </html>

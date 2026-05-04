@@ -7,7 +7,7 @@ function Test-FpiUrl {
         $response = Invoke-WebRequest -UseBasicParsing -Uri $Url -TimeoutSec 2
         return ($response.StatusCode -eq 200 -and
             $response.Content.Contains("FPI Program Console") -and
-            $response.Content.Contains("assets/app.js?v=fpi-015"))
+            $response.Content.Contains("assets/app.js?v=fpi-region75"))
     }
     catch {
         return $false

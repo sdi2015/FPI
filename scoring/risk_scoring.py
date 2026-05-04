@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Explainable local risk scoring for the FPI synthetic Store WS-X38 demo.
+"""Explainable local risk scoring for the FPI synthetic Region 75 demo.
 
 This module intentionally has no third-party dependencies and does not call live
 systems. It converts the FPI-002 canonical seed into a scored, explainable risk
@@ -13,7 +13,7 @@ from pathlib import Path
 from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_SEED_PATH = ROOT / "data" / "seed" / "fpi-seed-wsx38.json"
+DEFAULT_SEED_PATH = ROOT / "data" / "seed" / "fpi-seed-region75.json"
 
 TIER_THRESHOLDS = [
     (85, "Critical"),
@@ -114,7 +114,7 @@ def score_facility(seed: dict[str, Any], facility_id: str | None = None) -> dict
             factor_id="baseline-demo-context",
             label="Baseline facility protection context",
             points=BASELINE_POINTS,
-            explanation="Starting point for the synthetic Store WS-X38 MVP risk profile.",
+            explanation="Starting point for the synthetic Region 75 MVP risk profile.",
             source_ids=[],
         )
     ]

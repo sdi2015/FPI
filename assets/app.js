@@ -1,6 +1,6 @@
-const seedUrl = './data/seed/fpi-seed-wsx38.json';
-const scoringUrl = './scoring/scoring-output-wsx38.json';
-const orchestrationUrl = './orchestration/orchestration-output-wsx38.json';
+const seedUrl = './data/seed/fpi-seed-region75.json';
+const scoringUrl = './scoring/scoring-output-region75.json';
+const orchestrationUrl = './orchestration/orchestration-output-region75.json';
 const serviceVerticalsUrl = './assets/service-verticals.json';
 
 const byId = (id) => document.getElementById(id);
@@ -153,7 +153,7 @@ function findEvidenceForAction(action, evidence) {
 
   return evidence.find((record) => {
     const actionWords = action.title.toLowerCase();
-    return actionWords.includes(record.remediation_id.replace('rem-wsx38-', '').replace(/-/g, ' '))
+    return actionWords.includes(record.remediation_id.replace('rem-region75-', '').replace(/-/g, ' '))
       || record.evidence_type.toLowerCase().split(' ').some((word) => word.length > 4 && actionWords.includes(word));
   });
 }
@@ -340,7 +340,7 @@ function renderDashboard({ seed, scoring, orchestration, serviceVerticals }) {
 
   setText('facility-title', facility.display_name);
   setText('facility-subtitle', `${facility.mock_location} · ${facility.protection_status} · Program status: ${currentProgramTier(scoring)} · ${facility.data_mode ?? 'Synthetic demo'}`);
-  setText('facility-code', facility.store_code);
+  setText('facility-code', facility.region_code ?? facility.reference_code);
   setText('facility-type', facility.facility_type);
   setText('issue-count', issues.length);
   setText('open-remediation-count', remediations.filter((item) => item.status !== 'Closed').length);

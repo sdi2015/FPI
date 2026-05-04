@@ -12,8 +12,8 @@
     {
       "name": "Market / Regional Operations",
       "status": "Roadmap",
-      "summary": "Market-level prioritization, follow-up, and cross-store operating visibility.",
-      "currentSignals": ["Store WS-X38 context", "Needs Attention status"]
+      "summary": "Region-level prioritization, follow-up, and cross-facility operating visibility.",
+      "currentSignals": ["Region 75 context", "Needs Attention status"]
     },
     {
       "name": "Field Operations",
@@ -22,10 +22,10 @@
       "currentSignals": ["Open remediations", "Draft actions", "Verification required"]
     },
     {
-      "name": "Store Leadership",
+      "name": "Regional / Field Leadership",
       "status": "Mapped",
-      "summary": "Store-facing awareness of active protection gaps and safe demo remediation tasks.",
-      "currentSignals": ["Facility overview", "Evidence gaps", "Action queue"]
+      "summary": "Field-facing awareness of active protection gaps and safe demo remediation tasks.",
+      "currentSignals": ["Region overview", "Evidence gaps", "Action queue"]
     },
     {
       "name": "Security Technology",
