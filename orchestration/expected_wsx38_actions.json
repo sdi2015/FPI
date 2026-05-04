@@ -1,0 +1,32 @@
+{
+  "facility_id": "store-wsx38",
+  "display_name": "Store WS-X38",
+  "expected_source_score": 93,
+  "expected_source_tier": "Critical",
+  "expected_action_count": 3,
+  "expected_actions": [
+    {
+      "action_id": "draft-wsx38-001",
+      "title": "Attach synthetic fire alarm test evidence",
+      "priority": "P1-Critical",
+      "owner_role": "Fire/Life Safety",
+      "source_factor_id": "evidence-ev-wsx38-fire-missing"
+    },
+    {
+      "action_id": "draft-wsx38-002",
+      "title": "Review synthetic VMS health degradation",
+      "priority": "P2-High",
+      "owner_role": "Security Technology",
+      "source_factor_id": "technology-tech-vms-wsx38-001"
+    },
+    {
+      "action_id": "draft-wsx38-003",
+      "title": "Review synthetic fire alarm health signal",
+      "priority": "P2-High",
+      "owner_role": "Fire/Life Safety",
+      "source_factor_id": "technology-tech-fire-wsx38-001"
+    }
+  ],
+  "expected_adapter_mode": "Local Draft Only",
+  "expected_verification_required": true
+}

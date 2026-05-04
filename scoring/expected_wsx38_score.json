@@ -1,0 +1,14 @@
+{
+  "facility_id": "store-wsx38",
+  "display_name": "Store WS-X38",
+  "expected_score": 93,
+  "expected_tier": "Critical",
+  "expected_top_driver_labels": [
+    "Fire alarm test record evidence is Missing",
+    "Camera/VMS is Degraded",
+    "Fire Alarm is Warning"
+  ],
+  "expected_positive_factor_count": 9,
+  "expected_reducer_count": 0,
+  "notes": "Synthetic FPI-004 expected output. The FPI-002 seed's stored risk score remains 72 until FPI-004 is reviewed and accepted into the canonical risk assessment contract."
+}

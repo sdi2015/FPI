@@ -1,0 +1,169 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fpi.demo.local/schema/fpi-canonical.schema.json",
+  "title": "FPI Canonical Synthetic Demo Dataset",
+  "description": "Canonical local JSON shape for the FPI event build. This schema is intentionally local/synthetic and does not model production source tables or live integration response shapes.",
+  "type": "object",
+  "required": [
+    "classification",
+    "data_mode",
+    "dataset_version",
+    "facilities",
+    "risk_assessments",
+    "technology_issues",
+    "incidents",
+    "remediations",
+    "evidence",
+    "source_freshness"
+  ],
+  "properties": {
+    "classification": { "const": "Walmart Internal / Need-to-Know - Draft" },
+    "data_mode": { "const": "synthetic_demo_only" },
+    "dataset_version": { "type": "string" },
+    "generated_for": { "type": "string" },
+    "facilities": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/facility" }
+    },
+    "risk_assessments": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/riskAssessment" }
+    },
+    "technology_issues": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/technologyIssue" }
+    },
+    "incidents": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/incident" }
+    },
+    "remediations": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/remediation" }
+    },
+    "evidence": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/evidence" }
+    },
+    "source_freshness": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/sourceFreshness" }
+    }
+  },
+  "$defs": {
+    "systemStatus": {
+      "type": "string",
+      "enum": ["Normal", "Warning", "Degraded", "Critical", "Unknown", "Not Applicable"]
+    },
+    "facility": {
+      "type": "object",
+      "required": ["facility_id", "store_code", "reference_code", "display_name", "mock_location", "state", "facility_type"],
+      "properties": {
+        "facility_id": { "type": "string" },
+        "store_code": { "type": "string" },
+        "reference_code": { "type": "string" },
+        "display_name": { "type": "string" },
+        "mock_location": { "type": "string" },
+        "state": { "type": "string" },
+        "facility_type": { "type": "string", "enum": ["Store", "Distribution", "Office", "Other"] },
+        "protection_status": { "type": "string" },
+        "role_visibility": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "riskAssessment": {
+      "type": "object",
+      "required": ["risk_id", "facility_id", "score", "tier", "confidence", "as_of", "top_drivers"],
+      "properties": {
+        "risk_id": { "type": "string" },
+        "facility_id": { "type": "string" },
+        "score": { "type": "integer", "minimum": 0, "maximum": 100 },
+        "tier": { "type": "string", "enum": ["Low", "Guarded", "Elevated", "High", "Critical"] },
+        "confidence": { "type": "string", "enum": ["Low", "Medium", "High"] },
+        "as_of": { "type": "string" },
+        "top_drivers": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/riskDriver" }
+        }
+      }
+    },
+    "riskDriver": {
+      "type": "object",
+      "required": ["driver_id", "label", "impact", "source_id", "freshness_status", "recommended_action"],
+      "properties": {
+        "driver_id": { "type": "string" },
+        "label": { "type": "string" },
+        "impact": { "type": "integer", "minimum": 0, "maximum": 100 },
+        "source_id": { "type": "string" },
+        "freshness_status": { "type": "string", "enum": ["Current", "Aging", "Stale", "Unknown"] },
+        "recommended_action": { "type": "string" }
+      }
+    },
+    "technologyIssue": {
+      "type": "object",
+      "required": ["issue_id", "facility_id", "domain", "status", "summary", "source_id", "creates_remediation_id"],
+      "properties": {
+        "issue_id": { "type": "string" },
+        "facility_id": { "type": "string" },
+        "domain": { "type": "string", "enum": ["Fire Alarm", "Camera/VMS", "Access Control", "Network/Security Device", "Other"] },
+        "status": { "$ref": "#/$defs/systemStatus" },
+        "summary": { "type": "string" },
+        "source_id": { "type": "string" },
+        "creates_remediation_id": { "type": "string" }
+      }
+    },
+    "incident": {
+      "type": "object",
+      "required": ["incident_id", "facility_id", "incident_type", "severity", "occurred_at", "synthetic_summary"],
+      "properties": {
+        "incident_id": { "type": "string" },
+        "facility_id": { "type": "string" },
+        "incident_type": { "type": "string" },
+        "severity": { "type": "string", "enum": ["Low", "Medium", "High"] },
+        "occurred_at": { "type": "string" },
+        "synthetic_summary": { "type": "string" }
+      }
+    },
+    "remediation": {
+      "type": "object",
+      "required": ["remediation_id", "facility_id", "title", "status", "owner_role", "verification_required", "related_issue_ids"],
+      "properties": {
+        "remediation_id": { "type": "string" },
+        "facility_id": { "type": "string" },
+        "title": { "type": "string" },
+        "status": { "type": "string", "enum": ["Open", "In Progress", "Blocked", "Ready for Verification", "Closed", "Reopened"] },
+        "owner_role": { "type": "string" },
+        "verification_required": { "type": "boolean" },
+        "related_issue_ids": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "required": ["evidence_id", "facility_id", "remediation_id", "evidence_type", "status", "synthetic_note"],
+      "properties": {
+        "evidence_id": { "type": "string" },
+        "facility_id": { "type": "string" },
+        "remediation_id": { "type": "string" },
+        "evidence_type": { "type": "string" },
+        "status": { "type": "string", "enum": ["Missing", "Attached", "Verified", "Rejected"] },
+        "synthetic_note": { "type": "string" }
+      }
+    },
+    "sourceFreshness": {
+      "type": "object",
+      "required": ["source_id", "source_label", "adapter_mode", "freshness_status", "last_demo_update"],
+      "properties": {
+        "source_id": { "type": "string" },
+        "source_label": { "type": "string" },
+        "adapter_mode": { "type": "string", "enum": ["Local JSON", "SQLite", "Future Adapter Placeholder"] },
+        "freshness_status": { "type": "string", "enum": ["Current", "Aging", "Stale", "Unknown"] },
+        "last_demo_update": { "type": "string" }
+      }
+    }
+  }
+}

@@ -1,0 +1,112 @@
+{
+  "facility_id": "store-wsx38",
+  "display_name": "Store WS-X38",
+  "score": 93,
+  "raw_score": 93,
+  "tier": "Critical",
+  "confidence": "Medium",
+  "scoring_version": "2026-05-04.fpi-004.local-v1",
+  "contributions": [
+    {
+      "factor_id": "baseline-demo-context",
+      "label": "Baseline facility protection context",
+      "points": 25,
+      "explanation": "Starting point for the synthetic Store WS-X38 MVP risk profile.",
+      "source_ids": []
+    },
+    {
+      "factor_id": "technology-tech-fire-wsx38-001",
+      "label": "Fire Alarm is Warning",
+      "points": 10,
+      "explanation": "Synthetic fire alarm evidence is aging and needs verification before risk can be reduced.",
+      "source_ids": [
+        "src-fire-synthetic"
+      ]
+    },
+    {
+      "factor_id": "technology-tech-vms-wsx38-001",
+      "label": "Camera/VMS is Degraded",
+      "points": 14,
+      "explanation": "Synthetic camera/VMS health issue included to validate technology-health prioritization.",
+      "source_ids": [
+        "src-vms-synthetic"
+      ]
+    },
+    {
+      "factor_id": "evidence-ev-wsx38-fire-missing",
+      "label": "Fire alarm test record evidence is Missing",
+      "points": 16,
+      "explanation": "Placeholder evidence gap for demo. Do not replace with real facility records.",
+      "source_ids": []
+    },
+    {
+      "factor_id": "evidence-ev-wsx38-vms-attached",
+      "label": "Synthetic technology health screenshot evidence is Attached",
+      "points": 4,
+      "explanation": "Demo-only evidence object for validation and workflow testing.",
+      "source_ids": []
+    },
+    {
+      "factor_id": "remediation-rem-wsx38-fire-evidence",
+      "label": "Attach synthetic fire alarm test evidence is Open",
+      "points": 8,
+      "explanation": "Owner role: Fire/Life Safety. Verification is required before risk reduction.",
+      "source_ids": [
+        "src-remediation-local"
+      ]
+    },
+    {
+      "factor_id": "remediation-rem-wsx38-vms-health",
+      "label": "Review synthetic VMS health degradation is In Progress",
+      "points": 5,
+      "explanation": "Owner role: Security Technology. Verification is required before risk reduction.",
+      "source_ids": [
+        "src-remediation-local"
+      ]
+    },
+    {
+      "factor_id": "incident-inc-wsx38-demo-001",
+      "label": "Recent Medium incident context",
+      "points": 5,
+      "explanation": "Demo-only incident used to validate incident-to-risk linkage without exposing real event data.",
+      "source_ids": []
+    },
+    {
+      "factor_id": "freshness-src-fire-synthetic",
+      "label": "Synthetic Fire Alarm Evidence freshness is Aging",
+      "points": 6,
+      "explanation": "Adapter mode: Local JSON. Last demo update: 2026-04-24T09:30:00Z.",
+      "source_ids": [
+        "src-fire-synthetic"
+      ]
+    }
+  ],
+  "top_drivers": [
+    {
+      "factor_id": "evidence-ev-wsx38-fire-missing",
+      "label": "Fire alarm test record evidence is Missing",
+      "points": 16,
+      "explanation": "Placeholder evidence gap for demo. Do not replace with real facility records.",
+      "source_ids": []
+    },
+    {
+      "factor_id": "technology-tech-vms-wsx38-001",
+      "label": "Camera/VMS is Degraded",
+      "points": 14,
+      "explanation": "Synthetic camera/VMS health issue included to validate technology-health prioritization.",
+      "source_ids": [
+        "src-vms-synthetic"
+      ]
+    },
+    {
+      "factor_id": "technology-tech-fire-wsx38-001",
+      "label": "Fire Alarm is Warning",
+      "points": 10,
+      "explanation": "Synthetic fire alarm evidence is aging and needs verification before risk can be reduced.",
+      "source_ids": [
+        "src-fire-synthetic"
+      ]
+    }
+  ],
+  "risk_reducers": []
+}

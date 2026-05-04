@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="Cache-Control" content="no-store" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <title>FPI Program Console</title>
+  <link rel="stylesheet" href="assets/styles.css?v=fpi-015" />
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to dashboard content</a>
+  <div class="banner">Walmart Internal / Need-to-Know – Draft · Synthetic Store WS-X38 Demo · FPI Program Console</div>
+
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="FPI navigation">
+      <div class="brand">
+        <span class="brand-mark">FPI</span>
+        <h1>Facility Protection Intelligence</h1>
+        <p>Program console for risk, vertical coverage, remediation, and verification readiness.</p>
+      </div>
+
+      <nav>
+        <ul class="nav-list">
+          <li><a class="nav-link active" href="#overview">Overview</a></li>
+          <li><a class="nav-link" href="#start-here">Start Here</a></li>
+          <li><a class="nav-link" href="#operations-workbench">Work Queue</a></li>
+          <li><a class="nav-link" href="#leadership-brief">Program Brief</a></li>
+          <li><a class="nav-link" href="leadership-brief.html">Print Brief</a></li>
+          <li><a class="nav-link" href="#executive-view">Executive View</a></li>
+          <li><a class="nav-link" href="#demo-script">Demo Script</a></li>
+          <li><a class="nav-link" href="#risk">Risk Drivers</a></li>
+          <li><a class="nav-link" href="#explainability">Explainable Score</a></li>
+          <li><a class="nav-link" href="#draft-actions">Draft Actions</a></li>
+          <li><a class="nav-link" href="#service-verticals">Service Verticals</a></li>
+          <li><a class="nav-link" href="#technology">Technology Health</a></li>
+          <li><a class="nav-link" href="#remediation">Remediation</a></li>
+          <li><a class="nav-link" href="#evidence">Evidence</a></li>
+          <li><a class="nav-link" href="#sources">Source Freshness</a></li>
+        </ul>
+      </nav>
+
+      <div class="sidebar-footer">
+        <p><strong>Run local:</strong></p>
+        <p>python -m http.server 8080</p>
+      </div>
+    </aside>
+
+    <main id="main-content" class="content">
+      <section id="overview" class="hero">
+        <div class="panel">
+          <p class="kicker">FPI Program Console</p>
+          <h2 id="facility-title" class="hero-title">Loading Store WS-X38...</h2>
+          <p id="facility-subtitle" class="muted">Loading current program posture from local FPI data.</p>
+          <p class="value-prop">FPI turns the local data in this folder into a usable operating shell: see posture, review the work queue, assign the right owner lane, and verify closure evidence.</p>
+          <div class="hero-actions" aria-label="Primary dashboard actions">
+            <a href="#start-here">Start here</a>
+            <a href="#operations-workbench">Open work queue</a>
+            <a href="#risk">Understand drivers</a>
+            <a href="#evidence">Verify closure</a>
+          </div>
+          <div class="program-flow" aria-label="FPI program operating model">
+            <div><strong>Identify</strong><span>Signal intake</span></div>
+            <div><strong>Explain</strong><span>Risk drivers</span></div>
+            <div><strong>Act</strong><span>Draft work</span></div>
+            <div><strong>Verify</strong><span>Evidence closure</span></div>
+          </div>
+          <div class="pill-row" aria-label="Dashboard context">
+            <span class="pill">Store <span id="facility-code">--</span></span>
+            <span id="facility-type" class="pill">--</span>
+            <span class="pill">Local JSON</span>
+            <span class="pill">Usable Local Shell</span>
+            <span class="pill">No Live Integrations</span>
+          </div>
+        </div>
+
+        <aside class="panel score-card" aria-label="Current synthetic risk score">
+          <p class="kicker">Explainable Synthetic Risk</p>
+          <div id="risk-score" class="score">--</div>
+          <h2 id="risk-tier">Loading</h2>
+          <p id="risk-confidence" class="muted">Confidence: --</p>
+          <p id="scoring-version" class="muted small-note">Scoring version: --</p>
+          <div class="score-explainer">
+            <strong>What this means</strong>
+            <p id="risk-meaning">Loading recommended interpretation.</p>
+          </div>
+        </aside>
+      </section>
+
+      <section class="metric-grid" aria-label="Dashboard metrics">
+        <article class="panel metric metric-priority">
+          <p class="kicker">Program Posture</p>
+          <strong id="program-posture-metric">--</strong>
+          <p class="muted">Plain-language operating status</p>
+        </article>
+        <article class="panel metric">
+          <p class="kicker">Technology Issues</p>
+          <strong id="issue-count">--</strong>
+          <p class="muted">Active synthetic health signals</p>
+        </article>
+        <article class="panel metric">
+          <p class="kicker">Open Work</p>
+          <strong id="open-remediation-count">--</strong>
+          <p class="muted">Remediations needing action</p>
+        </article>
+        <article class="panel metric">
+          <p class="kicker">Evidence Gaps</p>
+          <strong id="evidence-gap-count">--</strong>
+          <p class="muted">Missing or rejected evidence</p>
+        </article>
+        <article class="panel metric">
+          <p class="kicker">Draft Actions</p>
+          <strong id="draft-action-count">--</strong>
+          <p class="muted">Local-only remediation drafts</p>
+        </article>
+      </section>
+
+      <section id="start-here" class="panel full-width-panel start-here-panel">
+        <div class="section-heading-row">
+          <div>
+            <p class="kicker">Start Here</p>
+            <h2>What should the user do next?</h2>
+            <p id="next-action-copy" class="lead-copy">Loading recommended next step.</p>
+          </div>
+          <a class="pill pill-link" href="#draft-actions">Go to draft actions</a>
+        </div>
+        <div class="next-step-grid">
+          <article>
+            <span>1</span>
+            <strong>Confirm the posture</strong>
+            <p id="next-action-posture">Review current program posture and confidence.</p>
+          </article>
+          <article>
+            <span>2</span>
+            <strong>Resolve the biggest driver</strong>
+            <p id="next-action-owner">Use the top driver and owner role to focus the next work step.</p>
+          </article>
+          <article>
+            <span>3</span>
+            <strong>Attach proof</strong>
+            <p id="next-action-proof">Use evidence state to verify closure and reduce repeat follow-up.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="operations-workbench" class="operations-workbench" aria-label="FPI operations workbench">
+        <article class="panel work-queue-panel">
+          <div class="section-heading-row">
+            <div>
+              <p class="kicker">Operational Work Queue</p>
+              <h2>What needs attention now</h2>
+              <p class="muted">Data-driven queue built from local scoring, orchestration, remediation, and evidence files.</p>
+            </div>
+            <span id="work-queue-summary" class="pill">Loading queue</span>
+          </div>
+          <div id="work-queue-filters" class="filter-row" aria-label="Work queue filters">
+            <button type="button" class="filter-button active" data-queue-filter="all">All work</button>
+            <button type="button" class="filter-button" data-queue-filter="critical">Critical / P1</button>
+            <button type="button" class="filter-button" data-queue-filter="evidence">Evidence needed</button>
+            <button type="button" class="filter-button" data-queue-filter="technology">Technology</button>
+          </div>
+          <div id="work-queue-list" class="work-list"></div>
+        </article>
+
+        <aside class="panel owner-lane-panel">
+          <p class="kicker">Owner Lanes</p>
+          <h2>Who needs to act?</h2>
+          <div id="owner-lane-list" class="lane-list"></div>
+        </aside>
+
+        <aside class="panel data-status-panel">
+          <p class="kicker">Local Data Status</p>
+          <h2>Shell data loaded</h2>
+          <div id="data-status-list" class="data-status-list"></div>
+        </aside>
+      </section>
+
+      <section id="leadership-brief" class="panel full-width-panel leadership-brief-panel">
+        <div class="section-heading-row">
+          <div>
+            <p class="kicker">Leadership Program Brief</p>
+            <h2>What FPI does</h2>
+            <p class="lead-copy">Facility Protection Intelligence connects facility protection signals, explainable risk drivers, draft remediation, and evidence verification into a governed program view.</p>
+          </div>
+          <a class="pill pill-link" href="leadership-brief.html">Print / Save PDF brief</a>
+        </div>
+        <div class="brief-grid">
+          <article>
+            <span>Why it matters</span>
+            <strong>Moves from fragmented signals to accountable action.</strong>
+            <p>FPI helps teams see what needs attention, why it matters, who should act, and what proof closes the loop.</p>
+          </article>
+          <article>
+            <span>What leaders get</span>
+            <strong>Posture, confidence, ownership, and verification.</strong>
+            <p>The program view supports prioritization without exposing production systems or sensitive facility details in the demo.</p>
+          </article>
+          <article>
+            <span>How it scales</span>
+            <strong>Service verticals, governed adapters, and audit-ready closure.</strong>
+            <p>The same model can mature from synthetic local proof into approved integrations and portfolio reporting.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="executive-view" class="executive-grid" aria-label="Executive FPI program view">
+        <article class="panel executive-summary-panel">
+          <p class="kicker">Executive Program Summary</p>
+          <h2>What FPI shows leadership</h2>
+          <p id="executive-summary-copy" class="lead-copy">Loading executive summary.</p>
+          <div class="executive-stat-grid">
+            <div><span>Current posture</span><strong id="exec-program-posture">--</strong></div>
+            <div><span>Action focus</span><strong id="exec-action-focus">--</strong></div>
+            <div><span>Verification state</span><strong id="exec-verification-state">--</strong></div>
+          </div>
+        </article>
+
+        <article class="panel maturity-panel">
+          <p class="kicker">Program Maturity Roadmap</p>
+          <h2>Path from demo to operating program</h2>
+          <ol class="maturity-list">
+            <li><strong>Phase 1:</strong> Local proof of value with synthetic Store WS-X38 data.</li>
+            <li><strong>Phase 2:</strong> Confirm service vertical ownership and scoring calibration.</li>
+            <li><strong>Phase 3:</strong> Connect approved adapters behind governance and audit controls.</li>
+            <li><strong>Phase 4:</strong> Scale portfolio reporting, exception management, and closure proof.</li>
+          </ol>
+        </article>
+      </section>
+
+      <section id="demo-script" class="panel full-width-panel demo-script-panel">
+        <div class="section-heading-row">
+          <div>
+            <p class="kicker">Role-Based Demo Script</p>
+            <h2>How to tell the FPI story</h2>
+            <p class="muted">A concise walkthrough for leadership, market/regional operations, field execution, and technology/remediation partners.</p>
+          </div>
+          <span class="pill">5-minute walkthrough</span>
+        </div>
+        <div class="persona-grid">
+          <article>
+            <h3>Executive / Governance</h3>
+            <p>Start with program posture, confidence, service-vertical coverage, and whether action is needed.</p>
+          </article>
+          <article>
+            <h3>Market / Regional Operations</h3>
+            <p>Show which stores or assets need attention, which owners are involved, and what closure requires.</p>
+          </article>
+          <article>
+            <h3>Field / Store Leadership</h3>
+            <p>Translate drivers into safe next steps, evidence expectations, and verification-ready closure.</p>
+          </article>
+          <article>
+            <h3>Technology / Remediation</h3>
+            <p>Use technology health, draft actions, source freshness, and evidence status to prioritize work.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="explainability" class="two-grid">
+        <article class="panel score-detail-panel">
+          <h2>Explainable Score Detail</h2>
+          <div class="score-summary-grid">
+            <div>
+              <p class="kicker">FPI-004 Score</p>
+              <strong id="explainable-score" class="large-value">--</strong>
+            </div>
+            <div>
+              <p class="kicker">Tier</p>
+              <strong id="explainable-tier" class="large-value">--</strong>
+            </div>
+            <div>
+              <p class="kicker">Confidence</p>
+              <strong id="explainable-confidence" class="large-value">--</strong>
+            </div>
+          </div>
+          <p id="explainable-note" class="muted">Loading explainable scoring output.</p>
+        </article>
+
+        <article class="panel guardrail-panel">
+          <h2>Adapter & Data Guardrails</h2>
+          <div class="pill-row">
+            <span class="pill">Synthetic Demo Data Only</span>
+            <span id="adapter-mode-pill" class="pill">Local Draft Only</span>
+            <span class="pill">No Live Integrations</span>
+          </div>
+          <p id="guardrail-note" class="muted guardrail-copy">Scoring and draft actions are loaded from local JSON outputs only.</p>
+        </article>
+      </section>
+
+      <section id="service-verticals" class="panel full-width-panel service-vertical-panel">
+        <div class="section-heading-row">
+          <div>
+            <h2>FPI Service Verticals</h2>
+            <p class="muted">Planned FPI coverage lanes across protection, operations, technology, verification, and governance. Current Store WS-X38 signals are highlighted where local demo data exists.</p>
+          </div>
+          <span class="pill"><span id="service-vertical-count">--</span>&nbsp;coverage lanes</span>
+        </div>
+        <div id="service-vertical-list" class="vertical-grid"></div>
+      </section>
+
+      <section class="dashboard-grid">
+        <article id="risk" class="panel">
+          <h2>Top Risk Drivers</h2>
+          <p class="muted">Use this section to explain why the program posture exists before assigning work.</p>
+          <ol id="risk-drivers" class="driver-list"></ol>
+        </article>
+
+        <article id="technology" class="panel">
+          <h2>Technology Health</h2>
+          <p class="muted">Shows the synthetic signals contributing to protection posture.</p>
+          <div id="technology-issues" class="stack"></div>
+        </article>
+
+        <article id="remediation" class="panel">
+          <h2>Remediation Queue</h2>
+          <p class="muted">Tracks what needs action and whether verification is required.</p>
+          <div id="remediation-queue" class="stack"></div>
+        </article>
+      </section>
+
+      <section id="draft-actions" class="panel full-width-panel">
+        <h2>Draft Remediation Actions</h2>
+        <p class="muted">FPI-005 converts top explainable risk drivers into local draft actions. These do not create live work orders.</p>
+        <div id="draft-action-list" class="action-grid"></div>
+      </section>
+
+      <section class="two-grid">
+        <article id="evidence" class="panel">
+          <h2>Evidence & Verification</h2>
+          <div id="evidence-list" class="stack"></div>
+        </article>
+
+        <article id="sources" class="panel">
+          <h2>Source Freshness</h2>
+          <div id="source-freshness" class="stack"></div>
+        </article>
+      </section>
+
+      <section class="two-grid">
+        <article class="panel">
+          <h2>Incident Context</h2>
+          <div id="incident-list" class="stack"></div>
+        </article>
+
+        <article class="panel">
+          <h2>Integration Notes</h2>
+          <p>This shell reads from <code>data/seed/fpi-seed-wsx38.json</code>, <code>scoring/scoring-output-wsx38.json</code>, and <code>orchestration/orchestration-output-wsx38.json</code>.</p>
+          <p class="muted">FPI-015 turns the localhost dashboard into a usable local operating shell driven by the data files in this folder while preserving synthetic/local guardrails and avoiding production endpoints, credentials, real facility posture, or live source calls.</p>
+        </article>
+      </section>
+    </main>
+  </div>
+
+  <script src="assets/app.js?v=fpi-015"></script>
+</body>
+</html>

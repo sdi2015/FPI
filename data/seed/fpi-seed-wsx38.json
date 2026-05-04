@@ -1,0 +1,162 @@
+{
+  "classification": "Walmart Internal / Need-to-Know - Draft",
+  "data_mode": "synthetic_demo_only",
+  "dataset_version": "2026-05-04.fpi-002",
+  "generated_for": "FPI-002 canonical data/schema and seed data",
+  "facilities": [
+    {
+      "facility_id": "store-wsx38",
+      "store_code": "WS-X38",
+      "reference_code": "WS-X38",
+      "display_name": "Store WS-X38",
+      "mock_location": "Richland, VA",
+      "state": "VA",
+      "facility_type": "Store",
+      "protection_status": "Needs Attention",
+      "role_visibility": ["Executive", "Market", "Field Operations", "Store Leadership", "Security Technology", "Fire/Life Safety"]
+    }
+  ],
+  "risk_assessments": [
+    {
+      "risk_id": "risk-store-wsx38-current",
+      "facility_id": "store-wsx38",
+      "score": 72,
+      "tier": "Elevated",
+      "confidence": "Medium",
+      "as_of": "2026-05-04T09:30:00Z",
+      "top_drivers": [
+        {
+          "driver_id": "driver-fire-evidence-gap",
+          "label": "Fire alarm evidence gap",
+          "impact": 24,
+          "source_id": "src-fire-synthetic",
+          "freshness_status": "Aging",
+          "recommended_action": "Attach current synthetic fire alarm test evidence and submit for verification."
+        },
+        {
+          "driver_id": "driver-camera-degraded",
+          "label": "Camera/VMS health degraded",
+          "impact": 19,
+          "source_id": "src-vms-synthetic",
+          "freshness_status": "Current",
+          "recommended_action": "Review synthetic VMS health issue and assign remediation owner."
+        },
+        {
+          "driver_id": "driver-verification-pending",
+          "label": "Remediation verification pending",
+          "impact": 14,
+          "source_id": "src-remediation-local",
+          "freshness_status": "Current",
+          "recommended_action": "Require verification evidence before closure."
+        }
+      ]
+    }
+  ],
+  "technology_issues": [
+    {
+      "issue_id": "tech-fire-wsx38-001",
+      "facility_id": "store-wsx38",
+      "domain": "Fire Alarm",
+      "status": "Warning",
+      "summary": "Synthetic fire alarm evidence is aging and needs verification before risk can be reduced.",
+      "source_id": "src-fire-synthetic",
+      "creates_remediation_id": "rem-wsx38-fire-evidence"
+    },
+    {
+      "issue_id": "tech-vms-wsx38-001",
+      "facility_id": "store-wsx38",
+      "domain": "Camera/VMS",
+      "status": "Degraded",
+      "summary": "Synthetic camera/VMS health issue included to validate technology-health prioritization.",
+      "source_id": "src-vms-synthetic",
+      "creates_remediation_id": "rem-wsx38-vms-health"
+    },
+    {
+      "issue_id": "tech-access-wsx38-001",
+      "facility_id": "store-wsx38",
+      "domain": "Access Control",
+      "status": "Normal",
+      "summary": "Synthetic access-control status is normal to prove mixed health states.",
+      "source_id": "src-access-synthetic",
+      "creates_remediation_id": "none"
+    }
+  ],
+  "incidents": [
+    {
+      "incident_id": "inc-wsx38-demo-001",
+      "facility_id": "store-wsx38",
+      "incident_type": "Synthetic after-hours door event",
+      "severity": "Medium",
+      "occurred_at": "2026-04-29T02:15:00Z",
+      "synthetic_summary": "Demo-only incident used to validate incident-to-risk linkage without exposing real event data."
+    }
+  ],
+  "remediations": [
+    {
+      "remediation_id": "rem-wsx38-fire-evidence",
+      "facility_id": "store-wsx38",
+      "title": "Attach synthetic fire alarm test evidence",
+      "status": "Open",
+      "owner_role": "Fire/Life Safety",
+      "verification_required": true,
+      "related_issue_ids": ["tech-fire-wsx38-001"]
+    },
+    {
+      "remediation_id": "rem-wsx38-vms-health",
+      "facility_id": "store-wsx38",
+      "title": "Review synthetic VMS health degradation",
+      "status": "In Progress",
+      "owner_role": "Security Technology",
+      "verification_required": true,
+      "related_issue_ids": ["tech-vms-wsx38-001"]
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "ev-wsx38-fire-missing",
+      "facility_id": "store-wsx38",
+      "remediation_id": "rem-wsx38-fire-evidence",
+      "evidence_type": "Fire alarm test record",
+      "status": "Missing",
+      "synthetic_note": "Placeholder evidence gap for demo. Do not replace with real facility records."
+    },
+    {
+      "evidence_id": "ev-wsx38-vms-attached",
+      "facility_id": "store-wsx38",
+      "remediation_id": "rem-wsx38-vms-health",
+      "evidence_type": "Synthetic technology health screenshot",
+      "status": "Attached",
+      "synthetic_note": "Demo-only evidence object for validation and workflow testing."
+    }
+  ],
+  "source_freshness": [
+    {
+      "source_id": "src-fire-synthetic",
+      "source_label": "Synthetic Fire Alarm Evidence",
+      "adapter_mode": "Local JSON",
+      "freshness_status": "Aging",
+      "last_demo_update": "2026-04-24T09:30:00Z"
+    },
+    {
+      "source_id": "src-vms-synthetic",
+      "source_label": "Synthetic Camera/VMS Health",
+      "adapter_mode": "Local JSON",
+      "freshness_status": "Current",
+      "last_demo_update": "2026-05-04T09:30:00Z"
+    },
+    {
+      "source_id": "src-access-synthetic",
+      "source_label": "Synthetic Access Control Status",
+      "adapter_mode": "Local JSON",
+      "freshness_status": "Current",
+      "last_demo_update": "2026-05-04T09:30:00Z"
+    },
+    {
+      "source_id": "src-remediation-local",
+      "source_label": "Local Remediation Workflow",
+      "adapter_mode": "Local JSON",
+      "freshness_status": "Current",
+      "last_demo_update": "2026-05-04T09:30:00Z"
+    }
+  ]
+}

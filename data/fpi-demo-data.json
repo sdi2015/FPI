@@ -1,0 +1,42 @@
+{
+  "classification": "Walmart Internal / Need-to-Know - Draft",
+  "data_mode": "synthetic_demo_only",
+  "generated_for": "FPI-001 active build baseline",
+  "facilities": [
+    {
+      "facility_id": "store-wsx38",
+      "display_name": "Store WS-X38",
+      "store_code": "WS-X38",
+      "reference_code": "WS-X38",
+      "mock_location": "Richland, VA",
+      "market": "Demo Market",
+      "state": "VA",
+      "protection_status": "Needs Attention",
+      "risk": {
+        "score": 72,
+        "tier": "Elevated",
+        "confidence": "Medium",
+        "freshness": "Demo snapshot",
+        "top_drivers": [
+          "Fire alarm evidence gap",
+          "Camera health degraded",
+          "Remediation verification pending"
+        ]
+      },
+      "technology_health": {
+        "camera_vms": "Degraded",
+        "fire_alarm": "Warning",
+        "access_control": "Normal"
+      },
+      "open_remediations": [
+        {
+          "task_id": "demo-rem-001",
+          "title": "Attach synthetic fire alarm test evidence",
+          "status": "Open",
+          "owner_role": "Field Operations",
+          "verification_required": true
+        }
+      ]
+    }
+  ]
+}

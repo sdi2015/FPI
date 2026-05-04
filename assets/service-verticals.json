@@ -1,0 +1,79 @@
+{
+  "schema_version": "fpi-service-verticals-v1",
+  "data_mode": "Synthetic/demo configuration only",
+  "description": "Canonical local configuration for FPI service vertical labels, roadmap status, summaries, and current demo signals.",
+  "service_verticals": [
+    {
+      "name": "Executive Risk & Governance",
+      "status": "Roadmap",
+      "summary": "Portfolio-level risk posture, exception visibility, and release/governance decisions.",
+      "currentSignals": ["Risk tier", "Confidence", "Release candidate checklist"]
+    },
+    {
+      "name": "Market / Regional Operations",
+      "status": "Roadmap",
+      "summary": "Market-level prioritization, follow-up, and cross-store operating visibility.",
+      "currentSignals": ["Store WS-X38 context", "Needs Attention status"]
+    },
+    {
+      "name": "Field Operations",
+      "status": "Mapped",
+      "summary": "Local execution ownership for remediation, verification, and closure readiness.",
+      "currentSignals": ["Open remediations", "Draft actions", "Verification required"]
+    },
+    {
+      "name": "Store Leadership",
+      "status": "Mapped",
+      "summary": "Store-facing awareness of active protection gaps and safe demo remediation tasks.",
+      "currentSignals": ["Facility overview", "Evidence gaps", "Action queue"]
+    },
+    {
+      "name": "Security Technology",
+      "status": "Active Demo",
+      "summary": "Camera/VMS, access control, recorder, network/security device health, and source freshness.",
+      "currentSignals": ["Camera/VMS degraded", "Access Control normal", "Synthetic VMS health source"]
+    },
+    {
+      "name": "Fire / Life Safety",
+      "status": "Active Demo",
+      "summary": "Fire alarm evidence, inspection/test proof, aging evidence, and verification workflow.",
+      "currentSignals": ["Fire Alarm warning", "Fire evidence missing", "Fire evidence action"]
+    },
+    {
+      "name": "Enterprise Security Intelligence",
+      "status": "Mapped",
+      "summary": "Incident context, risk linkage, trend signals, and enterprise protection intelligence.",
+      "currentSignals": ["Synthetic after-hours incident", "Incident-to-risk linkage"]
+    },
+    {
+      "name": "Evidence & Verification",
+      "status": "Active Demo",
+      "summary": "Evidence attachment, rejection/missing states, verification-required controls, and proof of closure.",
+      "currentSignals": ["Missing fire evidence", "Attached VMS evidence", "Verification required"]
+    },
+    {
+      "name": "Compliance / Audit Readiness",
+      "status": "Roadmap",
+      "summary": "Policy evidence, audit trails, exception aging, and readiness reporting.",
+      "currentSignals": ["Evidence states", "Source freshness", "Guardrail checks"]
+    },
+    {
+      "name": "Work Management / Remediation",
+      "status": "Active Demo",
+      "summary": "Draft work actions, owner roles, priority, remediation state, and closure verification.",
+      "currentSignals": ["P1/P2 draft actions", "Local Draft Only", "No live work orders"]
+    },
+    {
+      "name": "Vendor / Service Provider Coordination",
+      "status": "Roadmap",
+      "summary": "Future adapter lane for vendor dispatch context, service windows, and proof return.",
+      "currentSignals": ["Adapter boundary only", "No live vendor dispatch"]
+    },
+    {
+      "name": "Data Integration / Source Freshness",
+      "status": "Active Demo",
+      "summary": "Source recency, adapter mode, local JSON seed health, and future integration status.",
+      "currentSignals": ["Local JSON", "Freshness status", "No live integrations"]
+    }
+  ]
+}

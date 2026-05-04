@@ -1,0 +1,56 @@
+{
+  "classification": "Walmart Internal / Need-to-Know - Draft",
+  "data_mode": "synthetic_demo_only",
+  "orchestration_version": "2026-05-04.fpi-005.local-v1",
+  "facility_id": "store-wsx38",
+  "display_name": "Store WS-X38",
+  "source_scoring_version": "2026-05-04.fpi-004.local-v1",
+  "source_score": 93,
+  "source_tier": "Critical",
+  "adapter_mode": "Local Draft Only",
+  "guardrail_note": "Synthetic draft only. Do not send to live work management, vendor, alarm, VMS, or compliance systems.",
+  "draft_actions": [
+    {
+      "action_id": "draft-wsx38-001",
+      "facility_id": "store-wsx38",
+      "title": "Attach synthetic fire alarm test evidence",
+      "source_factor_id": "evidence-ev-wsx38-fire-missing",
+      "source_label": "Fire alarm test record evidence is Missing",
+      "priority": "P1-Critical",
+      "owner_role": "Fire/Life Safety",
+      "status": "Draft",
+      "verification_required": true,
+      "adapter_mode": "Local Draft Only",
+      "recommended_next_step": "Collect demo-safe evidence placeholder, attach it to the local remediation draft, and route for verification.",
+      "guardrail_note": "Synthetic draft only. Do not send to live work management, vendor, alarm, VMS, or compliance systems."
+    },
+    {
+      "action_id": "draft-wsx38-002",
+      "facility_id": "store-wsx38",
+      "title": "Review synthetic VMS health degradation",
+      "source_factor_id": "technology-tech-vms-wsx38-001",
+      "source_label": "Camera/VMS is Degraded",
+      "priority": "P2-High",
+      "owner_role": "Security Technology",
+      "status": "Draft",
+      "verification_required": true,
+      "adapter_mode": "Local Draft Only",
+      "recommended_next_step": "Assign Security Technology owner to review the synthetic VMS health signal and document verification evidence.",
+      "guardrail_note": "Synthetic draft only. Do not send to live work management, vendor, alarm, VMS, or compliance systems."
+    },
+    {
+      "action_id": "draft-wsx38-003",
+      "facility_id": "store-wsx38",
+      "title": "Review synthetic fire alarm health signal",
+      "source_factor_id": "technology-tech-fire-wsx38-001",
+      "source_label": "Fire Alarm is Warning",
+      "priority": "P2-High",
+      "owner_role": "Fire/Life Safety",
+      "status": "Draft",
+      "verification_required": true,
+      "adapter_mode": "Local Draft Only",
+      "recommended_next_step": "Assign Fire/Life Safety owner to verify the synthetic fire alarm status and confirm evidence requirements.",
+      "guardrail_note": "Synthetic draft only. Do not send to live work management, vendor, alarm, VMS, or compliance systems."
+    }
+  ]
+}
