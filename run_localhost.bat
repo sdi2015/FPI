@@ -5,29 +5,16 @@ cd /d "%~dp0"
 echo ============================================================
 echo FPI Localhost Launcher
 echo Folder: %CD%
-echo URL:    http://localhost:8080/
+echo This uses http://127.0.0.1:8765/ when available.
 echo ============================================================
 echo.
 
-echo Running quick validation before starting localhost...
-python scripts\validate_baseline.py || goto :error
-python scripts\validate_seed.py || goto :error
-python scoring\validate_scoring.py || goto :error
-python orchestration\validate_orchestration.py || goto :error
-node --check assets\app.js || goto :error
-
-echo.
-echo Validation passed.
-echo Opening browser and starting server on http://localhost:8080/
-echo Leave this window open while using FPI. Press Ctrl+C to stop.
-echo.
-start "" "http://localhost:8080/"
-python -m http.server 8080
-goto :eof
+powershell -NoProfile -ExecutionPolicy Bypass -File "%~dp0run_localhost.ps1"
+if errorlevel 1 goto :error
+exit /b 0
 
 :error
 echo.
-echo FPI localhost validation failed. Review the output above.
-echo This folder may be partially synced or missing dependencies.
-pause
+echo FPI localhost launcher failed. Review the output above.
+echo If needed, close old python/http.server windows and double-click this file again.
 exit /b 1

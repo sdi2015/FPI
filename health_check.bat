@@ -16,14 +16,12 @@ node --check assets\app.js || goto :error
 
 echo.
 echo FPI local app health check passed.
-echo Expected localhost URL after starting server: http://localhost:8080/
+echo Recommended localhost URL: http://127.0.0.1:8765/
 echo Expected app version: fpi-015
 echo.
-pause
 exit /b 0
 
 :error
 echo.
 echo FPI local app health check failed. Review output above.
-pause
 exit /b 1

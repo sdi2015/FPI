@@ -403,7 +403,7 @@ function renderError(error) {
   body.textContent = error.message;
   const help = document.createElement('p');
   help.className = 'muted';
-  help.textContent = 'Start a local server from 02_Active_Build/fpi-app with: python -m http.server 8080';
+  help.textContent = 'Start the local server by double-clicking run_localhost.bat, then open http://127.0.0.1:8765/';
   panel.append(heading, body, help);
   byId('main-content').appendChild(panel);
 }

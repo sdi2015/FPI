@@ -29,23 +29,23 @@ That script will:
 4. Start localhost at:
 
 ```text
-http://localhost:8080/
+http://127.0.0.1:8765/
 ```
 
-Leave the command window open while using the app. Press `Ctrl+C` to stop the server.
+The launcher starts the server in a separate window named `FPI Localhost Server`. Leave that server window open while using the app. Close that server window or press `Ctrl+C` inside it to stop.
 
 ## VS Code terminal run
 
 From this folder:
 
 ```bash
-python -m http.server 8080
+python -m http.server 8765 --bind 127.0.0.1
 ```
 
 Open:
 
 ```text
-http://localhost:8080/
+http://127.0.0.1:8765/
 ```
 
 ## Current expected version
@@ -123,27 +123,27 @@ No live integrations are called.
 Do not open `index.html` directly with `file://`. Use localhost:
 
 ```bash
-python -m http.server 8080
+python -m http.server 8765 --bind 127.0.0.1
 ```
 
 Then open:
 
 ```text
-http://localhost:8080/
+http://127.0.0.1:8765/
 ```
 
-### Port 8080 is already in use
+### Port 8765 is already in use
 
 Run a different port:
 
 ```bash
-python -m http.server 8081
+python -m http.server 8766 --bind 127.0.0.1
 ```
 
 Then open:
 
 ```text
-http://localhost:8081/
+http://127.0.0.1:8766/
 ```
 
 ### UI looks stale
