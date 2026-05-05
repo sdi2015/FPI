@@ -72,6 +72,20 @@ const askPromptChips = window.askPromptChips ?? [
   'Recommend next action.',
 ];
 
+const featureJourney = [
+  ['Data Ingestion & Normalization', 'data-ingestion-normalization'],
+  ['Facility Protection Profiling', 'facility-protection-profiling'],
+  ['Executive Protection Readiness', 'executive-protection-readiness'],
+  ['Fire-System Monitoring & Assurance', 'fire-system-monitoring-assurance'],
+  ['Camera & Technical Control Monitoring', 'camera-technical-control-monitoring'],
+  ['Network & Security Device Posture', 'network-security-device-posture'],
+  ['Threat Detection & Risk Scoring', 'threat-detection-risk-scoring'],
+  ['Remediation Orchestration', 'remediation-orchestration'],
+  ['Vendor Intelligence & Recommendations', 'vendor-intelligence-recommendations'],
+  ['Law Enforcement / External Coordination', 'law-enforcement-external-coordination'],
+  ['Verification, Dashboarding & Governance', 'dashboarding-governance-executive-reporting'],
+];
+
 const state = { scope: 'store-ws-x38', dataSnapshot: null, lastGoodSnapshot: null, lastRefreshAt: null, refreshInFlight: false, refreshError: '', demoStep: -1 };
 
 function loadJson(url) {
@@ -251,6 +265,32 @@ function renderKpis() {
   grid.querySelectorAll('strong[data-kpi-value]').forEach((node) => {
     animateNumber(node, Number.parseInt(node.dataset.kpiValue, 10));
   });
+}
+
+function renderFeatureJourney() {
+  const container = byId('feature-journey-list');
+  if (!container) return;
+  const activeProgramId = window.getActiveProgramId?.() ?? '';
+  container.innerHTML = featureJourney.map(([label, programId], index) => {
+    const program = window.getOperatingProgramById?.(programId);
+    if (!program) return '';
+    const isActive = activeProgramId === programId;
+    return `
+      <article class="feature-journey-item ${isActive ? 'active' : ''}">
+        <div>
+          <p class="feature-step">Step ${index + 1}</p>
+          <h3>${label}</h3>
+          <p>${program.description}</p>
+        </div>
+        <div class="feature-journey-actions">
+          <span class="feature-page">${program.relatedPage}</span>
+          <button type="button" class="secondary" data-program-control="${programId}" data-jump-route="${program.route}">
+            Open ${program.relatedPage}
+          </button>
+        </div>
+      </article>
+    `;
+  }).join('');
 }
 
 function renderCommandCenter() {
@@ -552,6 +592,7 @@ function renderAll() {
   window.renderSidebarNav?.();
   window.bindSidebarNav?.();
   window.renderProgramControlBoard?.();
+  renderFeatureJourney();
   renderKpis();
   window.renderFpiProgramCoverage?.();
   renderCommandCenter();
