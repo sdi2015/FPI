@@ -230,6 +230,28 @@ button.ghost {
   gap: 0.65rem;
 }
 
+.refresh-controls {
+  display: grid;
+  gap: 0.2rem;
+}
+
+#refresh-last-updated {
+  margin: 0;
+  color: #cee4ff;
+  font-size: 0.75rem;
+}
+
+.refresh-warning {
+  margin: 0.85rem 0 0;
+  border: 1px solid #ffe4a9;
+  background: #fffbef;
+  color: #995213;
+  border-radius: 10px;
+  padding: 0.55rem 0.75rem;
+  font-size: 0.86rem;
+  font-weight: 700;
+}
+
 .scope-selector {
   display: grid;
   gap: 0.25rem;

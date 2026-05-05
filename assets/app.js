@@ -5,16 +5,30 @@ const orchestrationUrl = './orchestration/orchestration-output-region75.json';
 const byId = (id) => document.getElementById(id);
 const routes = ['landing', 'command-center', 'store-profiles', 'protection-services', 'risk-alerts', 'remediation', 'vendor-match', 'evidence', 'reports', 'demo-mode'];
 
-const kpiTemplate = [
-  ['Facilities Monitored', 12],
-  ['High-Risk Facilities', 3],
-  ['Open Remediation Cases', 9],
-  ['Verified Closures', 18],
-  ['Fire/Life Safety Gaps', 2],
-  ['Executive Readiness Exceptions', 1],
-  ['Detection-to-Case Time', '42 min'],
-  ['Vendor SLA Misses', 2],
-];
+function dataView() {
+  return state.dataSnapshot ?? state.lastGoodSnapshot ?? { seed: {}, scoring: {}, orchestration: {} };
+}
+
+function kpiTemplate() {
+  const { seed = {}, scoring = {}, orchestration = {} } = dataView();
+  const facilities = seed.facilities?.length ?? 0;
+  const highRisk = scoring.tier === 'Critical' || scoring.tier === 'Elevated' ? 1 : 0;
+  const remediations = seed.remediations ?? [];
+  const openCases = remediations.filter((item) => item.status !== 'Closed').length;
+  const verifiedClosures = (seed.evidence ?? []).filter((item) => item.status === 'Verified').length;
+  const fireGaps = (seed.technology_issues ?? []).filter((item) => item.domain === 'Fire Alarm' && item.status !== 'Normal').length;
+  const execExceptions = (orchestration.draft_actions ?? []).filter((item) => item.priority === 'P1-Critical').length;
+  return [
+    ['Facilities Monitored', facilities],
+    ['High-Risk Facilities', highRisk],
+    ['Open Remediation Cases', openCases],
+    ['Verified Closures', verifiedClosures],
+    ['Fire/Life Safety Gaps', fireGaps],
+    ['Executive Readiness Exceptions', execExceptions],
+    ['Detection-to-Case Time', '42 min'],
+    ['Vendor SLA Misses', 2],
+  ];
+}
 
 const scopeProfiles = {
   'store-ws-x38': {
@@ -100,9 +114,11 @@ const askPromptChips = [
 
 const state = {
   scope: 'store-ws-x38',
-  seed: null,
-  scoring: null,
-  orchestration: null,
+  dataSnapshot: null,
+  lastGoodSnapshot: null,
+  lastRefreshAt: null,
+  refreshInFlight: false,
+  refreshError: '',
   demoStep: -1,
 };
 
@@ -113,15 +129,80 @@ function loadJson(url) {
   });
 }
 
-async function loadData() {
-  const [seed, scoring, orchestration] = await Promise.all([
-    loadJson(seedUrl),
-    loadJson(scoringUrl),
-    loadJson(orchestrationUrl),
-  ]);
-  state.seed = seed;
-  state.scoring = scoring;
-  state.orchestration = orchestration;
+function assert(condition, message) {
+  if (!condition) throw new Error(message);
+}
+
+function validateSnapshot(snapshot) {
+  const { seed, scoring, orchestration } = snapshot;
+  assert(seed && typeof seed === 'object', 'Invalid seed payload.');
+  assert(scoring && typeof scoring === 'object', 'Invalid scoring payload.');
+  assert(orchestration && typeof orchestration === 'object', 'Invalid orchestration payload.');
+
+  ['facilities', 'risk_assessments', 'technology_issues', 'remediations', 'evidence', 'source_freshness'].forEach((field) => {
+    assert(Array.isArray(seed[field]), `Seed missing required array: ${field}`);
+  });
+  assert(Array.isArray(scoring.top_drivers), 'Scoring missing required array: top_drivers');
+  assert(Array.isArray(orchestration.draft_actions), 'Orchestration missing required array: draft_actions');
+
+  const seedFacilityId = seed.facilities[0]?.facility_id;
+  assert(seedFacilityId, 'Seed facility_id is missing.');
+  assert(seedFacilityId === scoring.facility_id, 'Scoring facility_id mismatch.');
+  assert(seedFacilityId === orchestration.facility_id, 'Orchestration facility_id mismatch.');
+
+  const remediationIds = new Set(seed.remediations.map((item) => item.remediation_id));
+  seed.technology_issues.forEach((issue) => {
+    if (issue.creates_remediation_id && issue.creates_remediation_id !== 'none') {
+      assert(remediationIds.has(issue.creates_remediation_id), `Technology issue references unknown remediation_id: ${issue.creates_remediation_id}`);
+    }
+  });
+  seed.evidence.forEach((item) => {
+    assert(remediationIds.has(item.remediation_id), `Evidence references unknown remediation_id: ${item.remediation_id}`);
+  });
+}
+
+function renderRefreshStatus() {
+  const stamp = byId('refresh-last-updated');
+  const banner = byId('refresh-warning-banner');
+  const button = byId('refresh-data-button');
+  if (!stamp || !banner || !button) return;
+
+  button.disabled = state.refreshInFlight;
+  button.textContent = state.refreshInFlight ? 'Refreshing…' : 'Refresh Data';
+  stamp.textContent = state.lastRefreshAt
+    ? `Last refresh: ${new Date(state.lastRefreshAt).toLocaleString()}`
+    : 'Last refresh: not yet loaded';
+
+  banner.classList.toggle('hidden', !state.refreshError);
+  banner.textContent = state.refreshError || '';
+}
+
+async function refreshData() {
+  if (state.refreshInFlight) return;
+  state.refreshInFlight = true;
+  renderRefreshStatus();
+
+  try {
+    const [seed, scoring, orchestration] = await Promise.all([
+      loadJson(seedUrl),
+      loadJson(scoringUrl),
+      loadJson(orchestrationUrl),
+    ]);
+    const nextSnapshot = { seed, scoring, orchestration };
+    validateSnapshot(nextSnapshot);
+
+    state.dataSnapshot = nextSnapshot;
+    state.lastGoodSnapshot = nextSnapshot;
+    state.lastRefreshAt = new Date().toISOString();
+    state.refreshError = '';
+    renderAll();
+  } catch (error) {
+    state.refreshError = `Refresh failed. Keeping last verified snapshot. ${error.message}`;
+    if (!state.lastGoodSnapshot) renderError(error.message);
+  } finally {
+    state.refreshInFlight = false;
+    renderRefreshStatus();
+  }
 }
 
 function activeScope() {
@@ -167,7 +248,7 @@ function animateNumber(element, targetValue) {
 function renderKpis() {
   const grid = byId('kpi-grid');
   if (!grid) return;
-  grid.innerHTML = kpiTemplate.map(([label, value]) => {
+  grid.innerHTML = kpiTemplate().map(([label, value]) => {
     const rawValue = String(value);
     const isWholeNumber = /^\d+$/.test(rawValue);
     const numericAttr = isWholeNumber ? `data-kpi-value="${rawValue}"` : '';
@@ -186,8 +267,10 @@ function renderKpis() {
 
 function renderCommandCenter() {
   const scope = activeScope();
+  const { scoring = {}, orchestration = {} } = dataView();
+  const liveRisk = scoring.score != null && scoring.tier ? `${scoring.score} ${String(scoring.tier).toUpperCase()}` : scope.risk;
   byId('selected-scope-pill').textContent = `Selected Scope: ${scope.label}`;
-  byId('selected-risk-pill').textContent = `Risk Score: ${scope.risk}`;
+  byId('selected-risk-pill').textContent = `Risk Score: ${liveRisk}`;
   byId('command-center-summary').textContent = `${scope.label} is currently in active monitoring. See It → Score It → Solve It → Secure It remains the operating loop for this scope.`;
 
   const facilities = [
@@ -197,7 +280,7 @@ function renderCommandCenter() {
   ];
   createStackRows('priority-facilities', facilities);
 
-  const drivers = (state.scoring?.top_drivers ?? []).map((driver) => ({
+  const drivers = (scoring.top_drivers ?? []).map((driver) => ({
     title: driver.label,
     body: driver.explanation,
     badge: `${driver.points} pts`,
@@ -211,7 +294,7 @@ function renderCommandCenter() {
   ];
   createStackRows('verification-status', verification);
 
-  const queue = (state.orchestration?.draft_actions ?? []).map((item) => ({
+  const queue = (orchestration.draft_actions ?? []).map((item) => ({
     title: item.title.replace('synthetic ', ''),
     body: `${item.owner_role} · ${item.recommended_next_step}`,
     badge: item.priority.replace('P1-Critical', 'High').replace('P2-High', 'Elevated'),
@@ -223,10 +306,12 @@ function renderCommandCenter() {
 
 function renderStoreProfile() {
   const scope = activeScope();
+  const { scoring = {} } = dataView();
+  const liveRisk = scoring.score != null && scoring.tier ? `${scoring.score} ${String(scoring.tier).toUpperCase()}` : scope.risk;
   byId('store-name').textContent = scope.label;
-  byId('store-risk').textContent = scope.risk;
-  byId('store-confidence').textContent = scope.confidence;
-  byId('store-updated').textContent = scope.updated;
+  byId('store-risk').textContent = liveRisk;
+  byId('store-confidence').textContent = scoring.confidence ? String(scoring.confidence) : scope.confidence;
+  byId('store-updated').textContent = state.lastRefreshAt ? new Date(state.lastRefreshAt).toLocaleTimeString() : scope.updated;
   byId('store-freshness').textContent = scope.freshness;
   byId('store-state').textContent = scope.state;
   byId('risk-summary-copy').textContent = scope.summary;
@@ -437,6 +522,7 @@ function bindEvents() {
     state.scope = event.target.value;
     renderAll();
   });
+  byId('refresh-data-button')?.addEventListener('click', refreshData);
 
   ['open-ask-fpi', 'ask-fpi-fab'].forEach((id) => byId(id)?.addEventListener('click', openAskPanel));
   byId('close-ask-fpi')?.addEventListener('click', closeAskPanel);
@@ -486,6 +572,7 @@ function renderAll() {
   renderReports();
   renderDemoMode();
   renderAskFpiChips();
+  renderRefreshStatus();
 }
 
 function renderError(message) {
@@ -497,15 +584,13 @@ function renderError(message) {
   `;
 }
 
-loadData()
+bindEvents();
+refreshData()
   .then(() => {
-    bindEvents();
-    renderAll();
     if (!window.location.hash) window.location.hash = '#/';
     applyRouting();
   })
   .catch((error) => {
     console.error(error);
-    bindEvents();
     renderError(error.message);
   });

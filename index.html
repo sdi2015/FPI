@@ -73,9 +73,15 @@
               <option value="demo-portfolio">Demo Portfolio</option>
             </select>
           </label>
+          <div class="refresh-controls">
+            <button type="button" id="refresh-data-button" class="secondary">Refresh Data</button>
+            <p id="refresh-last-updated">Last refresh: not yet loaded</p>
+          </div>
           <button type="button" id="open-ask-fpi">Ask FPI</button>
         </div>
       </header>
+
+      <p id="refresh-warning-banner" class="refresh-warning hidden" role="status" aria-live="polite"></p>
 
       <section class="app-page" data-route="command-center">
         <div class="section-card hero-strip">
