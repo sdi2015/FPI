@@ -48,11 +48,27 @@
     </aside>
 
     <main id="main-content" class="content">
+      <header class="top-command-bar panel" aria-label="FPI global controls">
+        <div class="top-command-left">
+          <strong>Walmart FPI Command Center</strong>
+          <span class="synthetic-chip">Synthetic data mode</span>
+        </div>
+        <div class="top-command-actions">
+          <input type="search" aria-label="Search facilities, cases, and risks" placeholder="Search facility, case, risk driver…" />
+          <button type="button">Ask FPI</button>
+          <label class="demo-toggle">
+            <input type="checkbox" />
+            <span>Demo Mode</span>
+          </label>
+        </div>
+      </header>
+
       <section id="overview" class="hero">
         <div class="panel">
           <p class="kicker">FPI Program Console</p>
           <h2 id="facility-title" class="hero-title">Loading Region 75...</h2>
           <p id="facility-subtitle" class="muted">Loading current program posture from local FPI data.</p>
+          <p class="hero-tagline">See it → Score it → Solve it → Secure it</p>
           <p class="value-prop">FPI turns the local data in this folder into a usable operating shell: see posture, review the work queue, assign the right owner lane, and verify closure evidence.</p>
           <div class="hero-actions" aria-label="Primary dashboard actions">
             <a href="#start-here">Start here</a>
@@ -76,6 +92,9 @@
         </div>
 
         <aside class="panel score-card" aria-label="Current synthetic risk score">
+          <div class="risk-orb" aria-hidden="true">
+            <span></span><span></span><span></span>
+          </div>
           <p class="kicker">Explainable Synthetic Risk</p>
           <div id="risk-score" class="score">--</div>
           <h2 id="risk-tier">Loading</h2>
