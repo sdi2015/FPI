@@ -1,7 +1,7 @@
 window.fpiOperatingPrograms = [
   {
     id: 'data-ingestion-normalization',
-    label: 'Ingestion & Normalization',
+    label: 'Data Ingestion & Normalization',
     fullName: 'Data Ingestion & Normalization',
     status: 'Active',
     tone: 'blue',
@@ -12,7 +12,7 @@ window.fpiOperatingPrograms = [
   },
   {
     id: 'facility-protection-profiling',
-    label: 'Facility Profiling',
+    label: 'Facility Protection Profiling',
     fullName: 'Facility Protection Profiling',
     status: 'Active',
     tone: 'green',
@@ -23,7 +23,7 @@ window.fpiOperatingPrograms = [
   },
   {
     id: 'executive-protection-readiness',
-    label: 'EP Readiness',
+    label: 'Executive Protection Readiness',
     fullName: 'Executive Protection Readiness',
     status: 'Watch',
     tone: 'orange',
@@ -34,7 +34,7 @@ window.fpiOperatingPrograms = [
   },
   {
     id: 'fire-system-monitoring-assurance',
-    label: 'Fire Assurance',
+    label: 'Fire-System Monitoring & Assurance',
     fullName: 'Fire-System Monitoring & Assurance',
     status: 'Elevated',
     tone: 'orange',
@@ -45,7 +45,7 @@ window.fpiOperatingPrograms = [
   },
   {
     id: 'camera-technical-control-monitoring',
-    label: 'Camera / Controls',
+    label: 'Camera & Technical Control Monitoring',
     fullName: 'Camera & Technical Control Monitoring',
     status: 'High',
     tone: 'red',
@@ -56,7 +56,7 @@ window.fpiOperatingPrograms = [
   },
   {
     id: 'network-security-device-posture',
-    label: 'Network / Device Posture',
+    label: 'Network & Security Device Posture',
     fullName: 'Network & Security Device Posture',
     status: 'Watch',
     tone: 'orange',
@@ -67,7 +67,7 @@ window.fpiOperatingPrograms = [
   },
   {
     id: 'threat-detection-risk-scoring',
-    label: 'Threat Scoring',
+    label: 'Threat Detection & Risk Scoring',
     fullName: 'Threat Detection & Risk Scoring',
     status: 'Active',
     tone: 'blue',
@@ -78,7 +78,7 @@ window.fpiOperatingPrograms = [
   },
   {
     id: 'remediation-orchestration',
-    label: 'Remediation',
+    label: 'Remediation Orchestration',
     fullName: 'Remediation Orchestration',
     status: 'Active',
     tone: 'blue',
@@ -89,7 +89,7 @@ window.fpiOperatingPrograms = [
   },
   {
     id: 'vendor-intelligence-recommendations',
-    label: 'Vendor Intelligence',
+    label: 'Vendor Intelligence & Recommendations',
     fullName: 'Vendor Intelligence & Recommendations',
     status: 'Active',
     tone: 'green',
@@ -100,7 +100,7 @@ window.fpiOperatingPrograms = [
   },
   {
     id: 'law-enforcement-external-coordination',
-    label: 'External Coordination',
+    label: 'Law Enforcement / External Coordination',
     fullName: 'Law Enforcement / External Coordination',
     status: 'Demo Safe',
     tone: 'gray',
@@ -111,7 +111,7 @@ window.fpiOperatingPrograms = [
   },
   {
     id: 'verification-evidence-closure',
-    label: 'Evidence Closure',
+    label: 'Verification & Evidence Closure',
     fullName: 'Verification & Evidence Closure',
     status: 'Active',
     tone: 'green',
@@ -122,7 +122,7 @@ window.fpiOperatingPrograms = [
   },
   {
     id: 'dashboarding-governance-executive-reporting',
-    label: 'Governance / Reporting',
+    label: 'Dashboarding, Governance & Executive Reporting',
     fullName: 'Dashboarding, Governance & Executive Reporting',
     status: 'Active',
     tone: 'blue',
@@ -170,13 +170,13 @@ window.renderFpiProgramCoverage = function renderFpiProgramCoverage() {
     >
       <div class="program-card-topline">
         <span class="program-dot tone-${program.tone}"></span>
-        <span class="program-badge tone-${program.tone}">${program.status}</span>
+        <span class="program-badge tone-${program.tone}">${window.resolveProgramStatus?.(program.id, program.status) ?? program.status}</span>
       </div>
       <h3>${program.fullName}</h3>
       <p>${program.description}</p>
       <div class="program-demo-signal">
         <span>Demo signal</span>
-        <strong>${program.demoSignal}</strong>
+        <strong>${window.resolveProgramSignal?.(program.id, program.demoSignal) ?? program.demoSignal}</strong>
       </div>
       <div class="program-card-footer">
         <span>Related page</span>
@@ -209,7 +209,7 @@ window.bindFpiProgramNavigation = function bindFpiProgramNavigation() {
       const programId = element.getAttribute('data-program-id');
       const isSidebarItem = element.classList.contains('sidebar-program-item');
 
-      if (isSidebarItem && route === 'command-center' && programId) {
+      if (isSidebarItem && programId) {
         window.__pendingProgramId = programId;
         if (typeof window.setRoute === 'function') {
           window.setRoute('command-center');

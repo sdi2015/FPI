@@ -52,7 +52,8 @@
 .program-label {
   overflow: hidden;
   text-overflow: ellipsis;
-  white-space: nowrap;
+  white-space: normal;
+  line-height: 1.2;
 }
 
 .program-status {

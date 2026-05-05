@@ -1,0 +1,129 @@
+{
+  "source_meta": {
+    "owner": "Chris R",
+    "source_file": "C:\\Users\\j0w16ja\\OneDrive - Walmart Inc\\FPI - D Team\\02_Foundry_Pack\\foundry_pack\\03_Workspaces\\Chris R - Working Folder\\01_Task_Work\\FPI-TECH-001\\01_Normalized_Model\\synthetic-technology-health-adapter-output.json",
+    "source_last_modified": "2026-05-04T16:45:16+00:00",
+    "synced_at": "2026-05-05T15:26:41.601023+00:00",
+    "data_mode": "synthetic_demo_only"
+  },
+  "source_task": "FPI-TECH-001",
+  "technology_issues": [
+    {
+      "issue_id": "tech-vms-wsx38-001",
+      "facility_id": "region-75",
+      "domain": "Camera/VMS",
+      "status": "Degraded",
+      "severity": "High",
+      "summary": "Synthetic camera/VMS health degradation requires security technology review before risk can be reduced.",
+      "source_id": "src-vms-synthetic",
+      "confidence": "Medium",
+      "freshness_status": "Current",
+      "creates_remediation_id": "none",
+      "risk_driver_ids": [
+        "driver-camera-degraded"
+      ],
+      "role_visibility": [
+        "Executive",
+        "Market",
+        "Field Operations",
+        "Store Leadership",
+        "Security Technology"
+      ],
+      "engineer_detail_ref": "restricted-detail-ref:vms-wsx38-001"
+    },
+    {
+      "issue_id": "tech-recorder-wsx38-001",
+      "facility_id": "region-75",
+      "domain": "Recorder",
+      "status": "Warning",
+      "severity": "Medium",
+      "summary": "Synthetic recorder health warning indicates capacity or connectivity should be reviewed.",
+      "source_id": "src-recorder-synthetic",
+      "confidence": "Medium",
+      "freshness_status": "Aging",
+      "creates_remediation_id": "none",
+      "risk_driver_ids": [
+        "driver-recorder-warning"
+      ],
+      "role_visibility": [
+        "Market",
+        "Field Operations",
+        "Store Leadership",
+        "Security Technology"
+      ],
+      "engineer_detail_ref": "restricted-detail-ref:recorder-wsx38-001"
+    },
+    {
+      "issue_id": "tech-access-wsx38-001",
+      "facility_id": "region-75",
+      "domain": "Access Control",
+      "status": "Normal",
+      "severity": "Informational",
+      "summary": "Synthetic access-control status is normal to prove mixed technology health states.",
+      "source_id": "src-access-synthetic",
+      "confidence": "High",
+      "freshness_status": "Current",
+      "creates_remediation_id": "none",
+      "risk_driver_ids": [],
+      "role_visibility": [
+        "Market",
+        "Field Operations",
+        "Store Leadership",
+        "Security Technology"
+      ]
+    },
+    {
+      "issue_id": "tech-lpr-wsx38-001",
+      "facility_id": "region-75",
+      "domain": "LPR",
+      "status": "Unknown",
+      "severity": "Low",
+      "summary": "Synthetic LPR health is unknown because the demo adapter has not received a current snapshot.",
+      "source_id": "src-lpr-synthetic",
+      "confidence": "Low",
+      "freshness_status": "Unknown",
+      "creates_remediation_id": "none",
+      "risk_driver_ids": [
+        "driver-lpr-freshness-unknown"
+      ],
+      "role_visibility": [
+        "Market",
+        "Security Technology"
+      ]
+    }
+  ],
+  "source_freshness": [
+    {
+      "source_id": "src-vms-synthetic",
+      "source_label": "Synthetic Camera/VMS Health",
+      "adapter_mode": "Local JSON",
+      "freshness_status": "Current",
+      "last_demo_update": "2026-05-04T09:30:00Z",
+      "confidence": "Medium"
+    },
+    {
+      "source_id": "src-recorder-synthetic",
+      "source_label": "Synthetic Recorder Health",
+      "adapter_mode": "Local JSON",
+      "freshness_status": "Aging",
+      "last_demo_update": "2026-05-01T09:30:00Z",
+      "confidence": "Medium"
+    },
+    {
+      "source_id": "src-access-synthetic",
+      "source_label": "Synthetic Access Control Status",
+      "adapter_mode": "Local JSON",
+      "freshness_status": "Current",
+      "last_demo_update": "2026-05-04T09:30:00Z",
+      "confidence": "High"
+    },
+    {
+      "source_id": "src-lpr-synthetic",
+      "source_label": "Synthetic LPR Health Placeholder",
+      "adapter_mode": "Future Adapter Placeholder",
+      "freshness_status": "Unknown",
+      "last_demo_update": "2026-05-04T09:30:00Z",
+      "confidence": "Low"
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "source_meta": {
+    "owner": "Chris E",
+    "source_file": "C:\\Users\\j0w16ja\\OneDrive - Walmart Inc\\FPI - D Team\\02_Foundry_Pack\\foundry_pack\\03_Workspaces\\Chris E - Working Folder\\01_Task_Work\\fire-alarm-data-2026-05-04.json",
+    "source_last_modified": "2026-05-04T21:51:33+00:00",
+    "synced_at": "2026-05-05T15:26:41.617727+00:00",
+    "data_mode": "synthetic_demo_only"
+  },
+  "source_task": "FPI-019",
+  "fire_controls": [
+    {
+      "control_id": "fire-ctrl-region75-aggregated",
+      "facility_id": "region-75",
+      "status": "Warning",
+      "evidence_state": "Current",
+      "inspection_cadence": "Quarterly",
+      "freshness_status": "Current",
+      "confidence": "Medium",
+      "risk_impact": "Elevated",
+      "requires_escalation": true,
+      "summary": "Fire assurance summary from 75 synthetic sites: overdue inspections=0, open deficiencies=163, active troubles=23."
+    }
+  ],
+  "portfolio_summary": {
+    "site_count": 75,
+    "overdue_inspections": 0,
+    "open_deficiencies": 163,
+    "active_troubles": 23,
+    "false_alarms_90_days": 279,
+    "average_risk_score": 53.1
+  },
+  "risk_driver_overrides": [
+    {
+      "driver_id": "driver-fire-evidence-gap",
+      "label": "Fire evidence assurance gap",
+      "points": 16,
+      "explanation": "Portfolio fire evidence and inspection signals require verification before risk can be reduced."
+    }
+  ]
+}

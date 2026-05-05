@@ -4,6 +4,7 @@ const orchestrationUrl = './orchestration/orchestration-output-region75.json';
 
 const byId = (id) => document.getElementById(id);
 const routes = ['landing', 'command-center', 'store-profiles', 'protection-services', 'risk-alerts', 'remediation', 'vendor-match', 'evidence', 'reports', 'demo-mode'];
+const routeTitles = { landing: 'Landing', 'command-center': 'Command Center', 'store-profiles': 'Store Profiles', 'protection-services': 'Protection Services', 'risk-alerts': 'Risk & Alerts', remediation: 'Remediation', 'vendor-match': 'Vendor Match', evidence: 'Evidence', reports: 'Reports', 'demo-mode': 'Demo Mode' };
 
 function dataView() {
   return state.dataSnapshot ?? state.lastGoodSnapshot ?? { seed: {}, scoring: {}, orchestration: {} };
@@ -107,15 +108,7 @@ const askPromptChips = window.askPromptChips ?? [
   'Recommend next action.',
 ];
 
-const state = {
-  scope: 'store-ws-x38',
-  dataSnapshot: null,
-  lastGoodSnapshot: null,
-  lastRefreshAt: null,
-  refreshInFlight: false,
-  refreshError: '',
-  demoStep: -1,
-};
+const state = { scope: 'store-ws-x38', dataSnapshot: null, lastGoodSnapshot: null, lastRefreshAt: null, refreshInFlight: false, refreshError: '', demoStep: -1 };
 
 function loadJson(url) {
   return fetch(url, { cache: 'no-store' }).then((response) => {
@@ -164,8 +157,9 @@ function renderRefreshStatus() {
 
   button.disabled = state.refreshInFlight;
   button.textContent = state.refreshInFlight ? 'Refreshing…' : 'Refresh Data';
+  const integrationSummary = window.getIntegrationSummary?.() ?? '';
   stamp.textContent = state.lastRefreshAt
-    ? `Last refresh: ${new Date(state.lastRefreshAt).toLocaleString()}`
+    ? `Last refresh: ${new Date(state.lastRefreshAt).toLocaleString()}${integrationSummary ? ` · ${integrationSummary}` : ''}`
     : 'Last refresh: not yet loaded';
 
   banner.classList.toggle('hidden', !state.refreshError);
@@ -178,18 +172,24 @@ async function refreshData() {
   renderRefreshStatus();
 
   try {
-    const [seed, scoring, orchestration] = await Promise.all([
-      loadJson(seedUrl),
-      loadJson(scoringUrl),
-      loadJson(orchestrationUrl),
-    ]);
+    const [seed, scoring, orchestration] = await Promise.all([loadJson(seedUrl), loadJson(scoringUrl), loadJson(orchestrationUrl)]);
     const nextSnapshot = { seed, scoring, orchestration };
     validateSnapshot(nextSnapshot);
 
-    state.dataSnapshot = nextSnapshot;
-    state.lastGoodSnapshot = nextSnapshot;
+    let finalSnapshot = nextSnapshot;
+    let integrationWarning = '';
+    if (typeof window.mergeIntegrationSnapshot === 'function') {
+      try {
+        const mergedSnapshot = await window.mergeIntegrationSnapshot(nextSnapshot);
+        validateSnapshot(mergedSnapshot);
+        finalSnapshot = mergedSnapshot;
+      } catch (integrationError) { integrationWarning = `Integration overlays skipped. Base snapshot loaded. ${integrationError.message}`; }
+    }
+
+    state.dataSnapshot = finalSnapshot;
+    state.lastGoodSnapshot = finalSnapshot;
     state.lastRefreshAt = new Date().toISOString();
-    state.refreshError = '';
+    state.refreshError = integrationWarning;
     renderAll();
   } catch (error) {
     state.refreshError = `Refresh failed. Keeping last verified snapshot. ${error.message}`;
@@ -268,21 +268,23 @@ function renderCommandCenter() {
   byId('selected-risk-pill').textContent = `Risk Score: ${liveRisk}`;
   byId('command-center-summary').textContent = `${scope.label} is currently in active monitoring. See It → Score It → Solve It → Secure It remains the operating loop for this scope.`;
 
-  const facilities = [
+  const integrated = window.getIntegratedCommandCenterData?.(dataView()) ?? {};
+  const facilities = integrated.priorityFacilities ?? [
     { title: 'Store WS-X38', body: 'Camera outage + evidence dependency', badge: 'High' },
     { title: 'Store WS-B21', body: 'Access control instability', badge: 'Elevated' },
     { title: 'Store WS-C44', body: 'Executive readiness exception', badge: 'Medium' },
   ];
   createStackRows('priority-facilities', facilities);
 
-  const drivers = (scoring.top_drivers ?? []).map((driver) => ({
+  const jacobDrivers = window.getJacobRiskDrivers?.() ?? [];
+  const drivers = (jacobDrivers.length ? jacobDrivers : (scoring.top_drivers ?? [])).map((driver) => ({
     title: driver.label,
     body: driver.explanation,
     badge: `${driver.points} pts`,
   }));
   createStackRows('top-risk-drivers', drivers.length ? drivers : [{ title: 'Risk drivers loading', body: 'No drivers available.', badge: 'Medium' }]);
 
-  const verification = [
+  const verification = integrated.verification ?? [
     { title: 'Evidence Verified', body: '18 closures validated with accepted evidence.', badge: 'Verified' },
     { title: 'Evidence Pending Review', body: '2 submissions require reviewer confirmation.', badge: 'Under Review' },
     { title: 'Evidence Missing', body: '1 case blocked pending camera health validation.', badge: 'Missing' },
@@ -296,7 +298,8 @@ function renderCommandCenter() {
   }));
   createStackRows('remediation-queue', queue);
 
-  byId('command-center-insight').textContent = `${scope.label}: highest urgency is parking lot visibility restoration with verified evidence enforcement before closure.`;
+  byId('command-center-insight').textContent = integrated.insightText
+    ?? `${scope.label}: highest urgency is parking lot visibility restoration with verified evidence enforcement before closure.`;
 }
 
 function renderStoreProfile() {
@@ -353,7 +356,7 @@ function renderProtectionServices() {
 }
 
 function renderRiskAlerts() {
-  const rows = [
+  const rows = window.getIntegratedRiskAlerts?.(dataView()) ?? [
     { title: 'Alert: Camera outage persistence', body: 'Parking lot visibility gap remains active beyond standard threshold.', badge: 'High' },
     { title: 'Alert: Evidence quality risk', body: 'Fire & Life Safety evidence age is beyond preferred recency target.', badge: 'Elevated' },
     { title: 'Alert: Executive readiness watch', body: 'Upcoming visit readiness pack is not complete.', badge: 'Medium' },
@@ -363,28 +366,20 @@ function renderRiskAlerts() {
 
 function renderRemediation() {
   const flow = byId('remediation-flow');
-  flow.innerHTML = remediationFlow.map((step, index) => {
-    const cls = index < 5 ? 'done' : index === 5 ? 'active' : '';
-    return `<li class="${cls}">${step}</li>`;
-  }).join('');
+  flow.innerHTML = remediationFlow.map((step, index) => `<li class="${index < 5 ? 'done' : index === 5 ? 'active' : ''}">${step}</li>`).join('');
 
-  const cases = byId('remediation-cases');
-  cases.innerHTML = `
+  const fallbackCards = [
+    { title: 'Case RF-56789', owner: 'Security Technology', status: 'In Progress', evidence: 'Under Review', summary: 'Camera restoration path awaiting verified evidence.' },
+    { title: 'Case RF-56802', owner: 'Fire & Life Safety', status: 'Assigned', evidence: 'Missing', summary: 'Fire assurance path pending evidence submission.' },
+  ];
+  const cards = (window.getJacobRemediationCards?.() ?? []).length ? window.getJacobRemediationCards() : fallbackCards;
+  byId('remediation-cases').innerHTML = cards.map((item) => `
     <article class="case-card">
-      <h3>Case RF-56789</h3>
-      <p>Owner: Security Technology</p>
-      <p>Status: In Progress</p>
-      <p>Evidence Status: Under Review</p>
-      <p>Closure eligibility: blocked pending verified evidence.</p>
+      <h3>${item.title}</h3><p>Owner: ${item.owner}</p><p>Status: ${item.status}</p><p>Evidence Status: ${item.evidence}</p>
+      <p>Closure eligibility: ${item.evidence === 'Required' || item.evidence === 'Missing' || item.evidence === 'Under Review' ? 'blocked pending required evidence and verification.' : 'eligible after workflow completion.'}</p>
+      <p>${item.summary}</p>
     </article>
-    <article class="case-card">
-      <h3>Case RF-56802</h3>
-      <p>Owner: Fire & Life Safety</p>
-      <p>Status: Assigned</p>
-      <p>Evidence Status: Missing</p>
-      <p>Closure eligibility: blocked pending evidence submission.</p>
-    </article>
-  `;
+  `).join('');
 }
 
 function renderVendorMatch() {
@@ -412,16 +407,10 @@ function renderEvidence() {
 
 function renderReports() {
   const scope = activeScope();
-  const reports = byId('reports-summary');
-  reports.innerHTML = `
-    <article class="section-card inner-card">
-      <h3>Executive snapshot</h3>
-      <p>${scope.label} risk posture: ${scope.risk}. Confidence ${scope.confidence}. Verified closure discipline is active.</p>
-    </article>
-    <article class="section-card inner-card">
-      <h3>Operational summary</h3>
-      <p>Top action remains parking lot camera restoration with reviewer-verified evidence before closure.</p>
-    </article>
+  const report = window.getJacobReportSummary?.() ?? {};
+  byId('reports-summary').innerHTML = `
+    <article class="section-card inner-card"><h3>Executive snapshot</h3><p>${report.executiveText ?? `${scope.label} risk posture: ${scope.risk}. Confidence ${scope.confidence}. Verified closure discipline is active.`}</p></article>
+    <article class="section-card inner-card"><h3>Operational summary</h3><p>${report.operationalText ?? 'Top action remains parking lot camera restoration with reviewer-verified evidence before closure.'}</p><p><strong>Governance:</strong> ${report.governanceText ?? 'Leadership guidance unavailable.'}</p><p><strong>Playbook:</strong> ${report.playbookText ?? 'Playbook summary unavailable.'}</p><p><strong>Role visibility:</strong> ${report.roleText ?? 'Role visibility summary unavailable.'}</p></article>
   `;
 }
 
@@ -487,7 +476,7 @@ function currentRoute() {
 }
 
 function applyRouting() {
-  const route = currentRoute();
+  const route = routes.includes(currentRoute()) ? currentRoute() : 'landing';
   const shell = byId('workspace-shell');
   const landing = byId('landing-page');
   const fab = byId('ask-fpi-fab');
@@ -504,6 +493,9 @@ function applyRouting() {
   document.querySelectorAll('.nav-link').forEach((link) => {
     link.classList.toggle('active', link.getAttribute('href') === `#/${route}`);
   });
+
+  const subtitle = byId('header-subtitle');
+  if (subtitle) subtitle.textContent = routeTitles[route] ?? 'Command Center';
 
   window.applyPendingProgramScroll?.();
 }

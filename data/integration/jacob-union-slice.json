@@ -1,0 +1,353 @@
+{
+  "source_meta": {
+    "owner": "Jacob H",
+    "source_file": "C:\\Users\\j0w16ja\\OneDrive - Walmart Inc\\FPI - D Team\\02_Foundry_Pack\\foundry_pack\\03_Workspaces\\Jacob H - Working Folder\\01_Task_Work\\FPI-018_UNION\\normalized_data\\fpi-region75-union-model.json",
+    "source_last_modified": "2026-05-04T23:34:48+00:00",
+    "synced_at": "2026-05-05T15:26:41.621930+00:00",
+    "data_mode": "synthetic_demo_only"
+  },
+  "source_task": "FPI-018_UNION",
+  "executive_summary": {
+    "facility_context": "Region 75 synthetic portfolio",
+    "product_loop": "Identify -> Explain -> Act -> Verify -> Improve posture",
+    "source_count": 6,
+    "risk_driver_count": 3,
+    "technology_issue_count": 7,
+    "work_queue_count": 25,
+    "playbook_count": 3
+  },
+  "queue_summary": {
+    "total": 25,
+    "critical": 9,
+    "blocked": 1,
+    "pending_verification": 6
+  },
+  "risk_drivers": [
+    {
+      "driver_id": "driver-fire-evidence-gap",
+      "label": "Fire alarm evidence gap",
+      "points": 24,
+      "explanation": "Attach current synthetic fire alarm test evidence and submit for verification."
+    },
+    {
+      "driver_id": "driver-camera-degraded",
+      "label": "Camera/VMS health degraded",
+      "points": 19,
+      "explanation": "Review synthetic VMS health issue and assign remediation owner."
+    },
+    {
+      "driver_id": "driver-verification-pending",
+      "label": "Remediation verification pending",
+      "points": 14,
+      "explanation": "Require verification evidence before closure."
+    }
+  ],
+  "task_queue": [
+    {
+      "task_id": "task-region75-001",
+      "program": "Remediation Orchestration",
+      "status": "Open",
+      "priority": "Critical",
+      "owner_lane": "Field Engineer",
+      "sla_state": "At Risk",
+      "summary": "Replace offline camera in produce section",
+      "risk_type": "Camera Offline",
+      "verification_required": false,
+      "evidence_required": true
+    },
+    {
+      "task_id": "task-region75-002",
+      "program": "Remediation Orchestration",
+      "status": "In Progress",
+      "priority": "High",
+      "owner_lane": "Field Engineer",
+      "sla_state": "At Risk",
+      "summary": "Repair rear door alarm system",
+      "risk_type": "Fire Suppression Fault",
+      "verification_required": true,
+      "evidence_required": true
+    },
+    {
+      "task_id": "task-region75-003",
+      "program": "Remediation Orchestration",
+      "status": "Pending Verification",
+      "priority": "Critical",
+      "owner_lane": "Field Engineer",
+      "sla_state": "At Risk",
+      "summary": "Service fire suppression system",
+      "risk_type": "Access Control Failure",
+      "verification_required": true,
+      "evidence_required": true
+    },
+    {
+      "task_id": "task-region75-004",
+      "program": "Remediation Orchestration",
+      "status": "Open",
+      "priority": "High",
+      "owner_lane": "Field Engineer",
+      "sla_state": "At Risk",
+      "summary": "Reset access control panel - main entrance",
+      "risk_type": "Access Control Failure",
+      "verification_required": false,
+      "evidence_required": true
+    },
+    {
+      "task_id": "task-region75-005",
+      "program": "Remediation Orchestration",
+      "status": "Blocked",
+      "priority": "Critical",
+      "owner_lane": "Field Engineer",
+      "sla_state": "At Risk",
+      "summary": "Restore network connectivity to security DVR",
+      "risk_type": "Intrusion Detection Alert",
+      "verification_required": false,
+      "evidence_required": true
+    },
+    {
+      "task_id": "task-region75-006",
+      "program": "Remediation Orchestration",
+      "status": "In Progress",
+      "priority": "Medium",
+      "owner_lane": "Store Manager",
+      "sla_state": "Watch",
+      "summary": "Repair HVAC control module",
+      "risk_type": "HVAC Critical Fault",
+      "verification_required": true,
+      "evidence_required": false
+    },
+    {
+      "task_id": "task-region75-007",
+      "program": "Remediation Orchestration",
+      "status": "Open",
+      "priority": "High",
+      "owner_lane": "Store Manager",
+      "sla_state": "At Risk",
+      "summary": "Replace emergency exit light battery - rear exit",
+      "risk_type": "HVAC Critical Fault",
+      "verification_required": false,
+      "evidence_required": true
+    },
+    {
+      "task_id": "task-region75-008",
+      "program": "Remediation Orchestration",
+      "status": "Open",
+      "priority": "Medium",
+      "owner_lane": "Store Manager",
+      "sla_state": "Watch",
+      "summary": "Investigate intrusion sensor false positive",
+      "risk_type": "Door Alarm",
+      "verification_required": false,
+      "evidence_required": false
+    },
+    {
+      "task_id": "task-region75-009",
+      "program": "Remediation Orchestration",
+      "status": "In Progress",
+      "priority": "Critical",
+      "owner_lane": "Regional Manager",
+      "sla_state": "At Risk",
+      "summary": "Repair HVAC control module",
+      "risk_type": "HVAC Critical Fault",
+      "verification_required": true,
+      "evidence_required": true
+    },
+    {
+      "task_id": "task-region75-010",
+      "program": "Remediation Orchestration",
+      "status": "Pending Verification",
+      "priority": "High",
+      "owner_lane": "Store Manager",
+      "sla_state": "At Risk",
+      "summary": "Reset access control panel",
+      "risk_type": "Intrusion Detection Alert",
+      "verification_required": true,
+      "evidence_required": true
+    },
+    {
+      "task_id": "task-region75-011",
+      "program": "Remediation Orchestration",
+      "status": "Open",
+      "priority": "Medium",
+      "owner_lane": "Field Engineer",
+      "sla_state": "Watch",
+      "summary": "Repair rear door alarm system",
+      "risk_type": "HVAC Critical Fault",
+      "verification_required": false,
+      "evidence_required": false
+    },
+    {
+      "task_id": "task-region75-012",
+      "program": "Remediation Orchestration",
+      "status": "Open",
+      "priority": "Critical",
+      "owner_lane": "Corporate",
+      "sla_state": "At Risk",
+      "summary": "Replace emergency exit light battery",
+      "risk_type": "Emergency Lighting Failure",
+      "verification_required": false,
+      "evidence_required": true
+    }
+  ],
+  "verification": [
+    {
+      "verification_id": "ver-task-region75-001",
+      "case_id": "task-region75-001",
+      "evidence_id": "task-region75-001",
+      "state": "Not Required",
+      "required_for_closure": false
+    },
+    {
+      "verification_id": "ver-task-region75-002",
+      "case_id": "task-region75-002",
+      "evidence_id": "task-region75-002",
+      "state": "Under Review",
+      "required_for_closure": true
+    },
+    {
+      "verification_id": "ver-task-region75-003",
+      "case_id": "task-region75-003",
+      "evidence_id": "task-region75-003",
+      "state": "Under Review",
+      "required_for_closure": true
+    },
+    {
+      "verification_id": "ver-task-region75-004",
+      "case_id": "task-region75-004",
+      "evidence_id": "task-region75-004",
+      "state": "Not Required",
+      "required_for_closure": false
+    },
+    {
+      "verification_id": "ver-task-region75-005",
+      "case_id": "task-region75-005",
+      "evidence_id": "task-region75-005",
+      "state": "Not Required",
+      "required_for_closure": false
+    },
+    {
+      "verification_id": "ver-task-region75-006",
+      "case_id": "task-region75-006",
+      "evidence_id": "task-region75-006",
+      "state": "Under Review",
+      "required_for_closure": true
+    },
+    {
+      "verification_id": "ver-task-region75-007",
+      "case_id": "task-region75-007",
+      "evidence_id": "task-region75-007",
+      "state": "Not Required",
+      "required_for_closure": false
+    },
+    {
+      "verification_id": "ver-task-region75-008",
+      "case_id": "task-region75-008",
+      "evidence_id": "task-region75-008",
+      "state": "Not Required",
+      "required_for_closure": false
+    },
+    {
+      "verification_id": "ver-task-region75-009",
+      "case_id": "task-region75-009",
+      "evidence_id": "task-region75-009",
+      "state": "Under Review",
+      "required_for_closure": true
+    },
+    {
+      "verification_id": "ver-task-region75-010",
+      "case_id": "task-region75-010",
+      "evidence_id": "task-region75-010",
+      "state": "Under Review",
+      "required_for_closure": true
+    },
+    {
+      "verification_id": "ver-task-region75-011",
+      "case_id": "task-region75-011",
+      "evidence_id": "task-region75-011",
+      "state": "Not Required",
+      "required_for_closure": false
+    },
+    {
+      "verification_id": "ver-task-region75-012",
+      "case_id": "task-region75-012",
+      "evidence_id": "task-region75-012",
+      "state": "Not Required",
+      "required_for_closure": false
+    }
+  ],
+  "leadership_next_steps": [
+    "Approve safety scrub and classification before broader sharing.",
+    "Promote this union model through integration queue only after review.",
+    "Merge normalized objects into active build, not entire workstream folders.",
+    "Keep raw/source snapshots restricted and adapter-backed."
+  ],
+  "playbooks": [
+    {
+      "playbook_id": "pb-fire-evidence-gap",
+      "name": "Fire/life-safety evidence gap",
+      "owner_role": "Fire/Life Safety",
+      "trigger": "Evidence status is Missing, Stale, or Failed.",
+      "step_count": 5,
+      "steps": [
+        "Confirm the synthetic control and evidence state.",
+        "Assign remediation owner with verification required.",
+        "Attach demo-safe evidence placeholder."
+      ]
+    },
+    {
+      "playbook_id": "pb-tech-health-degraded",
+      "name": "Technology health degraded",
+      "owner_role": "Security Technology",
+      "trigger": "Camera/VMS, recorder, access, or device status is Warning or worse.",
+      "step_count": 5,
+      "steps": [
+        "Review normalized technology issue only.",
+        "Assign safe remediation record.",
+        "Collect synthetic before/after proof."
+      ]
+    },
+    {
+      "playbook_id": "pb-field-mitigation-blocked",
+      "name": "Blocked mitigation escalation",
+      "owner_role": "Field Operations",
+      "trigger": "Task is blocked, reopened, or past SLA.",
+      "step_count": 5,
+      "steps": [
+        "Document blocker category.",
+        "Escalate to regional owner lane.",
+        "Confirm evidence requirement."
+      ]
+    }
+  ],
+  "role_visibility": [
+    {
+      "role_id": "FPI-HO-EXEC-VIEWERS",
+      "label": "Ho Exec Viewers",
+      "scope": "Portfolio posture and verified action loop"
+    },
+    {
+      "role_id": "FPI-HO-REGION-MANAGERS",
+      "label": "Ho Region Managers",
+      "scope": "Regional blockers, priority stores, and evidence readiness"
+    },
+    {
+      "role_id": "FPI-STORE-MANAGERS",
+      "label": "Store Managers",
+      "scope": "Store visit talk track and evidence ask"
+    },
+    {
+      "role_id": "FPI-FIELD-OPS-REMEDIATION",
+      "label": "Field Ops Remediation",
+      "scope": "Mitigation queue, SLA pressure, and blocker cleanup"
+    },
+    {
+      "role_id": "FPI-AP-TECH-HEALTH",
+      "label": "Ap Tech Health",
+      "scope": "Normalized technology health without raw source leakage"
+    },
+    {
+      "role_id": "FPI-FIRE-LIFE-SAFETY",
+      "label": "Fire Life Safety",
+      "scope": "Fire controls, evidence cadence, and compliance posture"
+    }
+  ]
+}
