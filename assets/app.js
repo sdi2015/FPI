@@ -416,3 +416,37 @@ loadDashboardData()
     console.error(error);
     renderError(error);
   });
+
+function initRouting(){
+  const sections=[...document.querySelectorAll('section[data-route], section#landing')];
+  const navLinks=[...document.querySelectorAll('.nav-link')];
+  function applyRoute(){
+    const hash=location.hash||'#/';
+    let route='landing';
+    if(hash.startsWith('#/')) route=hash.slice(2) || 'landing';
+    if(route==='') route='landing';
+    sections.forEach(s=>s.classList.remove('route-active'));
+    const match=document.querySelector(`section[data-route="${route}"]`) || (route==='landing' ? document.querySelector('#landing') : document.querySelector('section[data-route="command-center"]'));
+    if(match) match.classList.add('route-active');
+    navLinks.forEach(a=>a.classList.toggle('active', a.getAttribute('href')===`#/${route}`));
+  }
+  window.addEventListener('hashchange',applyRoute);
+  if(!location.hash) location.hash='#/';
+  applyRoute();
+  document.getElementById('ask-fpi-cta')?.addEventListener('click',()=>alert('Ask FPI panel will open in the next build step.'));
+}
+
+function sanitizePrototypeTerms(){
+  const map={
+    'Region 75':'Demo Portfolio','RegionREG-75':'Selected Scope','Local JSON':'Synthetic Demo Data','Usable Local Shell':'Local Prototype Mode','No Live Integrations':'Demo-Safe Environment','Program Console':'Command Center','Draft Actions':'Recommended Actions','Technology Issues':'Protection Signals'
+  };
+  const walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);
+  const nodes=[]; while(walker.nextNode()) nodes.push(walker.currentNode);
+  for(const n of nodes){
+    let t=n.nodeValue;
+    for(const [k,v] of Object.entries(map)) t=t.replaceAll(k,v);
+    n.nodeValue=t;
+  }
+}
+
+window.addEventListener('load',()=>{initRouting(); sanitizePrototypeTerms();});

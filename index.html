@@ -6,12 +6,12 @@
   <meta http-equiv="Cache-Control" content="no-store" />
   <meta http-equiv="Pragma" content="no-cache" />
   <meta http-equiv="Expires" content="0" />
-  <title>FPI Program Console</title>
-  <link rel="stylesheet" href="assets/styles.css?v=fpi-region75" />
+  <title>Walmart | Facility Protection Intelligence</title>
+  <link rel="stylesheet" href="assets/styles.css?v=fpi-reset1" />
 </head>
 <body>
-  <a class="skip-link" href="#main-content">Skip to dashboard content</a>
-  <div class="banner">Walmart Internal / Need-to-Know – Draft · Region 75 Demo · FPI Program Console</div>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div class="banner">Walmart | Facility Protection Intelligence · Demo-Safe Environment</div>
 
   <div class="app-shell">
     <aside class="sidebar" aria-label="FPI navigation">
@@ -23,38 +23,29 @@
 
       <nav>
         <ul class="nav-list">
-          <li><a class="nav-link active" href="#overview">Overview</a></li>
-          <li><a class="nav-link" href="#start-here">Start Here</a></li>
-          <li><a class="nav-link" href="#operations-workbench">Work Queue</a></li>
-          <li><a class="nav-link" href="#leadership-brief">Program Brief</a></li>
-          <li><a class="nav-link" href="leadership-brief.html">Print Brief</a></li>
-          <li><a class="nav-link" href="#executive-view">Executive View</a></li>
-          <li><a class="nav-link" href="#demo-script">Demo Script</a></li>
-          <li><a class="nav-link" href="#risk">Risk Drivers</a></li>
-          <li><a class="nav-link" href="#explainability">Explainable Score</a></li>
-          <li><a class="nav-link" href="#draft-actions">Draft Actions</a></li>
-          <li><a class="nav-link" href="#service-verticals">Service Verticals</a></li>
-          <li><a class="nav-link" href="#technology">Technology Health</a></li>
-          <li><a class="nav-link" href="#remediation">Remediation</a></li>
-          <li><a class="nav-link" href="#evidence">Evidence</a></li>
-          <li><a class="nav-link" href="#sources">Source Freshness</a></li>
+          <li><a class="nav-link" href="#/command-center">Command Center</a></li>
+          <li><a class="nav-link" href="#/store-profiles">Store Profiles</a></li>
+          <li><a class="nav-link" href="#/protection-services">Protection Services</a></li>
+          <li><a class="nav-link" href="#/risk-alerts">Risk & Alerts</a></li>
+          <li><a class="nav-link" href="#/remediation">Remediation</a></li>
+          <li><a class="nav-link" href="#/vendor-match">Vendor Match</a></li>
+          <li><a class="nav-link" href="#/evidence">Evidence</a></li>
+          <li><a class="nav-link" href="#/reports">Reports</a></li>
+          <li><a class="nav-link" href="#/demo-mode">Demo Mode</a></li>
         </ul>
       </nav>
 
-      <div class="sidebar-footer">
-        <p><strong>Localhost ready:</strong></p>
-        <p>Double-click <code>run_localhost.bat</code> or open <code>http://127.0.0.1:8765/</code></p>
-      </div>
+      <div class="sidebar-footer"><p><strong>Local Prototype Mode:</strong> Synthetic Demo Data</p></div>
     </aside>
 
     <main id="main-content" class="content">
       <header class="top-command-bar panel" aria-label="FPI global controls">
         <div class="top-command-left">
-          <strong>Walmart FPI Command Center</strong>
-          <span class="synthetic-chip">Synthetic data mode</span>
+          <strong>Walmart | Facility Protection Intelligence</strong>
+          <span class="synthetic-chip">Demo-Safe Environment</span>
         </div>
         <div class="top-command-actions">
-          <input type="search" aria-label="Search facilities, cases, and risks" placeholder="Search facility, case, risk driver…" />
+          <input type="search" aria-label="Search facilities, cases, and risks" placeholder="Search store, case, protection signal…" />
           <button type="button">Ask FPI</button>
           <label class="demo-toggle">
             <input type="checkbox" />
@@ -62,8 +53,22 @@
           </label>
         </div>
       </header>
+      <section id="landing" class="landing-page" data-route="landing">
+        <div class="landing-inner">
+          <div class="spark" aria-hidden="true">✦</div>
+          <h1>Facility Protection Intelligence</h1>
+          <p class="tagline">Unified Intelligence. Smarter Protection. Safer Facilities.</p>
+          <p class="slogan">See it. Score it. Solve it. Secure it.</p>
+          <div class="hero-actions">
+            <a href="#/command-center">Enter Command Center</a>
+            <a href="#/demo-mode">Run Demo Scenario</a>
+            <button type="button" id="ask-fpi-cta">Ask FPI</button>
+          </div>
+        </div>
+      </section>
 
-      <section id="overview" class="hero">
+
+      <section id="overview" class="hero" data-route="command-center">
         <div class="panel">
           <p class="kicker">FPI Program Console</p>
           <h2 id="facility-title" class="hero-title">Loading Region 75...</h2>
