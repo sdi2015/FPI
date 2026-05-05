@@ -83,7 +83,8 @@ const featureJourney = [
   ['Remediation Orchestration', 'remediation-orchestration'],
   ['Vendor Intelligence & Recommendations', 'vendor-intelligence-recommendations'],
   ['Law Enforcement / External Coordination', 'law-enforcement-external-coordination'],
-  ['Verification, Dashboarding & Governance', 'dashboarding-governance-executive-reporting'],
+  ['Verification & Evidence Closure', 'verification-evidence-closure'],
+  ['Dashboarding, Governance & Executive Reporting', 'dashboarding-governance-executive-reporting'],
 ];
 
 const state = { scope: 'store-ws-x38', dataSnapshot: null, lastGoodSnapshot: null, lastRefreshAt: null, refreshInFlight: false, refreshError: '', demoStep: -1 };
