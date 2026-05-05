@@ -393,6 +393,20 @@ function renderDashboard({ seed, scoring, orchestration, serviceVerticals }) {
   })));
 }
 
+
+function setupLandingExperience() {
+  const enterButton = byId('enter-dashboard');
+  const appShell = byId('app-shell');
+  const entry = byId('fpi-entry');
+  if (!enterButton || !appShell || !entry) return;
+
+  enterButton.addEventListener('click', () => {
+    entry.classList.add('hidden');
+    appShell.classList.remove('hidden');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+}
+
 function renderError(error) {
   byId('main-content').replaceChildren();
   const panel = document.createElement('section');
@@ -408,6 +422,7 @@ function renderError(error) {
   byId('main-content').appendChild(panel);
 }
 
+setupLandingExperience();
 setupWorkQueueFilters();
 
 loadDashboardData()
