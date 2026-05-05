@@ -1,0 +1,11 @@
+{
+  "name": "fpi-localhost-app",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Local static server for FPI app",
+  "scripts": {
+    "dev": "node scripts/dev-server.js",
+    "start": "node scripts/dev-server.js",
+    "start:8766": "node scripts/dev-server.js --port 8766"
+  }
+}

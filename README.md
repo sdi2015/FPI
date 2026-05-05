@@ -34,6 +34,32 @@ http://127.0.0.1:8765/
 
 The launcher starts the server in a separate window named `FPI Localhost Server`. Leave that server window open while using the app. Close that server window or press `Ctrl+C` inside it to stop.
 
+## VS Code npm run option
+
+If you prefer the VS Code npm scripts UI, use:
+
+```bash
+npm run dev
+```
+
+or:
+
+```bash
+npm start
+```
+
+Both commands run the local static server at:
+
+```text
+http://127.0.0.1:8765/
+```
+
+If port 8765 is busy:
+
+```bash
+npm run start:8766
+```
+
 ## VS Code terminal run
 
 From this folder:
