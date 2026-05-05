@@ -101,15 +101,10 @@ const demoSteps = [
   { title: 'Executive Summary Generated', note: 'Summary confirms controlled closure with verified evidence.', score: '55 Medium' },
 ];
 
-const askPromptChips = [
+const askPromptChips = window.askPromptChips ?? [
   'Why is this high risk?',
   'Summarize this facility.',
   'Recommend next action.',
-  'Recommend vendor.',
-  'Draft remediation case.',
-  'Explain evidence gap.',
-  'Create EP readiness brief.',
-  'What is blocking closure?',
 ];
 
 const state = {
@@ -452,16 +447,13 @@ function renderDemoMode() {
 
 function askResponse(prompt) {
   const scope = activeScope().label;
-  const responses = {
-    'Why is this high risk?': `${scope} is high risk because camera visibility is degraded, repeat incident context is elevated, and closure evidence is not yet verified.`,
-    'Summarize this facility.': `${scope} has active remediation in progress, one critical visibility gap, and evidence controls preventing premature closure.`,
-    'Recommend next action.': 'Prioritize restoring parking lot camera coverage, keep case RF-56789 in progress, and push EV-2219 to verified status.',
-    'Recommend vendor.': 'SecureView Solutions is the primary recommendation based on fit score, service coverage, and evidence return quality.',
-    'Draft remediation case.': 'Case draft: detect outage, assign Security Technology owner, target rapid coverage restoration, require post-repair validation evidence.',
-    'Explain evidence gap.': 'The current gap is verification state, not task completion. The issue is only considered secured after evidence is verified.',
-    'Create EP readiness brief.': 'EP readiness brief: status is watch, checklist completion required before upcoming visit window opens.',
-    'What is blocking closure?': 'Closure is blocked because evidence EV-2219 is not in verified status yet.',
-  };
+  const responses = typeof window.askResponseMap === 'function'
+    ? window.askResponseMap(scope)
+    : {
+      'Why is this high risk?': `${scope} is high risk because camera visibility is degraded, repeat incident context is elevated, and closure evidence is not yet verified.`,
+      'Summarize this facility.': `${scope} has active remediation in progress, one critical visibility gap, and evidence controls preventing premature closure.`,
+      'Recommend next action.': 'Prioritize restoring parking lot camera coverage, keep case RF-56789 in progress, and push EV-2219 to verified status.',
+    };
   return responses[prompt] ?? 'No response template found.';
 }
 
@@ -487,6 +479,7 @@ function setRoute(route) {
   const next = routes.includes(route) ? route : 'command-center';
   window.location.hash = next === 'landing' ? '#/' : `#/${next}`;
 }
+window.setRoute = setRoute;
 
 function currentRoute() {
   const hash = window.location.hash || '#/';
@@ -511,6 +504,8 @@ function applyRouting() {
   document.querySelectorAll('.nav-link').forEach((link) => {
     link.classList.toggle('active', link.getAttribute('href') === `#/${route}`);
   });
+
+  window.applyPendingCapabilityScroll?.();
 }
 
 function bindEvents() {
@@ -561,7 +556,9 @@ function bindEvents() {
 }
 
 function renderAll() {
+  window.renderSidebarOperatingLayers?.();
   renderKpis();
+  window.renderCapabilityCoverage?.();
   renderCommandCenter();
   renderStoreProfile();
   renderProtectionServices();
@@ -572,6 +569,7 @@ function renderAll() {
   renderReports();
   renderDemoMode();
   renderAskFpiChips();
+  window.bindCapabilityNavigation?.();
   renderRefreshStatus();
 }
 

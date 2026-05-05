@@ -8,6 +8,7 @@
   <meta http-equiv="Expires" content="0" />
   <title>Walmart | Facility Protection Intelligence</title>
   <link rel="stylesheet" href="assets/styles.css?v=fpi-productization-1" />
+  <link rel="stylesheet" href="assets/capability-coverage.css?v=fpi-productization-1" />
 </head>
 <body>
   <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -53,6 +54,11 @@
         </ul>
       </nav>
 
+      <div class="sidebar-operating-section">
+        <div class="sidebar-operating-title">FPI Operating Layers</div>
+        <div id="sidebar-operating-layers" class="sidebar-capability-list"></div>
+      </div>
+
       <p class="sidebar-loop">See It → Score It → Solve It → Secure It</p>
     </aside>
 
@@ -84,6 +90,22 @@
       <p id="refresh-warning-banner" class="refresh-warning hidden" role="status" aria-live="polite"></p>
 
       <section class="app-page" data-route="command-center">
+        <div class="kpi-grid" id="kpi-grid"></div>
+
+        <section class="section-card capability-coverage-section" id="capability-coverage">
+          <div class="section-header">
+            <div>
+              <p class="section-kicker">FPI Operating Model</p>
+              <h2>FPI Capability Coverage</h2>
+              <p>
+                The operating layers FPI uses to move from raw signals to scored risk,
+                recommended action, coordinated remediation, and verified closure.
+              </p>
+            </div>
+          </div>
+          <div class="capability-grid" id="capability-coverage-grid"></div>
+        </section>
+
         <div class="section-card hero-strip">
           <div>
             <p class="section-kicker">Command Center</p>
@@ -96,9 +118,7 @@
           </div>
         </div>
 
-        <div class="kpi-grid" id="kpi-grid"></div>
-
-        <div class="three-up-grid">
+        <div class="two-up-grid">
           <article class="section-card">
             <h3>Priority facilities</h3>
             <div id="priority-facilities"></div>
@@ -107,10 +127,6 @@
             <h3>Top risk drivers</h3>
             <div id="top-risk-drivers"></div>
           </article>
-          <article class="section-card">
-            <h3>Evidence / verification status</h3>
-            <div id="verification-status"></div>
-          </article>
         </div>
 
         <div class="two-up-grid">
@@ -118,12 +134,17 @@
             <h3>Active remediation queue</h3>
             <div id="remediation-queue"></div>
           </article>
-          <article class="section-card insight-card">
-            <h3>Ask FPI insight</h3>
-            <p id="command-center-insight"></p>
-            <button type="button" class="inline-open-ask">Open Ask FPI</button>
+          <article class="section-card">
+            <h3>Evidence / verification status</h3>
+            <div id="verification-status"></div>
           </article>
         </div>
+
+        <article class="section-card insight-card">
+          <h3>Ask FPI insight</h3>
+          <p id="command-center-insight"></p>
+          <button type="button" class="inline-open-ask">Open Ask FPI</button>
+        </article>
       </section>
 
       <section class="app-page" data-route="store-profiles">
@@ -284,6 +305,8 @@
     <p class="guardrail-note">Responses are based on synthetic FPI demo data and selected demo records. Human review is required for production, legal, privacy, procurement, and security decisions.</p>
   </aside>
 
+  <script src="assets/capability-coverage.js?v=fpi-productization-1"></script>
+  <script src="assets/ask-fpi-config.js?v=fpi-productization-1"></script>
   <script src="assets/app.js?v=fpi-productization-1"></script>
 </body>
 </html>
