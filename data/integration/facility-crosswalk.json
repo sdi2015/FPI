@@ -1,0 +1,270 @@
+{
+  "source_meta": {
+    "owner": "FPI Integration",
+    "source_files": [
+      "C:\\Users\\j0w16ja\\OneDrive - Walmart Inc\\FPI - D Team\\02_Foundry_Pack\\foundry_pack\\03_Workspaces\\Chris E - Working Folder\\01_Task_Work\\fire-alarm-data-2026-05-04.json",
+      "C:\\Users\\j0w16ja\\OneDrive - Walmart Inc\\FPI - D Team\\02_Foundry_Pack\\foundry_pack\\03_Workspaces\\Jacob H - Working Folder\\01_Task_Work\\FPI-018_UNION\\normalized_data\\fpi-region75-union-model.json"
+    ],
+    "synced_at": "2026-05-05T16:03:13.006460+00:00",
+    "data_mode": "synthetic_demo_only"
+  },
+  "mapping_summary": {
+    "jacob_task_count": 25,
+    "mapped_count": 25,
+    "unmapped_count": 0,
+    "region_count": 6
+  },
+  "entries": [
+    {
+      "task_id": "task-region75-001",
+      "facility_ref": "synthetic-facility-001",
+      "region": "South Central",
+      "market": "Dallas",
+      "site_id": "RET-1001",
+      "site_name": "ABERDEEN Store",
+      "scope_id": "fire-ret-1001",
+      "mapping_method": "region_round_robin"
+    },
+    {
+      "task_id": "task-region75-002",
+      "facility_ref": "synthetic-facility-002",
+      "region": "South Central",
+      "market": "Dallas",
+      "site_id": "RET-1002",
+      "site_name": "ABINGDON Store",
+      "scope_id": "fire-ret-1002",
+      "mapping_method": "region_round_robin"
+    },
+    {
+      "task_id": "task-region75-003",
+      "facility_ref": "synthetic-facility-003",
+      "region": "South Central",
+      "market": "Dallas",
+      "site_id": "RET-1003",
+      "site_name": "ALTAVISTA Store",
+      "scope_id": "fire-ret-1003",
+      "mapping_method": "region_round_robin"
+    },
+    {
+      "task_id": "task-region75-004",
+      "facility_ref": "synthetic-facility-004",
+      "region": "South Central",
+      "market": "Dallas",
+      "site_id": "RET-1004",
+      "site_name": "ARBUTUS Store",
+      "scope_id": "fire-ret-1004",
+      "mapping_method": "region_round_robin"
+    },
+    {
+      "task_id": "task-region75-005",
+      "facility_ref": "synthetic-facility-005",
+      "region": "South Central",
+      "market": "Dallas",
+      "site_id": "RET-1005",
+      "site_name": "ASHLAND Market",
+      "scope_id": "fire-ret-1005",
+      "mapping_method": "region_round_robin"
+    },
+    {
+      "task_id": "task-region75-006",
+      "facility_ref": "synthetic-facility-006",
+      "region": "South Central",
+      "market": "Dallas",
+      "site_id": "RET-1006",
+      "site_name": "BALTIMORE Store",
+      "scope_id": "fire-ret-1006",
+      "mapping_method": "region_round_robin"
+    },
+    {
+      "task_id": "task-region75-007",
+      "facility_ref": "synthetic-facility-007",
+      "region": "South Central",
+      "market": "Dallas",
+      "site_id": "RET-1007",
+      "site_name": "BEDFORD Store",
+      "scope_id": "fire-ret-1007",
+      "mapping_method": "region_round_robin"
+    },
+    {
+      "task_id": "task-region75-008",
+      "facility_ref": "synthetic-facility-008",
+      "region": "South Central",
+      "market": "Dallas",
+      "site_id": "RET-1008",
+      "site_name": "BLACKSTONE Store",
+      "scope_id": "fire-ret-1008",
+      "mapping_method": "region_round_robin"
+    },
+    {
+      "task_id": "task-region75-009",
+      "facility_ref": "synthetic-facility-009",
+      "region": "West",
+      "market": "Phoenix",
+      "site_id": "RET-1001",
+      "site_name": "ABERDEEN Store",
+      "scope_id": "fire-ret-1001",
+      "mapping_method": "region_round_robin"
+    },
+    {
+      "task_id": "task-region75-010",
+      "facility_ref": "synthetic-facility-010",
+      "region": "Mountain",
+      "market": "Denver",
+      "site_id": "RET-1001",
+      "site_name": "ABERDEEN Store",
+      "scope_id": "fire-ret-1001",
+      "mapping_method": "region_round_robin"
+    },
+    {
+      "task_id": "task-region75-011",
+      "facility_ref": "synthetic-facility-011",
+      "region": "Midwest",
+      "market": "Chicago",
+      "site_id": "RET-1001",
+      "site_name": "ABERDEEN Store",
+      "scope_id": "fire-ret-1001",
+      "mapping_method": "region_round_robin"
+    },
+    {
+      "task_id": "task-region75-012",
+      "facility_ref": "synthetic-facility-012",
+      "region": "Mountain",
+      "market": "Denver",
+      "site_id": "RET-1002",
+      "site_name": "ABINGDON Store",
+      "scope_id": "fire-ret-1002",
+      "mapping_method": "region_round_robin"
+    },
+    {
+      "task_id": "task-region75-013",
+      "facility_ref": "synthetic-facility-013",
+      "region": "South Central",
+      "market": "Dallas",
+      "site_id": "RET-1009",
+      "site_name": "BOWIE Supercenter",
+      "scope_id": "fire-ret-1009",
+      "mapping_method": "region_round_robin"
+    },
+    {
+      "task_id": "task-region75-014",
+      "facility_ref": "synthetic-facility-014",
+      "region": "Midwest",
+      "market": "Chicago",
+      "site_id": "RET-1002",
+      "site_name": "ABINGDON Store",
+      "scope_id": "fire-ret-1002",
+      "mapping_method": "region_round_robin"
+    },
+    {
+      "task_id": "task-region75-015",
+      "facility_ref": "synthetic-facility-015",
+      "region": "Midwest",
+      "market": "Chicago",
+      "site_id": "RET-1003",
+      "site_name": "ALTAVISTA Store",
+      "scope_id": "fire-ret-1003",
+      "mapping_method": "region_round_robin"
+    },
+    {
+      "task_id": "task-region75-016",
+      "facility_ref": "synthetic-facility-016",
+      "region": "South Central",
+      "market": "Houston",
+      "site_id": "RET-1010",
+      "site_name": "CALIFORNIA Store",
+      "scope_id": "fire-ret-1010",
+      "mapping_method": "region_round_robin"
+    },
+    {
+      "task_id": "task-region75-017",
+      "facility_ref": "synthetic-facility-017",
+      "region": "South Central",
+      "market": "Houston",
+      "site_id": "RET-1011",
+      "site_name": "CATONSVILLE Store",
+      "scope_id": "fire-ret-1011",
+      "mapping_method": "region_round_robin"
+    },
+    {
+      "task_id": "task-region75-018",
+      "facility_ref": "synthetic-facility-018",
+      "region": "South Central",
+      "market": "Houston",
+      "site_id": "RET-1012",
+      "site_name": "CHARLOTTESVILLE Store",
+      "scope_id": "fire-ret-1012",
+      "mapping_method": "region_round_robin"
+    },
+    {
+      "task_id": "task-region75-019",
+      "facility_ref": "synthetic-facility-019",
+      "region": "West",
+      "market": "Phoenix",
+      "site_id": "RET-1002",
+      "site_name": "ABINGDON Store",
+      "scope_id": "fire-ret-1002",
+      "mapping_method": "region_round_robin"
+    },
+    {
+      "task_id": "task-region75-020",
+      "facility_ref": "synthetic-facility-020",
+      "region": "South Central",
+      "market": "Houston",
+      "site_id": "RET-1013",
+      "site_name": "CHESAPEAKE Store",
+      "scope_id": "fire-ret-1013",
+      "mapping_method": "region_round_robin"
+    },
+    {
+      "task_id": "task-region75-021",
+      "facility_ref": "synthetic-facility-021",
+      "region": "West",
+      "market": "Phoenix",
+      "site_id": "RET-1003",
+      "site_name": "ALTAVISTA Store",
+      "scope_id": "fire-ret-1003",
+      "mapping_method": "region_round_robin"
+    },
+    {
+      "task_id": "task-region75-022",
+      "facility_ref": "synthetic-facility-022",
+      "region": "South Central",
+      "market": "Houston",
+      "site_id": "RET-1014",
+      "site_name": "CHESTER Store",
+      "scope_id": "fire-ret-1014",
+      "mapping_method": "region_round_robin"
+    },
+    {
+      "task_id": "task-region75-023",
+      "facility_ref": "synthetic-facility-023",
+      "region": "West",
+      "market": "Phoenix",
+      "site_id": "RET-1004",
+      "site_name": "ARBUTUS Store",
+      "scope_id": "fire-ret-1004",
+      "mapping_method": "region_round_robin"
+    },
+    {
+      "task_id": "task-region75-024",
+      "facility_ref": "synthetic-facility-024",
+      "region": "South Central",
+      "market": "Dallas",
+      "site_id": "RET-1015",
+      "site_name": "CHESTERFIELD Store",
+      "scope_id": "fire-ret-1015",
+      "mapping_method": "region_round_robin"
+    },
+    {
+      "task_id": "task-region75-025",
+      "facility_ref": "synthetic-facility-025",
+      "region": "South Central",
+      "market": "Dallas",
+      "site_id": "RET-1016",
+      "site_name": "CHRISTIANSBURG Store",
+      "scope_id": "fire-ret-1016",
+      "mapping_method": "region_round_robin"
+    }
+  ],
+  "unmapped": []
+}

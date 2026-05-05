@@ -39,43 +39,7 @@ const scopeProfiles = {
     updated: '8 minutes ago',
     freshness: 'Fresh',
     state: 'Current State: Active risk; remediation in progress.',
-    summary: 'A parking lot camera outage and stale fire evidence are driving the current High posture. A remediation case exists and is awaiting verified closure evidence.',
-  },
-  'demo-portfolio': {
-    label: 'Demo Portfolio',
-    risk: '68 ELEVATED',
-    confidence: '89%',
-    updated: '12 minutes ago',
-    freshness: 'Fresh',
-    state: 'Current State: Elevated multi-site risk; prioritized actions in progress.',
-    summary: 'Portfolio risk is concentrated in perimeter visibility and evidence quality. Teams should focus on top drivers and preserve verified closure discipline.',
-  },
-  'region-delta': {
-    label: 'Region Delta',
-    risk: '66 ELEVATED',
-    confidence: '88%',
-    updated: '15 minutes ago',
-    freshness: 'Fresh',
-    state: 'Current State: Elevated regional risk; remediation coordination in flight.',
-    summary: 'Regional posture is elevated due to multi-site signal degradation and open verification dependencies.',
-  },
-  'market-north': {
-    label: 'Market North',
-    risk: '64 ELEVATED',
-    confidence: '87%',
-    updated: '17 minutes ago',
-    freshness: 'Fresh',
-    state: 'Current State: Elevated market risk; owner lanes actively engaged.',
-    summary: 'Risk is elevated due to recurring signal degradation and pending verification tasks across two facilities.',
-  },
-  'multi-store-alpha': {
-    label: 'Multi-Store Alpha',
-    risk: '59 MEDIUM',
-    confidence: '88%',
-    updated: '14 minutes ago',
-    freshness: 'Fresh',
-    state: 'Current State: Medium risk; prevention and verification workflow active.',
-    summary: 'This scope is stable but still has open evidence review items and one executive readiness exception.',
+    summary: 'A parking lot camera outage and stale fire evidence are driving the current High posture.',
   },
 };
 
@@ -200,13 +164,42 @@ async function refreshData() {
   }
 }
 
+function syncScopeSelector() {
+  state.scope = window.renderScopeSelector?.(state.scope) ?? state.scope;
+}
+
 function activeScope() {
-  return scopeProfiles[state.scope] ?? scopeProfiles['store-ws-x38'];
+  const fallback = scopeProfiles['store-ws-x38'];
+  return window.getScopeProfile?.(state.scope, fallback) ?? fallback;
 }
 
 function createBadge(value) {
   const slug = String(value).toLowerCase().replace(/\s+/g, '-');
   return `<span class="badge ${slug}">${value}</span>`;
+}
+
+function filterRowsByProgramContext(rows) {
+  const keywords = window.getActiveProgramKeywords?.() ?? [];
+  if (!keywords.length) return rows;
+  const filtered = rows.filter((row) => {
+    const text = `${row.title || ''} ${row.body || ''}`.toLowerCase();
+    return keywords.some((keyword) => text.includes(keyword));
+  });
+  return filtered.length ? filtered : rows;
+}
+
+function filterDomainCardsByProgramContext(cards) {
+  const programId = window.getActiveProgramId?.();
+  const domainMap = {
+    'fire-system-monitoring-assurance': ['Fire & Life Safety'],
+    'camera-technical-control-monitoring': ['Physical Security'],
+    'network-security-device-posture': ['Physical Security'],
+    'verification-evidence-closure': ['Fire & Life Safety'],
+  };
+  const allowed = domainMap[programId];
+  if (!allowed?.length) return cards;
+  const filtered = cards.filter(([domain]) => allowed.some((label) => domain.includes(label)));
+  return filtered.length ? filtered : cards;
 }
 
 function createStackRows(containerId, rows) {
@@ -266,15 +259,19 @@ function renderCommandCenter() {
   const liveRisk = scoring.score != null && scoring.tier ? `${scoring.score} ${String(scoring.tier).toUpperCase()}` : scope.risk;
   byId('selected-scope-pill').textContent = `Selected Scope: ${scope.label}`;
   byId('selected-risk-pill').textContent = `Risk Score: ${liveRisk}`;
+  const activeProgram = window.getOperatingProgramById?.(window.getActiveProgramId?.()) || null;
+  byId('active-program-focus').textContent = activeProgram
+    ? `Program Focus: ${activeProgram.fullName}`
+    : 'Program Focus: All programs';
   byId('command-center-summary').textContent = `${scope.label} is currently in active monitoring. See It → Score It → Solve It → Secure It remains the operating loop for this scope.`;
 
-  const integrated = window.getIntegratedCommandCenterData?.(dataView()) ?? {};
+  const integrated = window.getIntegratedCommandCenterData?.(state.scope, dataView()) ?? {};
   const facilities = integrated.priorityFacilities ?? [
     { title: 'Store WS-X38', body: 'Camera outage + evidence dependency', badge: 'High' },
     { title: 'Store WS-B21', body: 'Access control instability', badge: 'Elevated' },
     { title: 'Store WS-C44', body: 'Executive readiness exception', badge: 'Medium' },
   ];
-  createStackRows('priority-facilities', facilities);
+  createStackRows('priority-facilities', filterRowsByProgramContext(facilities));
 
   const jacobDrivers = window.getJacobRiskDrivers?.() ?? [];
   const drivers = (jacobDrivers.length ? jacobDrivers : (scoring.top_drivers ?? [])).map((driver) => ({
@@ -296,7 +293,7 @@ function renderCommandCenter() {
     body: `${item.owner_role} · ${item.recommended_next_step}`,
     badge: item.priority.replace('P1-Critical', 'High').replace('P2-High', 'Elevated'),
   }));
-  createStackRows('remediation-queue', queue);
+  createStackRows('remediation-queue', filterRowsByProgramContext(queue));
 
   byId('command-center-insight').textContent = integrated.insightText
     ?? `${scope.label}: highest urgency is parking lot visibility restoration with verified evidence enforcement before closure.`;
@@ -315,8 +312,9 @@ function renderStoreProfile() {
   byId('risk-summary-copy').textContent = scope.summary;
   byId('store-insight').textContent = `For ${scope.label}, closure remains blocked until EV-2219 camera health validation is verified by reviewer.`;
 
+  const scopedDomainCards = filterDomainCardsByProgramContext(window.getScopeDomainCards?.(state.scope) ?? domainCards);
   const domainGrid = byId('domain-grid');
-  domainGrid.innerHTML = domainCards.map(([domain, status, signal, risk, action]) => `
+  domainGrid.innerHTML = scopedDomainCards.map(([domain, status, signal, risk, action]) => `
     <article class="domain-card">
       <h4>${domain}</h4>
       ${createBadge(status)}
@@ -343,8 +341,9 @@ function renderStoreProfile() {
 }
 
 function renderProtectionServices() {
+  const scopedDomainCards = filterDomainCardsByProgramContext(window.getScopeDomainCards?.(state.scope) ?? domainCards);
   const cards = byId('protection-service-cards');
-  cards.innerHTML = domainCards.map(([domain, status, signal, risk, action]) => `
+  cards.innerHTML = scopedDomainCards.map(([domain, status, signal, risk, action]) => `
     <article class="domain-card">
       <h4>${domain}</h4>
       ${createBadge(status)}
@@ -356,12 +355,12 @@ function renderProtectionServices() {
 }
 
 function renderRiskAlerts() {
-  const rows = window.getIntegratedRiskAlerts?.(dataView()) ?? [
+  const rows = window.getIntegratedRiskAlerts?.(state.scope, dataView()) ?? [
     { title: 'Alert: Camera outage persistence', body: 'Parking lot visibility gap remains active beyond standard threshold.', badge: 'High' },
     { title: 'Alert: Evidence quality risk', body: 'Fire & Life Safety evidence age is beyond preferred recency target.', badge: 'Elevated' },
     { title: 'Alert: Executive readiness watch', body: 'Upcoming visit readiness pack is not complete.', badge: 'Medium' },
   ];
-  createStackRows('risk-alert-list', rows);
+  createStackRows('risk-alert-list', filterRowsByProgramContext(rows));
 }
 
 function renderRemediation() {
@@ -372,7 +371,7 @@ function renderRemediation() {
     { title: 'Case RF-56789', owner: 'Security Technology', status: 'In Progress', evidence: 'Under Review', summary: 'Camera restoration path awaiting verified evidence.' },
     { title: 'Case RF-56802', owner: 'Fire & Life Safety', status: 'Assigned', evidence: 'Missing', summary: 'Fire assurance path pending evidence submission.' },
   ];
-  const cards = (window.getJacobRemediationCards?.() ?? []).length ? window.getJacobRemediationCards() : fallbackCards;
+  const cards = (window.getJacobRemediationCards?.(state.scope) ?? []).length ? window.getJacobRemediationCards(state.scope) : fallbackCards;
   byId('remediation-cases').innerHTML = cards.map((item) => `
     <article class="case-card">
       <h3>${item.title}</h3><p>Owner: ${item.owner}</p><p>Status: ${item.status}</p><p>Evidence Status: ${item.evidence}</p>
@@ -407,7 +406,7 @@ function renderEvidence() {
 
 function renderReports() {
   const scope = activeScope();
-  const report = window.getJacobReportSummary?.() ?? {};
+  const report = window.getJacobReportSummary?.(state.scope) ?? {};
   byId('reports-summary').innerHTML = `
     <article class="section-card inner-card"><h3>Executive snapshot</h3><p>${report.executiveText ?? `${scope.label} risk posture: ${scope.risk}. Confidence ${scope.confidence}. Verified closure discipline is active.`}</p></article>
     <article class="section-card inner-card"><h3>Operational summary</h3><p>${report.operationalText ?? 'Top action remains parking lot camera restoration with reviewer-verified evidence before closure.'}</p><p><strong>Governance:</strong> ${report.governanceText ?? 'Leadership guidance unavailable.'}</p><p><strong>Playbook:</strong> ${report.playbookText ?? 'Playbook summary unavailable.'}</p><p><strong>Role visibility:</strong> ${report.roleText ?? 'Role visibility summary unavailable.'}</p></article>
@@ -493,6 +492,7 @@ function applyRouting() {
   document.querySelectorAll('.nav-link').forEach((link) => {
     link.classList.toggle('active', link.getAttribute('href') === `#/${route}`);
   });
+  window.syncSidebarNavRoute?.(route);
 
   const subtitle = byId('header-subtitle');
   if (subtitle) subtitle.textContent = routeTitles[route] ?? 'Command Center';
@@ -505,8 +505,8 @@ function bindEvents() {
   byId('run-demo-scenario')?.addEventListener('click', () => setRoute('demo-mode'));
   byId('landing-ask-fpi')?.addEventListener('click', () => { setRoute('command-center'); openAskPanel(); });
 
-  byId('scope-select')?.addEventListener('change', (event) => {
-    state.scope = event.target.value;
+  window.bindScopePicker?.((nextScopeId) => {
+    state.scope = nextScopeId;
     renderAll();
   });
   byId('refresh-data-button')?.addEventListener('click', refreshData);
@@ -548,7 +548,10 @@ function bindEvents() {
 }
 
 function renderAll() {
-  window.renderSidebarPrograms?.();
+  syncScopeSelector();
+  window.renderSidebarNav?.();
+  window.bindSidebarNav?.();
+  window.renderProgramControlBoard?.();
   renderKpis();
   window.renderFpiProgramCoverage?.();
   renderCommandCenter();
@@ -564,6 +567,8 @@ function renderAll() {
   window.bindFpiProgramNavigation?.();
   renderRefreshStatus();
 }
+
+window.renderAll = renderAll;
 
 function renderError(message) {
   byId('main-content').innerHTML = `

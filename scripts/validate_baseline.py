@@ -13,6 +13,7 @@ REQUIRED_FILES = [
     ROOT / "assets" / "app.js",
     ROOT / "data" / "fpi-demo-data.json",
     ROOT / "data" / "seed" / "fpi-seed-region75.json",
+    ROOT / "data" / "integration" / "facility-crosswalk.json",
 ]
 
 
@@ -53,6 +54,14 @@ def main() -> int:
     app_text = (ROOT / "assets" / "app.js").read_text(encoding="utf-8")
     if "data/seed/fpi-seed-region75.json" not in app_text:
         print("FPI baseline validation failed: dashboard is not bound to canonical Region 75 seed")
+        return 2
+
+    crosswalk = json.loads((ROOT / "data" / "integration" / "facility-crosswalk.json").read_text(encoding="utf-8"))
+    unmapped = crosswalk.get("unmapped") or []
+    if unmapped:
+        print("FPI baseline validation failed: facility crosswalk has unmapped task references")
+        for item in unmapped[:5]:
+            print(f"- task {item.get('task_id')} :: {item.get('reason')}")
         return 2
 
     print("FPI baseline validation passed.")

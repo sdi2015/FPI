@@ -133,22 +133,23 @@ window.fpiOperatingPrograms = [
   },
 ];
 
-window.renderSidebarPrograms = function renderSidebarPrograms() {
-  const container = document.getElementById('sidebar-program-list');
-  if (!container) return;
+window.getOperatingProgramById = function getOperatingProgramById(programId) {
+  return (window.fpiOperatingPrograms ?? []).find((program) => program.id === programId) ?? null;
+};
 
-  container.innerHTML = window.fpiOperatingPrograms.map((program) => `
-    <button
-      type="button"
-      class="sidebar-program-item"
-      data-jump-route="${program.route}"
-      data-program-id="${program.id}"
-      title="${program.fullName}"
-      aria-label="${program.fullName}: ${program.status}"
-    >
+window.renderSidebarPrograms = function renderSidebarPrograms() {
+  window.renderSidebarNav?.();
+};
+
+window.renderProgramControlBoard = function renderProgramControlBoard() {
+  const container = document.getElementById('program-control-list');
+  if (!container) return;
+  const activeProgramId = window.getActiveProgramId?.() ?? '';
+  container.innerHTML = (window.fpiOperatingPrograms ?? []).map((program) => `
+    <button type="button" class="program-control-btn ${activeProgramId === program.id ? 'active' : ''}" data-program-control="${program.id}" aria-pressed="${activeProgramId === program.id ? 'true' : 'false'}">
       <span class="program-dot tone-${program.tone}"></span>
-      <span class="program-label">${program.label}</span>
-      <span class="program-status">${program.status}</span>
+      <strong>${program.fullName}</strong>
+      <small>${window.resolveProgramSignal?.(program.id, program.demoSignal) ?? program.demoSignal}</small>
     </button>
   `).join('');
 };
@@ -157,9 +158,10 @@ window.renderFpiProgramCoverage = function renderFpiProgramCoverage() {
   const container = document.getElementById('fpi-program-coverage-grid');
   if (!container) return;
 
+  const activeProgramId = window.getActiveProgramId?.() ?? '';
   container.innerHTML = window.fpiOperatingPrograms.map((program) => `
     <article
-      class="fpi-program-card"
+      class="fpi-program-card ${activeProgramId === program.id ? 'active-program' : ''}"
       id="program-${program.id}"
       data-program-id="${program.id}"
       data-jump-route="${program.route}"
@@ -201,33 +203,14 @@ window.applyPendingProgramScroll = function applyPendingProgramScroll() {
 };
 
 window.bindFpiProgramNavigation = function bindFpiProgramNavigation() {
-  document.querySelectorAll('.sidebar-program-item, .fpi-program-card').forEach((element) => {
+  document.querySelectorAll('.fpi-program-card, .program-control-btn').forEach((element) => {
     if (element.dataset.programBound === 'true') return;
 
     const navigate = () => {
-      const route = element.getAttribute('data-jump-route');
-      const programId = element.getAttribute('data-program-id');
-      const isSidebarItem = element.classList.contains('sidebar-program-item');
-
-      if (isSidebarItem && programId) {
-        window.__pendingProgramId = programId;
-        if (typeof window.setRoute === 'function') {
-          window.setRoute('command-center');
-        }
-        window.applyPendingProgramScroll?.();
-        return;
-      }
-
-      if (route && typeof window.setRoute === 'function') {
-        window.setRoute(route);
-      } else if (route && typeof window.setActivePage === 'function') {
-        window.setActivePage(route);
-      } else if (route && typeof window.navigateToRoute === 'function') {
-        window.navigateToRoute(route);
-      }
-
-      if (window.location.hash === '#/command-center' && programId) {
-        scrollToProgramCard(programId);
+      const programId = element.getAttribute('data-program-id') || element.getAttribute('data-program-control');
+      if (programId) {
+        window.selectProgramFromUI?.(programId);
+        if (window.location.hash === '#/command-center') scrollToProgramCard(programId);
       }
     };
 

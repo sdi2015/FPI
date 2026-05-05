@@ -17,10 +17,13 @@ SEED_PATH = ROOT / "data" / "seed" / "fpi-seed-region75.json"
 CHRISR_SOURCE = WORKSPACES_ROOT / "Chris R - Working Folder" / "01_Task_Work" / "FPI-TECH-001" / "01_Normalized_Model" / "synthetic-technology-health-adapter-output.json"
 CHRISE_SOURCE = WORKSPACES_ROOT / "Chris E - Working Folder" / "01_Task_Work" / "fire-alarm-data-2026-05-04.json"
 JACOB_SOURCE = WORKSPACES_ROOT / "Jacob H - Working Folder" / "01_Task_Work" / "FPI-018_UNION" / "normalized_data" / "fpi-region75-union-model.json"
+JACOB_QR_MANIFEST = WORKSPACES_ROOT / "Jacob H - Working Folder" / "01_Task_Work" / "qr_briefings" / "qr_manifest.json"
 
 CHRISR_TARGET = INTEGRATION_DIR / "chrisr-tech-health-normalized.json"
 CHRISE_TARGET = INTEGRATION_DIR / "chrise-fire-controls-normalized.json"
 JACOB_TARGET = INTEGRATION_DIR / "jacob-union-slice.json"
+SCOPE_CATALOG_TARGET = INTEGRATION_DIR / "scope-catalog-ui.json"
+CROSSWALK_TARGET = INTEGRATION_DIR / "facility-crosswalk.json"
 
 
 @dataclass(frozen=True)
@@ -109,6 +112,18 @@ def sync_chrise() -> dict[str, Any]:
     payload = {
         "source_meta": SourceMeta("Chris E", CHRISE_SOURCE).to_dict(),
         "source_task": "FPI-019",
+        "sites": [
+            {
+                "site_id": str(site.get("id") or ""),
+                "name": site.get("name") or "Unknown Site",
+                "region": site.get("region") or "Unknown",
+                "risk_score": int(site.get("riskScore") or 0),
+                "open_deficiencies": int(site.get("openDeficiencies") or 0),
+                "active_troubles": int(site.get("activeTroubles") or 0),
+                "overdue_inspection": bool(site.get("overdueInspection")),
+            }
+            for site in sites
+        ],
         "fire_controls": [
             {
                 "control_id": "fire-ctrl-region75-aggregated",
@@ -144,27 +159,114 @@ def sync_chrise() -> dict[str, Any]:
     return payload
 
 
-def sync_jacob() -> dict[str, Any]:
+def sync_facility_crosswalk() -> dict[str, Any]:
+    chrise = load_json(CHRISE_SOURCE)
+    jacob = load_json(JACOB_SOURCE)
+
+    sites = [
+        {
+            "site_id": str(site.get("id") or ""),
+            "name": site.get("name") or "Unknown Site",
+            "region": site.get("region") or "Unknown",
+        }
+        for site in chrise.get("sites", [])
+        if site.get("id")
+    ]
+    if not sites:
+        raise ValueError("Cannot build facility crosswalk: no Chris E sites found")
+
+    work_queue = jacob.get("work_queue", [])
+    if not work_queue:
+        raise ValueError("Cannot build facility crosswalk: no Jacob work_queue items found")
+
+    region_to_sites: dict[str, list[dict[str, Any]]] = {}
+    for site in sites:
+        region_to_sites.setdefault(site["region"], []).append(site)
+    for region_sites in region_to_sites.values():
+        region_sites.sort(key=lambda item: item["site_id"])
+
+    region_cursors = {region: 0 for region in region_to_sites}
+    entries: list[dict[str, Any]] = []
+    unmapped: list[dict[str, Any]] = []
+
+    for task in work_queue:
+        facility_ref = task.get("facility_ref")
+        region = task.get("region")
+        if not facility_ref:
+            unmapped.append({"task_id": task.get("task_id"), "reason": "missing facility_ref"})
+            continue
+
+        candidates = region_to_sites.get(region) or sorted(sites, key=lambda item: item["site_id"])
+        if not candidates:
+            unmapped.append({"task_id": task.get("task_id"), "facility_ref": facility_ref, "reason": f"no site candidates for region={region}"})
+            continue
+
+        cursor = region_cursors.get(region, 0)
+        site = candidates[cursor % len(candidates)]
+        region_cursors[region] = cursor + 1
+
+        entries.append(
+            {
+                "task_id": task.get("task_id"),
+                "facility_ref": facility_ref,
+                "region": region,
+                "market": task.get("market"),
+                "site_id": site["site_id"],
+                "site_name": site["name"],
+                "scope_id": f"fire-{site['site_id'].lower()}",
+                "mapping_method": "region_round_robin",
+            }
+        )
+
+    payload = {
+        "source_meta": {
+            "owner": "FPI Integration",
+            "source_files": [str(CHRISE_SOURCE), str(JACOB_SOURCE)],
+            "synced_at": datetime.now(UTC).isoformat(),
+            "data_mode": "synthetic_demo_only",
+        },
+        "mapping_summary": {
+            "jacob_task_count": len(work_queue),
+            "mapped_count": len(entries),
+            "unmapped_count": len(unmapped),
+            "region_count": len(region_to_sites),
+        },
+        "entries": entries,
+        "unmapped": unmapped,
+    }
+    write_json(CROSSWALK_TARGET, payload)
+    return payload
+
+
+def sync_jacob(crosswalk: dict[str, Any]) -> dict[str, Any]:
     source = load_json(JACOB_SOURCE)
     work_queue = source.get("work_queue", [])
     playbooks = source.get("playbooks", [])
     role_views = source.get("role_views", {})
+    crosswalk_by_ref = {entry.get("facility_ref"): entry for entry in (crosswalk.get("entries") or [])}
 
-    task_queue = [
-        {
-            "task_id": task.get("task_id"),
-            "program": "Remediation Orchestration",
-            "status": task.get("status", "Open"),
-            "priority": task.get("priority", "Medium"),
-            "owner_lane": task.get("owner_role", "Field Operations"),
-            "sla_state": "At Risk" if int(task.get("sla_hours") or 999) <= 24 else "Watch",
-            "summary": task.get("title", "Synthetic remediation task"),
-            "risk_type": task.get("risk_type", "Protection Risk"),
-            "verification_required": bool(task.get("verification_required")),
-            "evidence_required": bool(task.get("evidence_required")),
-        }
-        for task in work_queue[:12]
-    ]
+    task_queue = []
+    for task in work_queue[:40]:
+        mapping = crosswalk_by_ref.get(task.get("facility_ref"), {})
+        task_queue.append(
+            {
+                "task_id": task.get("task_id"),
+                "facility_ref": task.get("facility_ref"),
+                "site_id": mapping.get("site_id"),
+                "scope_id": mapping.get("scope_id"),
+                "region": task.get("region"),
+                "market": task.get("market"),
+                "program": "Remediation Orchestration",
+                "status": task.get("status", "Open"),
+                "priority": task.get("priority", "Medium"),
+                "owner_lane": task.get("owner_role", "Field Operations"),
+                "sla_state": "At Risk" if int(task.get("sla_hours") or 999) <= 24 else "Watch",
+                "summary": task.get("title", "Synthetic remediation task"),
+                "risk_type": task.get("risk_type", "Protection Risk"),
+                "verification_required": bool(task.get("verification_required")),
+                "evidence_required": bool(task.get("evidence_required")),
+            }
+        )
 
     verification = [
         {
@@ -238,16 +340,149 @@ def sync_jacob() -> dict[str, Any]:
     return payload
 
 
+def sync_scope_catalog(seed: dict[str, Any]) -> dict[str, Any]:
+    chrise = load_json(CHRISE_SOURCE)
+    jacob_union = load_json(JACOB_SOURCE)
+    qr_entries = load_json(JACOB_QR_MANIFEST) if JACOB_QR_MANIFEST.exists() else []
+
+    scopes: list[dict[str, Any]] = []
+    seen: set[str] = set()
+
+    def add_scope(
+        scope_id: str,
+        label: str,
+        scope_type: str,
+        summary: str,
+        risk: str = "--",
+        confidence: str = "--",
+        region: str | None = None,
+        market: str | None = None,
+        site_id: str | None = None,
+        facility_ref: str | None = None,
+        source: str = "unknown",
+    ) -> None:
+        if not scope_id or scope_id in seen:
+            return
+        seen.add(scope_id)
+        scopes.append({
+            "id": scope_id,
+            "label": label,
+            "type": scope_type,
+            "risk": risk,
+            "confidence": confidence,
+            "summary": summary,
+            "region": region,
+            "market": market,
+            "site_id": site_id,
+            "facility_ref": facility_ref,
+            "source": source,
+        })
+
+    seed_facility = (seed.get("facilities") or [{}])[0]
+    add_scope(
+        scope_id=seed_facility.get("facility_id", "region-75"),
+        label=seed_facility.get("display_name", "Region 75"),
+        scope_type="region",
+        risk="72 ELEVATED",
+        confidence="89%",
+        summary="Canonical Region 75 scope from active seed and Jacob union model.",
+        region="Region 75",
+        source="seed",
+    )
+
+    for site in chrise.get("sites", [])[:120]:
+        site_id = str(site.get("id") or "")
+        site_name = site.get("name") or f"Store {site_id}"
+        risk_score = site.get("riskScore")
+        risk = f"{risk_score} WATCH" if isinstance(risk_score, (int, float)) else "--"
+        confidence = "86%"
+        summary = f"Chris E fire scope · Region {site.get('region', 'Unknown')} · Open deficiencies {site.get('openDeficiencies', 0)}"
+        add_scope(
+            scope_id=f"fire-{site_id.lower()}",
+            label=site_name,
+            scope_type="store",
+            risk=risk,
+            confidence=confidence,
+            summary=summary,
+            region=site.get("region"),
+            site_id=site_id,
+            source="chrise",
+        )
+
+    for entry in qr_entries[:260]:
+        entry_type = entry.get("type", "store")
+        entry_id = str(entry.get("id") or "")
+        if not entry_id:
+            continue
+        label = entry.get("label") or f"Scope {entry_id}"
+        scope_type = "region" if entry_type == "region" else "store"
+        summary = "Jacob QR scope catalog entry"
+        add_scope(
+            scope_id=f"qr-{entry_type}-{entry_id}",
+            label=label,
+            scope_type=scope_type,
+            risk="--",
+            confidence="--",
+            summary=summary,
+            site_id=entry_id if scope_type == "store" else None,
+            source="jacob_qr",
+        )
+
+    for task in (jacob_union.get("work_queue") or [])[:120]:
+        region = task.get("region")
+        market = task.get("market")
+        if region:
+            add_scope(
+                scope_id=f"union-region-{str(region).lower().replace(' ', '-')}",
+                label=f"Region · {region}",
+                scope_type="region",
+                risk="--",
+                confidence="--",
+                summary=f"Jacob work queue scope with market context: {market or 'N/A'}",
+                region=region,
+                source="jacob_union",
+            )
+        if market:
+            add_scope(
+                scope_id=f"union-market-{str(market).lower().replace(' ', '-')}",
+                label=f"Market · {market}",
+                scope_type="market",
+                risk="--",
+                confidence="--",
+                summary=f"Jacob market scope derived from remediation queue in {region or 'unknown region'}",
+                region=region,
+                market=market,
+                source="jacob_union",
+            )
+
+    payload = {
+        "source_meta": {
+            "owner": "FPI Integration",
+            "source_files": [str(SEED_PATH), str(CHRISE_SOURCE), str(JACOB_SOURCE), str(JACOB_QR_MANIFEST)],
+            "synced_at": datetime.now(UTC).isoformat(),
+            "data_mode": "synthetic_demo_only",
+        },
+        "scope_count": len(scopes),
+        "scopes": scopes,
+    }
+    write_json(SCOPE_CATALOG_TARGET, payload)
+    return payload
+
+
 def main() -> int:
     seed = load_json(SEED_PATH)
     chrisr = sync_chrisr(seed)
     chrise = sync_chrise()
-    jacob = sync_jacob()
+    crosswalk = sync_facility_crosswalk()
+    jacob = sync_jacob(crosswalk)
+    scope_catalog = sync_scope_catalog(seed)
 
     print("Workspace integration sync complete:")
     print(f"- Chris R issues synced: {len(chrisr['technology_issues'])}")
     print(f"- Chris E fire controls synced: {len(chrise['fire_controls'])}")
+    print(f"- Facility crosswalk mapped: {crosswalk['mapping_summary']['mapped_count']} / {crosswalk['mapping_summary']['jacob_task_count']}")
     print(f"- Jacob tasks synced: {len(jacob['task_queue'])}")
+    print(f"- Scope catalog entries: {scope_catalog['scope_count']}")
     print(f"- Output dir: {INTEGRATION_DIR}")
     return 0
 

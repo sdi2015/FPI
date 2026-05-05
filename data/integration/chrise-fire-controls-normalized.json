@@ -3,10 +3,687 @@
     "owner": "Chris E",
     "source_file": "C:\\Users\\j0w16ja\\OneDrive - Walmart Inc\\FPI - D Team\\02_Foundry_Pack\\foundry_pack\\03_Workspaces\\Chris E - Working Folder\\01_Task_Work\\fire-alarm-data-2026-05-04.json",
     "source_last_modified": "2026-05-04T21:51:33+00:00",
-    "synced_at": "2026-05-05T15:26:41.617727+00:00",
+    "synced_at": "2026-05-05T16:03:12.962715+00:00",
     "data_mode": "synthetic_demo_only"
   },
   "source_task": "FPI-019",
+  "sites": [
+    {
+      "site_id": "RET-1001",
+      "name": "ABERDEEN Store",
+      "region": "Virginia South",
+      "risk_score": 10,
+      "open_deficiencies": 4,
+      "active_troubles": 1,
+      "overdue_inspection": false
+    },
+    {
+      "site_id": "RET-1002",
+      "name": "ABINGDON Store",
+      "region": "Virginia South",
+      "risk_score": 33,
+      "open_deficiencies": 0,
+      "active_troubles": 0,
+      "overdue_inspection": false
+    },
+    {
+      "site_id": "RET-1003",
+      "name": "ALTAVISTA Store",
+      "region": "Maryland Baltimore",
+      "risk_score": 25,
+      "open_deficiencies": 1,
+      "active_troubles": 0,
+      "overdue_inspection": false
+    },
+    {
+      "site_id": "RET-1004",
+      "name": "ARBUTUS Store",
+      "region": "Virginia West",
+      "risk_score": 35,
+      "open_deficiencies": 4,
+      "active_troubles": 0,
+      "overdue_inspection": false
+    },
+    {
+      "site_id": "RET-1005",
+      "name": "ASHLAND Market",
+      "region": "Virginia North",
+      "risk_score": 26,
+      "open_deficiencies": 4,
+      "active_troubles": 0,
+      "overdue_inspection": false
+    },
+    {
+      "site_id": "RET-1006",
+      "name": "BALTIMORE Store",
+      "region": "Maryland Southern",
+      "risk_score": 48,
+      "open_deficiencies": 4,
+      "active_troubles": 1,
+      "overdue_inspection": false
+    },
+    {
+      "site_id": "RET-1007",
+      "name": "BEDFORD Store",
+      "region": "Maryland Southern",
+      "risk_score": 49,
+      "open_deficiencies": 4,
+      "active_troubles": 2,
+      "overdue_inspection": false
+    },
+    {
+      "site_id": "RET-1008",
+      "name": "BLACKSTONE Store",
+      "region": "Virginia West",
+      "risk_score": 25,
+      "open_deficiencies": 1,
+      "active_troubles": 0,
+      "overdue_inspection": false
+    },
+    {
+      "site_id": "RET-1009",
+      "name": "BOWIE Supercenter",
+      "region": "Virginia South",
+      "risk_score": 60,
+      "open_deficiencies": 4,
+      "active_troubles": 0,
+      "overdue_inspection": false
+    },
+    {
+      "site_id": "RET-1010",
+      "name": "CALIFORNIA Store",
+      "region": "Virginia South",
+      "risk_score": 100,
+      "open_deficiencies": 4,
+      "active_troubles": 0,
+      "overdue_inspection": false
+    },
+    {
+      "site_id": "RET-1011",
+      "name": "CATONSVILLE Store",
+      "region": "Virginia North",
+      "risk_score": 57,
+      "open_deficiencies": 3,
+      "active_troubles": 0,
+      "overdue_inspection": false
+    },
+    {
+      "site_id": "RET-1012",
+      "name": "CHARLOTTESVILLE Store",
+      "region": "Virginia North",
+      "risk_score": 100,
+      "open_deficiencies": 3,
+      "active_troubles": 0,
+      "overdue_inspection": false
+    },
+    {
+      "site_id": "RET-1013",
+      "name": "CHESAPEAKE Store",
+      "region": "Virginia North",
+      "risk_score": 69,
+      "open_deficiencies": 4,
+      "active_troubles": 0,
+      "overdue_inspection": false
+    },
+    {
+      "site_id": "RET-1014",
+      "name": "CHESTER Store",
+      "region": "Virginia South",
+      "risk_score": 31,
+      "open_deficiencies": 3,
+      "active_troubles": 0,
+      "overdue_inspection": false
+    },
+    {
+      "site_id": "RET-1015",
+      "name": "CHESTERFIELD Store",
+      "region": "Maryland Baltimore",
+      "risk_score": 50,
+      "open_deficiencies": 3,
+      "active_troubles": 0,
+      "overdue_inspection": false
+    },
+    {
+      "site_id": "RET-1016",
+      "name": "CHRISTIANSBURG Store",
+      "region": "Maryland Baltimore",
+      "risk_score": 51,
+      "open_deficiencies": 0,
+      "active_troubles": 0,
+      "overdue_inspection": false
+    },
+    {
+      "site_id": "RET-1017",
+      "name": "CLINTON Supercenter",
+      "region": "Virginia South",
+      "risk_score": 20,
+      "open_deficiencies": 2,
+      "active_troubles": 2,
+      "overdue_inspection": false
+    },
+    {
+      "site_id": "RET-1018",
+      "name": "COCKEYSVILLE Store",
+      "region": "Maryland Southern",
+      "risk_score": 100,
+      "open_deficiencies": 3,
+      "active_troubles": 0,
+      "overdue_inspection": false
+    },
+    {
+      "site_id": "RET-1019",
+      "name": "COLONIAL HEIGHTS Store",
+      "region": "Virginia North",
+      "risk_score": 68,
+      "open_deficiencies": 2,
+      "active_troubles": 1,
+      "overdue_inspection": false
+    },
+    {
+      "site_id": "RET-1020",
+      "name": "COLUMBIA Store",
+      "region": "Virginia West",
+      "risk_score": 79,
+      "open_deficiencies": 2,
+      "active_troubles": 1,
+      "overdue_inspection": false
+    },
+    {
+      "site_id": "RET-1021",
+      "name": "CULPEPER Store",
+      "region": "Maryland Southern",
+      "risk_score": 80,
+      "open_deficiencies": 0,
+      "active_troubles": 1,
+      "overdue_inspection": false
+    },
+    {
+      "site_id": "RET-1022",
+      "name": "DANVILLE Store",
+      "region": "Virginia North",
+      "risk_score": 56,
+      "open_deficiencies": 3,
+      "active_troubles": 0,
+      "overdue_inspection": false
+    },
+    {
+      "site_id": "RET-1023",
+      "name": "DUBLIN Store",
+      "region": "Virginia West",
+      "risk_score": 30,
+      "open_deficiencies": 3,
+      "active_troubles": 0,
+      "overdue_inspection": false
+    },
+    {
+      "site_id": "RET-1024",
+      "name": "DUMFRIES Store",
+      "region": "Virginia North",
+      "risk_score": 76,
+      "open_deficiencies": 3,
+      "active_troubles": 0,
+      "overdue_inspection": false
+    },
+    {
+      "site_id": "RET-1025",
+      "name": "DUNDALK Market",
+      "region": "Maryland Eastern Shore",
+      "risk_score": 33,
+      "open_deficiencies": 3,
+      "active_troubles": 0,
+      "overdue_inspection": false
+    },
+    {
+      "site_id": "RET-1026",
+      "name": "DUNKIRK Store",
+      "region": "Virginia North",
+      "risk_score": 15,
+      "open_deficiencies": 1,
+      "active_troubles": 0,
+      "overdue_inspection": false
+    },
+    {
+      "site_id": "RET-1027",
+      "name": "ELLICOTT CITY Store",
+      "region": "Maryland Eastern Shore",
+      "risk_score": 78,
+      "open_deficiencies": 4,
+      "active_troubles": 1,
+      "overdue_inspection": false
+    },
+    {
+      "site_id": "RET-1028",
+      "name": "EMPORIA Store",
+      "region": "Virginia North",
+      "risk_score": 43,
+      "open_deficiencies": 1,
+      "active_troubles": 0,
+      "overdue_inspection": false
+    },
+    {
+      "site_id": "RET-1029",
+      "name": "FAIRLAWN Store",
+      "region": "Maryland Baltimore",
+      "risk_score": 52,
+      "open_deficiencies": 0,
+      "active_troubles": 0,
+      "overdue_inspection": false
+    },
+    {
+      "site_id": "RET-1030",
+      "name": "FALLSTON Store",
+      "region": "Virginia South",
+      "risk_score": 100,
+      "open_deficiencies": 2,
+      "active_troubles": 2,
+      "overdue_inspection": false
+    },
+    {
+      "site_id": "RET-1031",
+      "name": "FARMVILLE Supercenter",
+      "region": "Virginia West",
+      "risk_score": 5,
+      "open_deficiencies": 4,
+      "active_troubles": 0,
+      "overdue_inspection": false
+    },
+    {
+      "site_id": "RET-1032",
+      "name": "FREDERICKSBURG Market",
+      "region": "Maryland Eastern Shore",
+      "risk_score": 72,
+      "open_deficiencies": 4,
+      "active_troubles": 2,
+      "overdue_inspection": false
+    },
+    {
+      "site_id": "RET-1033",
+      "name": "GLEN ALLEN Supercenter",
+      "region": "Virginia South",
+      "risk_score": 100,
+      "open_deficiencies": 0,
+      "active_troubles": 0,
+      "overdue_inspection": false
+    },
+    {
+      "site_id": "RET-1034",
+      "name": "GLEN BURNIE Market",
+      "region": "Maryland Eastern Shore",
+      "risk_score": 20,
+      "open_deficiencies": 1,
+      "active_troubles": 0,
+      "overdue_inspection": false
+    },
+    {
+      "site_id": "RET-1035",
+      "name": "GLOUCESTER Market",
+      "region": "Virginia North",
+      "risk_score": 20,
+      "open_deficiencies": 0,
+      "active_troubles": 0,
+      "overdue_inspection": false
+    },
+    {
+      "site_id": "RET-1036",
+      "name": "GORDONSVILLE Store",
+      "region": "Virginia North",
+      "risk_score": 10,
+      "open_deficiencies": 1,
+      "active_troubles": 0,
+      "overdue_inspection": false
+    },
+    {
+      "site_id": "RET-1037",
+      "name": "HAMPSTEAD Supercenter",
+      "region": "Maryland Baltimore",
+      "risk_score": 66,
+      "open_deficiencies": 4,
+      "active_troubles": 0,
+      "overdue_inspection": false
+    },
+    {
+      "site_id": "RET-1038",
+      "name": "HAMPTON Market",
+      "region": "Maryland Eastern Shore",
+      "risk_score": 74,
+      "open_deficiencies": 2,
+      "active_troubles": 2,
+      "overdue_inspection": false
+    },
+    {
+      "site_id": "RET-1039",
+      "name": "HANOVER Store",
+      "region": "Maryland Southern",
+      "risk_score": 60,
+      "open_deficiencies": 3,
+      "active_troubles": 1,
+      "overdue_inspection": false
+    },
+    {
+      "site_id": "RET-1040",
+      "name": "HARRISONBURG Store",
+      "region": "Maryland Baltimore",
+      "risk_score": 95,
+      "open_deficiencies": 0,
+      "active_troubles": 0,
+      "overdue_inspection": false
+    },
+    {
+      "site_id": "RET-1041",
+      "name": "HENRICO Store",
+      "region": "Maryland Baltimore",
+      "risk_score": 32,
+      "open_deficiencies": 2,
+      "active_troubles": 0,
+      "overdue_inspection": false
+    },
+    {
+      "site_id": "RET-1042",
+      "name": "KILMARNOCK Supercenter",
+      "region": "Maryland Baltimore",
+      "risk_score": 50,
+      "open_deficiencies": 1,
+      "active_troubles": 0,
+      "overdue_inspection": false
+    },
+    {
+      "site_id": "RET-1043",
+      "name": "KING GEORGE Store",
+      "region": "Virginia North",
+      "risk_score": 48,
+      "open_deficiencies": 0,
+      "active_troubles": 0,
+      "overdue_inspection": false
+    },
+    {
+      "site_id": "RET-1044",
+      "name": "LA PLATA Store",
+      "region": "Virginia West",
+      "risk_score": 85,
+      "open_deficiencies": 1,
+      "active_troubles": 0,
+      "overdue_inspection": false
+    },
+    {
+      "site_id": "RET-1045",
+      "name": "LEXINGTON Store",
+      "region": "Maryland Southern",
+      "risk_score": 100,
+      "open_deficiencies": 2,
+      "active_troubles": 0,
+      "overdue_inspection": false
+    },
+    {
+      "site_id": "RET-1046",
+      "name": "LOCUST GROVE Market",
+      "region": "Virginia North",
+      "risk_score": 55,
+      "open_deficiencies": 0,
+      "active_troubles": 0,
+      "overdue_inspection": false
+    },
+    {
+      "site_id": "RET-1047",
+      "name": "LYNCHBURG Supercenter",
+      "region": "Maryland Eastern Shore",
+      "risk_score": 0,
+      "open_deficiencies": 1,
+      "active_troubles": 0,
+      "overdue_inspection": false
+    },
+    {
+      "site_id": "RET-1048",
+      "name": "MADISON HEIGHTS Store",
+      "region": "Maryland Eastern Shore",
+      "risk_score": 100,
+      "open_deficiencies": 0,
+      "active_troubles": 0,
+      "overdue_inspection": false
+    },
+    {
+      "site_id": "RET-1049",
+      "name": "MARTINSVILLE Market",
+      "region": "Maryland Southern",
+      "risk_score": 84,
+      "open_deficiencies": 3,
+      "active_troubles": 0,
+      "overdue_inspection": false
+    },
+    {
+      "site_id": "RET-1050",
+      "name": "MIDLOTHIAN Store",
+      "region": "Maryland Eastern Shore",
+      "risk_score": 80,
+      "open_deficiencies": 3,
+      "active_troubles": 0,
+      "overdue_inspection": false
+    },
+    {
+      "site_id": "RET-1051",
+      "name": "NEWPORT NEWS Supercenter",
+      "region": "Maryland Eastern Shore",
+      "risk_score": 86,
+      "open_deficiencies": 4,
+      "active_troubles": 2,
+      "overdue_inspection": false
+    },
+    {
+      "site_id": "RET-1052",
+      "name": "NORFOLK Store",
+      "region": "Virginia West",
+      "risk_score": 35,
+      "open_deficiencies": 4,
+      "active_troubles": 1,
+      "overdue_inspection": false
+    },
+    {
+      "site_id": "RET-1053",
+      "name": "NORTH EAST Store",
+      "region": "Maryland Baltimore",
+      "risk_score": 72,
+      "open_deficiencies": 2,
+      "active_troubles": 0,
+      "overdue_inspection": false
+    },
+    {
+      "site_id": "RET-1054",
+      "name": "NOTTINGHAM Store",
+      "region": "Virginia North",
+      "risk_score": 92,
+      "open_deficiencies": 4,
+      "active_troubles": 1,
+      "overdue_inspection": false
+    },
+    {
+      "site_id": "RET-1055",
+      "name": "PASADENA Store",
+      "region": "Maryland Southern",
+      "risk_score": 12,
+      "open_deficiencies": 0,
+      "active_troubles": 0,
+      "overdue_inspection": false
+    },
+    {
+      "site_id": "RET-1056",
+      "name": "PETERSBURG Store",
+      "region": "Maryland Southern",
+      "risk_score": 45,
+      "open_deficiencies": 4,
+      "active_troubles": 0,
+      "overdue_inspection": false
+    },
+    {
+      "site_id": "RET-1057",
+      "name": "PORTSMOUTH Store",
+      "region": "Maryland Eastern Shore",
+      "risk_score": 40,
+      "open_deficiencies": 2,
+      "active_troubles": 0,
+      "overdue_inspection": false
+    },
+    {
+      "site_id": "RET-1058",
+      "name": "POWHATAN Store",
+      "region": "Maryland Eastern Shore",
+      "risk_score": 53,
+      "open_deficiencies": 1,
+      "active_troubles": 0,
+      "overdue_inspection": false
+    },
+    {
+      "site_id": "RET-1059",
+      "name": "PRINCE FREDERICK Store",
+      "region": "Maryland Eastern Shore",
+      "risk_score": 31,
+      "open_deficiencies": 0,
+      "active_troubles": 0,
+      "overdue_inspection": false
+    },
+    {
+      "site_id": "RET-1060",
+      "name": "RANDALLSTOWN Store",
+      "region": "Maryland Southern",
+      "risk_score": 56,
+      "open_deficiencies": 4,
+      "active_troubles": 0,
+      "overdue_inspection": false
+    },
+    {
+      "site_id": "RET-1061",
+      "name": "RICHMOND Store",
+      "region": "Maryland Eastern Shore",
+      "risk_score": 31,
+      "open_deficiencies": 0,
+      "active_troubles": 0,
+      "overdue_inspection": false
+    },
+    {
+      "site_id": "RET-1062",
+      "name": "ROANOKE Store",
+      "region": "Virginia South",
+      "risk_score": 28,
+      "open_deficiencies": 4,
+      "active_troubles": 0,
+      "overdue_inspection": false
+    },
+    {
+      "site_id": "RET-1063",
+      "name": "ROCKY MOUNT Supercenter",
+      "region": "Maryland Southern",
+      "risk_score": 53,
+      "open_deficiencies": 4,
+      "active_troubles": 1,
+      "overdue_inspection": false
+    },
+    {
+      "site_id": "RET-1064",
+      "name": "RUCKERSVILLE Store",
+      "region": "Virginia West",
+      "risk_score": 52,
+      "open_deficiencies": 2,
+      "active_troubles": 0,
+      "overdue_inspection": false
+    },
+    {
+      "site_id": "RET-1065",
+      "name": "SALEM Market",
+      "region": "Maryland Baltimore",
+      "risk_score": 10,
+      "open_deficiencies": 2,
+      "active_troubles": 0,
+      "overdue_inspection": false
+    },
+    {
+      "site_id": "RET-1066",
+      "name": "SEVERN Store",
+      "region": "Maryland Eastern Shore",
+      "risk_score": 79,
+      "open_deficiencies": 1,
+      "active_troubles": 0,
+      "overdue_inspection": false
+    },
+    {
+      "site_id": "RET-1067",
+      "name": "SOUTH BOSTON Store",
+      "region": "Maryland Eastern Shore",
+      "risk_score": 79,
+      "open_deficiencies": 1,
+      "active_troubles": 0,
+      "overdue_inspection": false
+    },
+    {
+      "site_id": "RET-1068",
+      "name": "SOUTH HILL Store",
+      "region": "Virginia North",
+      "risk_score": 40,
+      "open_deficiencies": 4,
+      "active_troubles": 0,
+      "overdue_inspection": false
+    },
+    {
+      "site_id": "RET-1069",
+      "name": "STAFFORD Store",
+      "region": "Virginia South",
+      "risk_score": 20,
+      "open_deficiencies": 0,
+      "active_troubles": 0,
+      "overdue_inspection": false
+    },
+    {
+      "site_id": "RET-1070",
+      "name": "STAUNTON Store",
+      "region": "Maryland Southern",
+      "risk_score": 75,
+      "open_deficiencies": 3,
+      "active_troubles": 1,
+      "overdue_inspection": false
+    },
+    {
+      "site_id": "RET-1071",
+      "name": "STUART Store",
+      "region": "Maryland Southern",
+      "risk_score": 32,
+      "open_deficiencies": 0,
+      "active_troubles": 0,
+      "overdue_inspection": false
+    },
+    {
+      "site_id": "RET-1072",
+      "name": "SUFFOLK Store",
+      "region": "Maryland Eastern Shore",
+      "risk_score": 40,
+      "open_deficiencies": 2,
+      "active_troubles": 0,
+      "overdue_inspection": false
+    },
+    {
+      "site_id": "RET-1073",
+      "name": "SYKESVILLE Store",
+      "region": "Maryland Baltimore",
+      "risk_score": 25,
+      "open_deficiencies": 1,
+      "active_troubles": 0,
+      "overdue_inspection": false
+    },
+    {
+      "site_id": "RET-1074",
+      "name": "TAPPAHANNOCK Store",
+      "region": "Virginia North",
+      "risk_score": 90,
+      "open_deficiencies": 4,
+      "active_troubles": 0,
+      "overdue_inspection": false
+    },
+    {
+      "site_id": "RET-1075",
+      "name": "VIRGINIA BEACH Store",
+      "region": "Virginia North",
+      "risk_score": 49,
+      "open_deficiencies": 3,
+      "active_troubles": 0,
+      "overdue_inspection": false
+    }
+  ],
   "fire_controls": [
     {
       "control_id": "fire-ctrl-region75-aggregated",
