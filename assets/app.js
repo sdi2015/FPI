@@ -400,6 +400,8 @@ function setupLandingExperience() {
   const entry = byId('fpi-entry');
   if (!enterButton || !appShell || !entry) return;
 
+  appShell.classList.add('hidden');
+
   enterButton.addEventListener('click', () => {
     entry.classList.add('hidden');
     appShell.classList.remove('hidden');
