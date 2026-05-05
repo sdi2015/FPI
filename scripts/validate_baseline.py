@@ -37,9 +37,9 @@ def main() -> int:
 
     index_text = (ROOT / "index.html").read_text(encoding="utf-8")
     required_markers = [
-        "Walmart Internal / Need-to-Know",
-        "Synthetic Demo Data",
-        "Region 75",
+        "Walmart | Facility Protection Intelligence",
+        "See It. Score It. Solve It. Secure It.",
+        "Store WS-X38",
         "assets/app.js",
         "assets/styles.css",
     ]

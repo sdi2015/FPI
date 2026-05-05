@@ -7,45 +7,36 @@
   <meta http-equiv="Pragma" content="no-cache" />
   <meta http-equiv="Expires" content="0" />
   <title>Walmart | Facility Protection Intelligence</title>
-  <link rel="stylesheet" href="assets/styles.css?v=fpi-reset1" />
+  <link rel="stylesheet" href="assets/styles.css?v=fpi-productization-1" />
 </head>
 <body>
   <a class="skip-link" href="#main-content">Skip to main content</a>
-  <div class="banner">Walmart | Facility Protection Intelligence · Demo-Safe Environment</div>
 
-  <section id="fpi-entry" class="fpi-entry" aria-label="FPI landing experience">
-    <div class="entry-grid">
-      <div class="entry-copy">
-        <p class="kicker">Future-ready command center</p>
-        <h1>Facility Protection Intelligence</h1>
-        <p>Step into the live FPI workspace for posture intelligence, risk explainability, and execution lanes built for operations, technology, and leadership teams.</p>
-        <div class="entry-pill-row">
-          <span>Explainable Risk</span><span>Owner Lanes</span><span>Evidence Closure</span><span>Service Verticals</span>
+  <section id="landing-page" class="landing-page" data-route="landing" aria-label="Landing page">
+    <div class="landing-content">
+      <div class="spark-stage" aria-hidden="true">
+        <div class="spark-mark">
+          <span></span><span></span><span></span><span></span><span></span><span></span>
         </div>
-        <button id="enter-dashboard" type="button">Enter FPI Command Center</button>
       </div>
-      <div class="entry-visual" aria-hidden="true">
-        <div></div><div></div><div></div>
+      <p class="landing-kicker">Walmart | Facility Protection Intelligence</p>
+      <h1>Facility Protection Intelligence</h1>
+      <p class="landing-tagline">Unified Intelligence. Smarter Protection. Safer Facilities.</p>
+      <p class="landing-loop">See It. Score It. Solve It. Secure It.</p>
+      <div class="landing-actions">
+        <button type="button" id="enter-command-center">Enter Command Center</button>
+        <button type="button" id="run-demo-scenario" class="secondary">Run Demo Scenario</button>
+        <button type="button" id="landing-ask-fpi" class="ghost">Ask FPI</button>
       </div>
     </div>
   </section>
 
-  <div class="app-shell hidden" id="app-shell">
-    <aside class="sidebar" aria-label="FPI navigation">
-      <div class="brand">
-        <span class="brand-mark">FPI</span>
+  <div id="workspace-shell" class="workspace-shell hidden">
+    <aside class="sidebar" aria-label="Primary navigation">
+      <div class="sidebar-brand">
+        <p>Walmart</p>
         <h1>Facility Protection Intelligence</h1>
-        <p>Unified operating workspace for protection signals, service vertical execution, and closure evidence.</p>
-      <div class="service-offering-nav">
-        <h2>Service Offerings</h2>
-        <ul>
-          <li>Perimeter & Access Protection</li>
-          <li>Video Monitoring Intelligence</li>
-          <li>Life Safety & Fire Readiness</li>
-          <li>Incident & Response Coordination</li>
-          <li>Evidence Verification Operations</li>
-        </ul>
-      </div>
+        <span class="status-badge">Protected Demo Mode</span>
       </div>
 
       <nav>
@@ -62,347 +53,231 @@
         </ul>
       </nav>
 
-      <div class="sidebar-footer"><p><strong>Local Prototype Mode:</strong> Synthetic Demo Data</p></div>
+      <p class="sidebar-loop">See It → Score It → Solve It → Secure It</p>
     </aside>
 
-    <main id="main-content" class="content">
-      <header class="top-command-bar panel" aria-label="FPI global controls">
-        <div class="top-command-left">
-          <strong>Walmart | Facility Protection Intelligence</strong>
-          <span class="synthetic-chip">Demo-Safe Environment</span>
+    <main id="main-content" class="main-content">
+      <header class="page-header" aria-label="Global controls">
+        <div>
+          <p class="header-title">Walmart | Facility Protection Intelligence</p>
+          <p class="header-subtitle">Command Center</p>
         </div>
-        <div class="top-command-actions">
-          <input type="search" aria-label="Search facilities, cases, and risks" placeholder="Search store, case, protection signal…" />
-          <button type="button">Ask FPI</button>
-          <label class="demo-toggle">
-            <input type="checkbox" />
-            <span>Demo Mode</span>
+        <div class="header-actions">
+          <label class="scope-selector" for="scope-select">
+            <span>Selected Scope</span>
+            <select id="scope-select">
+              <option value="store-ws-x38">Single Store · WS-X38</option>
+              <option value="multi-store-alpha">Multi-Store · Alpha Cluster</option>
+              <option value="market-north">Market · North</option>
+              <option value="region-delta">Region · Delta</option>
+              <option value="demo-portfolio">Demo Portfolio</option>
+            </select>
           </label>
+          <button type="button" id="open-ask-fpi">Ask FPI</button>
         </div>
       </header>
-      <section id="landing" class="landing-page" data-route="landing">
-        <div class="landing-inner">
-          <div class="spark" aria-hidden="true">✦</div>
-          <h1>Facility Protection Intelligence</h1>
-          <p class="tagline">Unified Intelligence. Smarter Protection. Safer Facilities.</p>
-          <p class="slogan">See it. Score it. Solve it. Secure it.</p>
-          <div class="hero-actions">
-            <a href="#/command-center">Enter Command Center</a>
-            <a href="#/demo-mode">Run Demo Scenario</a>
-            <button type="button" id="ask-fpi-cta">Ask FPI</button>
-          </div>
-        </div>
-      </section>
 
-
-      <section id="overview" class="hero" data-route="command-center">
-        <div class="panel">
-          <p class="kicker">FPI Program Console</p>
-          <h2 id="facility-title" class="hero-title">Loading Region 75...</h2>
-          <p id="facility-subtitle" class="muted">Loading current program posture from local FPI data.</p>
-          <p class="hero-tagline">See it → Score it → Solve it → Secure it</p>
-          <p class="value-prop">FPI turns the local data in this folder into a usable operating shell: see posture, review the work queue, assign the right owner lane, and verify closure evidence.</p>
-          <div class="hero-actions" aria-label="Primary dashboard actions">
-            <a href="#start-here">Start here</a>
-            <a href="#operations-workbench">Open work queue</a>
-            <a href="#risk">Understand drivers</a>
-            <a href="#evidence">Verify closure</a>
-          </div>
-          <div class="program-flow" aria-label="FPI program operating model">
-            <div><strong>Identify</strong><span>Signal intake</span></div>
-            <div><strong>Explain</strong><span>Risk drivers</span></div>
-            <div><strong>Act</strong><span>Draft work</span></div>
-            <div><strong>Verify</strong><span>Evidence closure</span></div>
-          </div>
-          <div class="pill-row" aria-label="Dashboard context">
-            <span class="pill">Region <span id="facility-code">--</span></span>
-            <span id="facility-type" class="pill">--</span>
-            <span class="pill">Local JSON</span>
-            <span class="pill">Usable Local Shell</span>
-            <span class="pill">No Live Integrations</span>
-          </div>
-        </div>
-
-        <aside class="panel score-card" aria-label="Current synthetic risk score">
-          <div class="risk-orb" aria-hidden="true">
-            <span></span><span></span><span></span>
-          </div>
-          <p class="kicker">Explainable Synthetic Risk</p>
-          <div id="risk-score" class="score">--</div>
-          <h2 id="risk-tier">Loading</h2>
-          <p id="risk-confidence" class="muted">Confidence: --</p>
-          <p id="scoring-version" class="muted small-note">Scoring version: --</p>
-          <div class="score-explainer">
-            <strong>What this means</strong>
-            <p id="risk-meaning">Loading recommended interpretation.</p>
-          </div>
-        </aside>
-      </section>
-
-      <section class="metric-grid" aria-label="Dashboard metrics">
-        <article class="panel metric metric-priority">
-          <p class="kicker">Program Posture</p>
-          <strong id="program-posture-metric">--</strong>
-          <p class="muted">Plain-language operating status</p>
-        </article>
-        <article class="panel metric">
-          <p class="kicker">Technology Issues</p>
-          <strong id="issue-count">--</strong>
-          <p class="muted">Active synthetic health signals</p>
-        </article>
-        <article class="panel metric">
-          <p class="kicker">Open Work</p>
-          <strong id="open-remediation-count">--</strong>
-          <p class="muted">Remediations needing action</p>
-        </article>
-        <article class="panel metric">
-          <p class="kicker">Evidence Gaps</p>
-          <strong id="evidence-gap-count">--</strong>
-          <p class="muted">Missing or rejected evidence</p>
-        </article>
-        <article class="panel metric">
-          <p class="kicker">Draft Actions</p>
-          <strong id="draft-action-count">--</strong>
-          <p class="muted">Local-only remediation drafts</p>
-        </article>
-      </section>
-
-      <section id="start-here" class="panel full-width-panel start-here-panel">
-        <div class="section-heading-row">
+      <section class="app-page" data-route="command-center">
+        <div class="section-card hero-strip">
           <div>
-            <p class="kicker">Start Here</p>
-            <h2>What should the user do next?</h2>
-            <p id="next-action-copy" class="lead-copy">Loading recommended next step.</p>
+            <p class="section-kicker">Command Center</p>
+            <h2>Executive protection overview</h2>
+            <p id="command-center-summary">Loading command center summary.</p>
           </div>
-          <a class="pill pill-link" href="#draft-actions">Go to draft actions</a>
+          <div class="risk-pill-wrap">
+            <span id="selected-scope-pill" class="risk-badge">Selected Scope: Store WS-X38</span>
+            <span id="selected-risk-pill" class="status-badge">Risk Score: --</span>
+          </div>
         </div>
-        <div class="next-step-grid">
-          <article>
-            <span>1</span>
-            <strong>Confirm the posture</strong>
-            <p id="next-action-posture">Review current program posture and confidence.</p>
+
+        <div class="kpi-grid" id="kpi-grid"></div>
+
+        <div class="three-up-grid">
+          <article class="section-card">
+            <h3>Priority facilities</h3>
+            <div id="priority-facilities"></div>
           </article>
-          <article>
-            <span>2</span>
-            <strong>Resolve the biggest driver</strong>
-            <p id="next-action-owner">Use the top driver and owner role to focus the next work step.</p>
+          <article class="section-card">
+            <h3>Top risk drivers</h3>
+            <div id="top-risk-drivers"></div>
           </article>
-          <article>
-            <span>3</span>
-            <strong>Attach proof</strong>
-            <p id="next-action-proof">Use evidence state to verify closure and reduce repeat follow-up.</p>
+          <article class="section-card">
+            <h3>Evidence / verification status</h3>
+            <div id="verification-status"></div>
+          </article>
+        </div>
+
+        <div class="two-up-grid">
+          <article class="section-card">
+            <h3>Active remediation queue</h3>
+            <div id="remediation-queue"></div>
+          </article>
+          <article class="section-card insight-card">
+            <h3>Ask FPI insight</h3>
+            <p id="command-center-insight"></p>
+            <button type="button" class="inline-open-ask">Open Ask FPI</button>
           </article>
         </div>
       </section>
 
-      <section id="operations-workbench" class="operations-workbench" aria-label="FPI operations workbench">
-        <article class="panel work-queue-panel">
-          <div class="section-heading-row">
-            <div>
-              <p class="kicker">Operational Work Queue</p>
-              <h2>What needs attention now</h2>
-              <p class="muted">Data-driven queue built from local scoring, orchestration, remediation, and evidence files.</p>
-            </div>
-            <span id="work-queue-summary" class="pill">Loading queue</span>
-          </div>
-          <div id="work-queue-filters" class="filter-row" aria-label="Work queue filters">
-            <button type="button" class="filter-button active" data-queue-filter="all">All work</button>
-            <button type="button" class="filter-button" data-queue-filter="critical">Critical / P1</button>
-            <button type="button" class="filter-button" data-queue-filter="evidence">Evidence needed</button>
-            <button type="button" class="filter-button" data-queue-filter="technology">Technology</button>
-          </div>
-          <div id="work-queue-list" class="work-list"></div>
-        </article>
-
-        <aside class="panel owner-lane-panel">
-          <p class="kicker">Owner Lanes</p>
-          <h2>Who needs to act?</h2>
-          <div id="owner-lane-list" class="lane-list"></div>
-        </aside>
-
-        <aside class="panel data-status-panel">
-          <p class="kicker">Local Data Status</p>
-          <h2>Shell data loaded</h2>
-          <div id="data-status-list" class="data-status-list"></div>
-        </aside>
-      </section>
-
-      <section id="leadership-brief" class="panel full-width-panel leadership-brief-panel">
-        <div class="section-heading-row">
+      <section class="app-page" data-route="store-profiles">
+        <div class="section-card store-hero">
           <div>
-            <p class="kicker">Leadership Program Brief</p>
-            <h2>What FPI does</h2>
-            <p class="lead-copy">Facility Protection Intelligence connects facility protection signals, explainable risk drivers, draft remediation, and evidence verification into a governed program view.</p>
+            <p class="section-kicker">Store Protection Profile</p>
+            <h2 id="store-name">Store WS-X38</h2>
+            <p id="store-state">Current State: Active risk; remediation in progress.</p>
           </div>
-          <a class="pill pill-link" href="leadership-brief.html">Print / Save PDF brief</a>
-        </div>
-        <div class="brief-grid">
-          <article>
-            <span>Why it matters</span>
-            <strong>Moves from fragmented signals to accountable action.</strong>
-            <p>FPI helps teams see what needs attention, why it matters, who should act, and what proof closes the loop.</p>
-          </article>
-          <article>
-            <span>What leaders get</span>
-            <strong>Posture, confidence, ownership, and verification.</strong>
-            <p>The program view supports prioritization without exposing production systems or sensitive facility details in the demo.</p>
-          </article>
-          <article>
-            <span>How it scales</span>
-            <strong>Service verticals, governed adapters, and audit-ready closure.</strong>
-            <p>The same model can mature from synthetic local proof into approved integrations and portfolio reporting.</p>
-          </article>
-        </div>
-      </section>
-
-      <section id="executive-view" class="executive-grid" aria-label="Executive FPI program view">
-        <article class="panel executive-summary-panel">
-          <p class="kicker">Executive Program Summary</p>
-          <h2>What FPI shows leadership</h2>
-          <p id="executive-summary-copy" class="lead-copy">Loading executive summary.</p>
-          <div class="executive-stat-grid">
-            <div><span>Current posture</span><strong id="exec-program-posture">--</strong></div>
-            <div><span>Action focus</span><strong id="exec-action-focus">--</strong></div>
-            <div><span>Verification state</span><strong id="exec-verification-state">--</strong></div>
+          <div class="store-metrics">
+            <div><span>Risk Score</span><strong id="store-risk">72 HIGH</strong></div>
+            <div><span>Confidence</span><strong id="store-confidence">91%</strong></div>
+            <div><span>Last Updated</span><strong id="store-updated">8 minutes ago</strong></div>
+            <div><span>Source Freshness</span><strong id="store-freshness">Fresh</strong></div>
           </div>
-        </article>
-
-        <article class="panel maturity-panel">
-          <p class="kicker">Program Maturity Roadmap</p>
-          <h2>Path from demo to operating program</h2>
-          <ol class="maturity-list">
-            <li><strong>Phase 1:</strong> Local proof of value with synthetic Region 75 data.</li>
-            <li><strong>Phase 2:</strong> Confirm service vertical ownership and scoring calibration.</li>
-            <li><strong>Phase 3:</strong> Connect approved adapters behind governance and audit controls.</li>
-            <li><strong>Phase 4:</strong> Scale portfolio reporting, exception management, and closure proof.</li>
-          </ol>
-        </article>
-      </section>
-
-      <section id="demo-script" class="panel full-width-panel demo-script-panel">
-        <div class="section-heading-row">
-          <div>
-            <p class="kicker">Role-Based Demo Script</p>
-            <h2>How to tell the FPI story</h2>
-            <p class="muted">A concise walkthrough for leadership, market/regional operations, field execution, and technology/remediation partners.</p>
-          </div>
-          <span class="pill">5-minute walkthrough</span>
         </div>
-        <div class="persona-grid">
-          <article>
-            <h3>Executive / Governance</h3>
-            <p>Start with program posture, confidence, service-vertical coverage, and whether action is needed.</p>
-          </article>
-          <article>
-            <h3>Market / Regional Operations</h3>
-            <p>Show which facilities or assets need attention, which owners are involved, and what closure requires.</p>
-          </article>
-          <article>
-            <h3>Field / Regional Leadership</h3>
-            <p>Translate drivers into safe next steps, evidence expectations, and verification-ready closure.</p>
-          </article>
-          <article>
-            <h3>Technology / Remediation</h3>
-            <p>Use technology health, draft actions, source freshness, and evidence status to prioritize work.</p>
-          </article>
-        </div>
-      </section>
 
-      <section id="explainability" class="two-grid">
-        <article class="panel score-detail-panel">
-          <h2>Explainable Score Detail</h2>
-          <div class="score-summary-grid">
-            <div>
-              <p class="kicker">FPI-004 Score</p>
-              <strong id="explainable-score" class="large-value">--</strong>
+        <div class="section-card">
+          <h3>Risk summary</h3>
+          <p id="risk-summary-copy">Loading risk summary.</p>
+        </div>
+
+        <div class="domain-grid" id="domain-grid"></div>
+
+        <div class="two-up-grid">
+          <article class="section-card recommendation-card">
+            <h3>Recommended action</h3>
+            <p><strong>Restore parking lot camera coverage.</strong></p>
+            <p><strong>Why:</strong> The exterior parking lot camera outage creates a visibility gap and contributes to the High Risk posture.</p>
+            <p><strong>Vendor Match:</strong> SecureView Solutions</p>
+            <p><strong>Case:</strong> RF-56789</p>
+            <p><strong>Evidence Required:</strong> Post-repair camera health validation.</p>
+            <p><strong>Closure Rule:</strong> Do not close until evidence is verified.</p>
+            <div class="card-actions">
+              <button type="button" data-jump-route="vendor-match">Open Vendor Match</button>
+              <button type="button" data-jump-route="remediation" class="secondary">Open Remediation Case</button>
             </div>
-            <div>
-              <p class="kicker">Tier</p>
-              <strong id="explainable-tier" class="large-value">--</strong>
-            </div>
-            <div>
-              <p class="kicker">Confidence</p>
-              <strong id="explainable-confidence" class="large-value">--</strong>
-            </div>
-          </div>
-          <p id="explainable-note" class="muted">Loading explainable scoring output.</p>
-        </article>
-
-        <article class="panel guardrail-panel">
-          <h2>Adapter & Data Guardrails</h2>
-          <div class="pill-row">
-            <span class="pill">Synthetic Demo Data Only</span>
-            <span id="adapter-mode-pill" class="pill">Local Draft Only</span>
-            <span class="pill">No Live Integrations</span>
-          </div>
-          <p id="guardrail-note" class="muted guardrail-copy">Scoring and draft actions are loaded from local JSON outputs only.</p>
-        </article>
-      </section>
-
-      <section id="service-verticals" class="panel full-width-panel service-vertical-panel">
-        <div class="section-heading-row">
-          <div>
-            <h2>FPI Service Verticals</h2>
-            <p class="muted">Planned FPI coverage lanes across protection, operations, technology, verification, and governance. Current Region 75 signals are highlighted where local demo data exists.</p>
-          </div>
-          <span class="pill"><span id="service-vertical-count">--</span>&nbsp;coverage lanes</span>
+          </article>
+          <article class="section-card">
+            <h3>Ask FPI insight</h3>
+            <p id="store-insight"></p>
+            <button type="button" class="inline-open-ask">Open Ask FPI</button>
+          </article>
         </div>
-        <div id="service-vertical-list" class="vertical-grid"></div>
+
+        <div class="three-up-grid">
+          <article class="section-card">
+            <h3>Vendor match</h3>
+            <p>SecureView Solutions · Fit Score 94 · Camera restoration capability with strong SLA history.</p>
+          </article>
+          <article class="section-card">
+            <h3>Remediation case</h3>
+            <ol class="stepper" id="case-status-stepper"></ol>
+          </article>
+          <article class="section-card">
+            <h3>Evidence requirement timeline</h3>
+            <ol class="timeline" id="evidence-timeline"></ol>
+          </article>
+        </div>
       </section>
 
-      <section class="dashboard-grid">
-        <article id="risk" class="panel">
-          <h2>Top Risk Drivers</h2>
-          <p class="muted">Use this section to explain why the program posture exists before assigning work.</p>
-          <ol id="risk-drivers" class="driver-list"></ol>
-        </article>
-
-        <article id="technology" class="panel">
-          <h2>Technology Health</h2>
-          <p class="muted">Shows the synthetic signals contributing to protection posture.</p>
-          <div id="technology-issues" class="stack"></div>
-        </article>
-
-        <article id="remediation" class="panel">
-          <h2>Remediation Queue</h2>
-          <p class="muted">Tracks what needs action and whether verification is required.</p>
-          <div id="remediation-queue" class="stack"></div>
-        </article>
+      <section class="app-page" data-route="protection-services">
+        <div class="section-card">
+          <h2>Protection services</h2>
+          <p>Protection Signal Health by domain, owner lane, and action state.</p>
+          <div id="protection-service-cards" class="domain-grid"></div>
+        </div>
       </section>
 
-      <section id="draft-actions" class="panel full-width-panel">
-        <h2>Draft Remediation Actions</h2>
-        <p class="muted">FPI-005 converts top explainable risk drivers into local draft actions. These do not create live work orders.</p>
-        <div id="draft-action-list" class="action-grid"></div>
+      <section class="app-page" data-route="risk-alerts">
+        <div class="section-card">
+          <h2>Risk & alerts</h2>
+          <p>See It → Score It signals with explainable risk drivers and alert posture.</p>
+          <div id="risk-alert-list"></div>
+        </div>
       </section>
 
-      <section class="two-grid">
-        <article id="evidence" class="panel">
-          <h2>Evidence & Verification</h2>
-          <div id="evidence-list" class="stack"></div>
-        </article>
-
-        <article id="sources" class="panel">
-          <h2>Source Freshness</h2>
-          <div id="source-freshness" class="stack"></div>
-        </article>
+      <section class="app-page" data-route="remediation">
+        <div class="section-card">
+          <h2>Remediation</h2>
+          <p>Accountability is explicit: Detected → Recommended → Case Created → Assigned → In Progress → Completed → Verified → Closed.</p>
+          <ol class="stepper" id="remediation-flow"></ol>
+          <div id="remediation-cases" class="two-up-grid"></div>
+        </div>
       </section>
 
-      <section class="two-grid">
-        <article class="panel">
-          <h2>Incident Context</h2>
-          <div id="incident-list" class="stack"></div>
-        </article>
+      <section class="app-page" data-route="vendor-match">
+        <div class="section-card">
+          <h2>Vendor Match</h2>
+          <div class="two-up-grid">
+            <article class="section-card inner-card" id="vendor-match-primary"></article>
+            <article class="section-card inner-card">
+              <h3>Compare alternatives</h3>
+              <p>Ask FPI can compare fit, coverage, SLA risk, and evidence return expectations for this scenario.</p>
+              <div class="card-actions">
+                <button type="button" class="inline-open-ask">Ask FPI comparison action</button>
+                <button type="button" data-jump-route="remediation" class="secondary">Create remediation case action</button>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
 
-        <article class="panel">
-          <h2>Integration Notes</h2>
-          <p>This shell reads from <code>data/seed/fpi-seed-region75.json</code>, <code>scoring/scoring-output-region75.json</code>, and <code>orchestration/orchestration-output-region75.json</code>.</p>
-          <p class="muted">FPI-015 turns the localhost dashboard into a usable local operating shell driven by the data files in this folder while preserving synthetic/local guardrails and avoiding production endpoints, credentials, real facility posture, or live source calls.</p>
-        </article>
+      <section class="app-page" data-route="evidence">
+        <div class="section-card">
+          <h2>Evidence</h2>
+          <p>Evidence statuses: Missing, Submitted, Under Review, Verified, Rejected, Expired.</p>
+          <div id="evidence-status-cards" class="three-up-grid"></div>
+          <p class="closure-rule">Closure rule: a case cannot appear closed unless its evidence status is Verified.</p>
+        </div>
+      </section>
+
+      <section class="app-page" data-route="reports">
+        <div class="section-card">
+          <h2>Reports</h2>
+          <p>Executive summary snapshots and readiness rollups for selected scope.</p>
+          <div id="reports-summary" class="two-up-grid"></div>
+        </div>
+      </section>
+
+      <section class="app-page" data-route="demo-mode">
+        <div class="section-card">
+          <h2>Demo Mode</h2>
+          <p>Scenario: Camera Outage at Store WS-X38</p>
+          <div class="demo-stat-row" id="demo-scenario-stats"></div>
+          <ol class="stepper" id="demo-stepper"></ol>
+          <div class="card-actions">
+            <button type="button" id="demo-start">Start Scenario</button>
+            <button type="button" id="demo-next" class="secondary">Next Step</button>
+            <button type="button" id="demo-reset" class="ghost">Reset Scenario</button>
+            <button type="button" data-jump-route="store-profiles" class="ghost">Open Store Profile</button>
+            <button type="button" data-jump-route="vendor-match" class="ghost">Open Vendor Match</button>
+            <button type="button" data-jump-route="remediation" class="ghost">Open Remediation Case</button>
+            <button type="button" id="demo-generate-summary" class="ghost">Generate Executive Summary</button>
+          </div>
+          <article class="section-card inner-card">
+            <h3>Demo narrator</h3>
+            <p id="demo-narrator">Press Start Scenario to begin the guided walkthrough.</p>
+          </article>
+        </div>
       </section>
     </main>
   </div>
 
-  <script src="assets/app.js?v=fpi-region75"></script>
+  <button type="button" class="ask-fpi-fab" id="ask-fpi-fab">Ask FPI</button>
+
+  <aside id="ask-fpi-panel" class="ask-fpi-panel" aria-label="Ask FPI panel" aria-hidden="true">
+    <header>
+      <h2>Ask FPI</h2>
+      <button type="button" id="close-ask-fpi" aria-label="Close Ask FPI">×</button>
+    </header>
+    <p class="ask-context" id="ask-fpi-context">Context: Store WS-X38</p>
+    <div class="chip-row" id="ask-fpi-chips"></div>
+    <article class="section-card inner-card">
+      <h3>Response</h3>
+      <p id="ask-fpi-response">Select a prompt chip to generate a guided response.</p>
+    </article>
+    <p class="guardrail-note">Responses are based on synthetic FPI demo data and selected demo records. Human review is required for production, legal, privacy, procurement, and security decisions.</p>
+  </aside>
+
+  <script src="assets/app.js?v=fpi-productization-1"></script>
 </body>
 </html>
