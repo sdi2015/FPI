@@ -402,6 +402,17 @@ select {
   padding-left: 0.6rem;
 }
 
+.stepper li {
+  display: grid;
+  gap: 0.2rem;
+}
+
+.step-operating-program {
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+
 .stepper li.active,
 .timeline li.active { border-color: var(--blue); font-weight: 700; }
 .stepper li.done,

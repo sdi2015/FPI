@@ -91,14 +91,14 @@ const remediationFlow = ['Detected', 'Recommended', 'Case Created', 'Assigned', 
 const evidenceStatuses = ['Missing', 'Submitted', 'Under Review', 'Verified', 'Rejected', 'Expired'];
 
 const demoSteps = [
-  { title: 'Signal Detected', note: 'Parking lot camera offline signal appears for Store WS-X38.', score: '48 Moderate' },
-  { title: 'Risk Score Updated', note: 'Risk score increases after correlation with recent incident patterns.', score: '72 High' },
-  { title: 'Recommendation Generated', note: 'FPI recommends restoring parking lot camera coverage immediately.', score: '72 High' },
-  { title: 'Vendor / Technology Matched', note: 'SecureView Solutions matched with fit score 94 for this scenario.', score: '72 High' },
-  { title: 'Remediation Case Created', note: 'Case RF-56789 created and assigned to Security Technology owner lane.', score: '72 High' },
-  { title: 'Evidence Submitted', note: 'Evidence EV-2219 submitted for post-repair camera health validation.', score: '72 High' },
-  { title: 'Closure Verified', note: 'Evidence verified by reviewer; closure is now eligible.', score: '55 Medium' },
-  { title: 'Executive Summary Generated', note: 'Summary confirms controlled closure with verified evidence.', score: '55 Medium' },
+  { title: 'Signal Detected', note: 'Parking lot camera offline signal appears for Store WS-X38.', score: '48 Moderate', program: 'Camera / Controls' },
+  { title: 'Risk Score Updated', note: 'Risk score increases after correlation with recent incident patterns.', score: '72 High', program: 'Threat Scoring' },
+  { title: 'Facility Profile Updated', note: 'Facility profile refresh reflects elevated posture and open control gaps.', score: '72 High', program: 'Facility Profile' },
+  { title: 'Recommendation Generated', note: 'FPI recommends restoring parking lot camera coverage immediately.', score: '72 High', program: 'FFP Orchestration' },
+  { title: 'Vendor Matched', note: 'SecureView Solutions matched with fit score 94 for this scenario.', score: '72 High', program: 'Vendor Intelligence' },
+  { title: 'Remediation Case Created', note: 'Case RF-56789 created and assigned to Security Technology owner lane.', score: '72 High', program: 'FFP Orchestration' },
+  { title: 'Evidence Submitted', note: 'Evidence EV-2219 submitted for post-repair camera health validation.', score: '72 High', program: 'Governance' },
+  { title: 'Closure Verified', note: 'Evidence verified by reviewer; closure is now eligible.', score: '55 Medium', program: 'Governance' },
 ];
 
 const askPromptChips = window.askPromptChips ?? [
@@ -437,7 +437,7 @@ function renderDemoMode() {
 
   byId('demo-stepper').innerHTML = demoSteps.map((step, index) => {
     const cls = index < state.demoStep ? 'done' : index === state.demoStep ? 'active' : '';
-    return `<li class="${cls}">${index + 1}. ${step.title}</li>`;
+    return `<li class="${cls}"><span>${index + 1}. ${step.title}</span><small class="step-operating-program">Operating Program: ${step.program}</small></li>`;
   }).join('');
 
   byId('demo-narrator').textContent = currentStep
@@ -505,7 +505,7 @@ function applyRouting() {
     link.classList.toggle('active', link.getAttribute('href') === `#/${route}`);
   });
 
-  window.applyPendingCapabilityScroll?.();
+  window.applyPendingProgramScroll?.();
 }
 
 function bindEvents() {
@@ -556,9 +556,9 @@ function bindEvents() {
 }
 
 function renderAll() {
-  window.renderSidebarOperatingLayers?.();
+  window.renderSidebarPrograms?.();
   renderKpis();
-  window.renderCapabilityCoverage?.();
+  window.renderFpiProgramCoverage?.();
   renderCommandCenter();
   renderStoreProfile();
   renderProtectionServices();
@@ -569,7 +569,7 @@ function renderAll() {
   renderReports();
   renderDemoMode();
   renderAskFpiChips();
-  window.bindCapabilityNavigation?.();
+  window.bindFpiProgramNavigation?.();
   renderRefreshStatus();
 }
 

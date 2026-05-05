@@ -13,13 +13,13 @@
       "name": "Market / Regional Operations",
       "status": "Roadmap",
       "summary": "Region-level prioritization, follow-up, and cross-facility operating visibility.",
-      "currentSignals": ["Region 75 context", "Needs Attention status"]
+      "currentSignals": ["Market context", "Needs Attention status"]
     },
     {
       "name": "Field Operations",
       "status": "Mapped",
       "summary": "Local execution ownership for remediation, verification, and closure readiness.",
-      "currentSignals": ["Open remediations", "Draft actions", "Verification required"]
+      "currentSignals": ["Open remediations", "Action pipeline", "Verification required"]
     },
     {
       "name": "Regional / Field Leadership",
@@ -61,7 +61,7 @@
       "name": "Work Management / Remediation",
       "status": "Active Demo",
       "summary": "Draft work actions, owner roles, priority, remediation state, and closure verification.",
-      "currentSignals": ["P1/P2 draft actions", "Local Draft Only", "No live work orders"]
+      "currentSignals": ["P1/P2 action pipeline", "Local Draft Only", "No live work orders"]
     },
     {
       "name": "Vendor / Service Provider Coordination",
@@ -72,8 +72,8 @@
     {
       "name": "Data Integration / Source Freshness",
       "status": "Active Demo",
-      "summary": "Source recency, adapter mode, local JSON seed health, and future integration status.",
-      "currentSignals": ["Local JSON", "Freshness status", "No live integrations"]
+      "summary": "Source recency, adapter mode, synthetic seed health, and future integration status.",
+      "currentSignals": ["Synthetic seed", "Freshness status", "Demo-only integrations"]
     }
   ]
 }

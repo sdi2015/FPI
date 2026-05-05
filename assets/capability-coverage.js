@@ -1,218 +1,216 @@
-window.capabilityCoverage = [
+window.fpiOperatingPrograms = [
   {
-    id: 'ingest-normalize',
-    name: 'Data ingestion and normalization',
-    shortLabel: 'Ingest & Normalize',
-    description: 'Normalizes facility, risk, evidence, scoring, and orchestration records into one operating picture.',
+    id: 'data-ingestion',
+    label: 'Data Ingestion',
+    fullName: 'Data ingestion and normalization',
     status: 'Active',
+    tone: 'blue',
+    description: 'Normalizes facility, risk, evidence, scoring, and orchestration records into one operating picture.',
     demoSignal: 'Seed, scoring, and orchestration data loaded.',
-    relatedPage: 'Command Center',
     route: 'command-center',
-    statusTone: 'blue',
+    relatedPage: 'Command Center',
   },
   {
     id: 'facility-profile',
-    name: 'Facility protection profile',
-    shortLabel: 'Facility Profile',
-    description: 'Builds a single protection profile for each facility with risk, posture, source freshness, and domain status.',
+    label: 'Facility Profile',
+    fullName: 'Facility protection profile',
     status: 'Active',
-    demoSignal: 'Store WS-X38 profile loaded.',
-    relatedPage: 'Store Profiles',
+    tone: 'green',
+    description: 'Builds a single facility protection profile with risk, posture, source freshness, and domain status.',
+    demoSignal: 'Store WS-X38 protection profile loaded.',
     route: 'store-profiles',
-    statusTone: 'green',
+    relatedPage: 'Store Profiles',
   },
   {
-    id: 'ep-readiness',
-    name: 'Executive protection readiness',
-    shortLabel: 'EP Readiness',
-    description: 'Tracks visit readiness, checklist gaps, local posture, and executive movement support needs.',
+    id: 'executive-protection',
+    label: 'Executive Protection',
+    fullName: 'Executive protection readiness',
     status: 'Watch',
+    tone: 'orange',
+    description: 'Tracks executive visit readiness, checklist gaps, local posture, and movement-support readiness.',
     demoSignal: 'Upcoming visit readiness incomplete.',
-    relatedPage: 'Protection Services',
     route: 'protection-services',
-    statusTone: 'orange',
+    relatedPage: 'Protection Services',
   },
   {
     id: 'fire-assurance',
-    name: 'Fire system monitoring and assurance',
-    shortLabel: 'Fire Assurance',
-    description: 'Monitors fire/life safety evidence, inspection currency, trouble signals, and assurance gaps.',
+    label: 'Fire Assurance',
+    fullName: 'Fire system monitoring and assurance',
     status: 'Elevated',
+    tone: 'orange',
+    description: 'Monitors fire/life safety evidence, inspection currency, trouble signals, and assurance gaps.',
     demoSignal: 'Inspection evidence stale.',
-    relatedPage: 'Protection Services',
     route: 'protection-services',
-    statusTone: 'orange',
+    relatedPage: 'Protection Services',
   },
   {
     id: 'camera-controls',
-    name: 'Camera and technical control monitoring',
-    shortLabel: 'Camera / Controls',
-    description: 'Monitors camera coverage, technical control health, access control, and visibility gaps.',
+    label: 'Camera / Controls',
+    fullName: 'Camera and technical control monitoring',
     status: 'High',
+    tone: 'red',
+    description: 'Monitors camera coverage, access control, technical control health, and visibility gaps.',
     demoSignal: 'Parking lot camera offline.',
-    relatedPage: 'Risk & Alerts',
     route: 'risk-alerts',
-    statusTone: 'red',
+    relatedPage: 'Risk & Alerts',
   },
   {
     id: 'threat-scoring',
-    name: 'Threat detection and risk scoring',
-    shortLabel: 'Threat Scoring',
-    description: 'Converts signals into explainable risk scores using severity, confidence, source freshness, and drivers.',
+    label: 'Threat Scoring',
+    fullName: 'Threat detection and risk scoring',
     status: 'Active',
+    tone: 'blue',
+    description: 'Converts protection signals into explainable risk scores using severity, confidence, freshness, and risk drivers.',
     demoSignal: 'Store WS-X38 risk score increased from 48 Moderate to 72 High.',
-    relatedPage: 'Risk & Alerts',
     route: 'risk-alerts',
-    statusTone: 'blue',
+    relatedPage: 'Risk & Alerts',
   },
   {
     id: 'ffp-orchestration',
-    name: 'Automated FFP / remediation orchestration',
-    shortLabel: 'FFP Orchestration',
-    description: 'Turns risk signals into recommended actions, owners, cases, SLAs, and closure requirements.',
+    label: 'FFP Orchestration',
+    fullName: 'Automated FFP / remediation orchestration',
     status: 'Active',
+    tone: 'blue',
+    description: 'Turns scored risk into recommended action, owner assignment, case creation, SLA tracking, and closure requirements.',
     demoSignal: 'Case RF-56789 created and in progress.',
-    relatedPage: 'Remediation',
     route: 'remediation',
-    statusTone: 'blue',
+    relatedPage: 'Remediation',
   },
   {
     id: 'vendor-intelligence',
-    name: 'Vendor intelligence and recommendations',
-    shortLabel: 'Vendor Intelligence',
-    description: 'Matches facility needs to vendor or technology options using capability fit, coverage, SLA, constraints, and evidence requirements.',
+    label: 'Vendor Intelligence',
+    fullName: 'Vendor intelligence and recommendations',
     status: 'Active',
+    tone: 'green',
+    description: 'Matches facility needs to vendor and technology options using capability fit, coverage, SLA, constraints, and evidence requirements.',
     demoSignal: 'SecureView Solutions matched with fit score 94.',
-    relatedPage: 'Vendor Match',
     route: 'vendor-match',
-    statusTone: 'green',
+    relatedPage: 'Vendor Match',
   },
   {
     id: 'external-coordination',
-    name: 'Law-enforcement / external coordination',
-    shortLabel: 'External Coordination',
-    description: 'Tracks when external coordination, escalation, or public-safety awareness may be needed while keeping sensitive details out of the demo.',
+    label: 'External Coordination',
+    fullName: 'Law-enforcement / external coordination',
     status: 'Demo Safe',
+    tone: 'gray',
+    description: 'Tracks when external coordination, escalation, or public-safety awareness may be needed while keeping sensitive details out of the demo.',
     demoSignal: 'External coordination lane available; no sensitive contact details shown.',
-    relatedPage: 'Reports',
     route: 'reports',
-    statusTone: 'gray',
+    relatedPage: 'Reports',
   },
   {
-    id: 'verification-governance',
-    name: 'Verification, dashboard, and governance',
-    shortLabel: 'Verification / Governance',
-    description: 'Enforces evidence-based closure, executive reporting, dashboard visibility, and governance controls.',
+    id: 'governance',
+    label: 'Governance',
+    fullName: 'Verification, dashboard, and governance',
     status: 'Active',
+    tone: 'green',
+    description: 'Enforces evidence-based closure, dashboard visibility, executive reporting, and governance controls.',
     demoSignal: 'EV-2219 camera health validation required before closure.',
-    relatedPage: 'Evidence',
     route: 'evidence',
-    statusTone: 'green',
+    relatedPage: 'Evidence',
   },
 ];
 
-window.renderSidebarOperatingLayers = function renderSidebarOperatingLayers() {
-  const container = document.getElementById('sidebar-operating-layers');
+window.renderSidebarPrograms = function renderSidebarPrograms() {
+  const container = document.getElementById('sidebar-program-list');
   if (!container) return;
 
-  container.innerHTML = window.capabilityCoverage.map((capability) => `
+  container.innerHTML = window.fpiOperatingPrograms.map((program) => `
     <button
-      class="sidebar-capability-item"
       type="button"
-      data-capability-id="${capability.id}"
-      data-route="${capability.route}"
-      aria-label="Open ${capability.name}"
+      class="sidebar-program-item"
+      data-jump-route="${program.route}"
+      data-program-id="${program.id}"
+      aria-label="Open ${program.fullName}"
     >
-      <span class="sidebar-capability-dot status-${capability.statusTone}"></span>
-      <span class="sidebar-capability-label">${capability.shortLabel}</span>
-      <span class="sidebar-capability-status">${capability.status}</span>
+      <span class="program-dot tone-${program.tone}"></span>
+      <span class="program-label">${program.label}</span>
+      <span class="program-status">${program.status}</span>
     </button>
   `).join('');
 };
 
-window.renderCapabilityCoverage = function renderCapabilityCoverage() {
-  const container = document.getElementById('capability-coverage-grid');
+window.renderFpiProgramCoverage = function renderFpiProgramCoverage() {
+  const container = document.getElementById('fpi-program-coverage-grid');
   if (!container) return;
 
-  container.innerHTML = window.capabilityCoverage.map((capability) => `
+  container.innerHTML = window.fpiOperatingPrograms.map((program) => `
     <article
-      class="capability-card"
-      id="capability-${capability.id}"
-      data-capability-id="${capability.id}"
-      data-route="${capability.route}"
+      class="fpi-program-card"
+      id="program-${program.id}"
+      data-program-id="${program.id}"
+      data-jump-route="${program.route}"
       tabindex="0"
       role="button"
-      aria-label="Open ${capability.name}"
+      aria-label="Open ${program.fullName}"
     >
-      <div class="capability-card-header">
-        <span class="capability-status-dot status-${capability.statusTone}"></span>
-        <span class="status-badge status-${capability.statusTone}">${capability.status}</span>
+      <div class="program-card-topline">
+        <span class="program-dot tone-${program.tone}"></span>
+        <span class="program-badge tone-${program.tone}">${program.status}</span>
       </div>
-      <h3>${capability.name}</h3>
-      <p>${capability.description}</p>
-      <div class="capability-demo-signal">
-        <span class="capability-meta-label">Demo signal</span>
-        <span>${capability.demoSignal}</span>
+      <h3>${program.fullName}</h3>
+      <p>${program.description}</p>
+      <div class="program-demo-signal">
+        <span>Demo signal</span>
+        <strong>${program.demoSignal}</strong>
       </div>
-      <div class="capability-card-footer">
+      <div class="program-card-footer">
         <span>Related page</span>
-        <strong>${capability.relatedPage}</strong>
+        <strong>${program.relatedPage}</strong>
       </div>
     </article>
   `).join('');
 };
 
-function scrollToCapabilityCard(capabilityId) {
-  const target = capabilityId ? document.getElementById(`capability-${capabilityId}`) : null;
+function scrollToProgramCard(programId) {
+  const target = programId ? document.getElementById(`program-${programId}`) : null;
   if (!target) return;
   target.scrollIntoView({ behavior: 'smooth', block: 'center' });
   target.focus({ preventScroll: true });
 }
 
-window.applyPendingCapabilityScroll = function applyPendingCapabilityScroll() {
-  const pendingCapabilityId = window.__pendingCapabilityId;
-  if (!pendingCapabilityId || window.location.hash !== '#/command-center') return;
-  window.__pendingCapabilityId = '';
-  window.requestAnimationFrame(() => scrollToCapabilityCard(pendingCapabilityId));
+window.applyPendingProgramScroll = function applyPendingProgramScroll() {
+  const pendingProgramId = window.__pendingProgramId;
+  if (!pendingProgramId || window.location.hash !== '#/command-center') return;
+  window.__pendingProgramId = '';
+  window.requestAnimationFrame(() => scrollToProgramCard(pendingProgramId));
 };
 
-window.bindCapabilityNavigation = function bindCapabilityNavigation() {
-  const elements = document.querySelectorAll('[data-capability-id], .capability-card');
-  elements.forEach((element) => {
-    if (element.dataset.capabilityBound === 'true') return;
+window.bindFpiProgramNavigation = function bindFpiProgramNavigation() {
+  document.querySelectorAll('.sidebar-program-item, .fpi-program-card').forEach((element) => {
+    if (element.dataset.programBound === 'true') return;
 
-    const handleNavigate = () => {
-      const capabilityId = element.getAttribute('data-capability-id');
-      const route = element.getAttribute('data-route');
-      const isSidebarItem = element.classList.contains('sidebar-capability-item');
+    const navigate = () => {
+      const route = element.getAttribute('data-jump-route');
+      const programId = element.getAttribute('data-program-id');
+      const isSidebarItem = element.classList.contains('sidebar-program-item');
 
-      if (isSidebarItem && capabilityId) {
-        window.__pendingCapabilityId = capabilityId;
+      if (isSidebarItem && route === 'command-center' && programId) {
+        window.__pendingProgramId = programId;
         if (typeof window.setRoute === 'function') {
           window.setRoute('command-center');
         }
-        if (window.location.hash === '#/command-center') {
-          window.applyPendingCapabilityScroll?.();
-        }
+        window.applyPendingProgramScroll?.();
         return;
       }
 
       if (route && typeof window.setRoute === 'function') {
         window.setRoute(route);
       }
-      if (window.location.hash === '#/command-center' && capabilityId) {
-        scrollToCapabilityCard(capabilityId);
+
+      if (window.location.hash === '#/command-center' && programId) {
+        scrollToProgramCard(programId);
       }
     };
 
-    element.addEventListener('click', handleNavigate);
+    element.addEventListener('click', navigate);
     element.addEventListener('keydown', (event) => {
       if (event.key === 'Enter' || event.key === ' ') {
         event.preventDefault();
-        handleNavigate();
+        navigate();
       }
     });
 
-    element.dataset.capabilityBound = 'true';
+    element.dataset.programBound = 'true';
   });
 };
